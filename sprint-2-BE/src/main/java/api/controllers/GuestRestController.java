@@ -67,13 +67,14 @@ public class GuestRestController {
             bindingResult.rejectValue("userName", "", "Tên đăng nhập đã tồn tại.");
         }
         // Validate duplicate email
-        if (getGuestByEmail(guestDto.getEmail()) != null) {
+        if (getGuestByUserName(guestDto.getEmail()) != null) {
             bindingResult.rejectValue("email", "", "Email đã tồn tại.");
         }
         // Mapping all errors into a map to send to Angular
         Map<String, String> errorMap = new HashMap<>();
         bindingResult
                 .getFieldErrors()
+                .stream()
                 .forEach(
                         fieldError -> {
                             errorMap.put(fieldError.getField(), fieldError.getDefaultMessage());
@@ -210,7 +211,6 @@ public class GuestRestController {
     public ResponseEntity<List<Target>> listTarget() {
         return new ResponseEntity<>(iTargetService.getAllTarget(), HttpStatus.OK);
     }
-
     @GetMapping(value = "/listFavorite")
     public ResponseEntity<List<Favorite>> listFavorite() {
         return new ResponseEntity<>(iFavoriteService.getAllFavorite(), HttpStatus.OK);

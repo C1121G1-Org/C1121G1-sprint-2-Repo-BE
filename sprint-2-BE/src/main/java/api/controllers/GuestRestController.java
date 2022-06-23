@@ -215,4 +215,8 @@ public class GuestRestController {
     public ResponseEntity<List<Favorite>> listFavorite() {
         return new ResponseEntity<>(iFavoriteService.getAllFavorite(), HttpStatus.OK);
     }
+    @GetMapping(value = "/listTop100")
+    public ResponseEntity<?> viewTop100(){
+        return new ResponseEntity<>(iGuestService.viewTop100(), HttpStatus.OK);
+    }
 }

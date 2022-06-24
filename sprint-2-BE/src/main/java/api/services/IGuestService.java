@@ -3,6 +3,8 @@ package api.services;
 import api.dto.ExtraInforDto;
 import api.dto.Top100Dto;
 import api.models.Guest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -51,5 +53,5 @@ public interface IGuestService {
         Class:
     */
     Guest getGuestByEmail(String email);
-    List<Top100Dto> viewTop100();
+    Page<Top100Dto> viewTop100(Pageable pageable);
 }

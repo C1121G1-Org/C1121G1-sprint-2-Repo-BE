@@ -2,11 +2,15 @@ package api.controllers;
 
 import api.dto.ExtraInforDto;
 import api.dto.GuestDto;
+import api.dto.Top100Dto;
 import api.models.*;
 import api.services.*;
 import api.services.impl.PassEncTech1;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +18,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Max;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -216,7 +221,11 @@ public class GuestRestController {
         return new ResponseEntity<>(iFavoriteService.getAllFavorite(), HttpStatus.OK);
     }
     @GetMapping(value = "/listTop100")
-    public ResponseEntity<?> viewTop100(){
-        return new ResponseEntity<>(iGuestService.viewTop100(), HttpStatus.OK);
+    public ResponseEntity<Page<Top100Dto>> viewTop100( @RequestParam(defaultValue = "0") int page){
+        Page<Top100Dto> top100Dtos = iGuestService.viewTop100(PageRequest.of(page, 10));
+        if (top100Dtos.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(top100Dtos, HttpStatus.OK);
     }
 }

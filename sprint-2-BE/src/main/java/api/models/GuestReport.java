@@ -7,13 +7,13 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Table(name = "post_report")
+@Table(name = "guest_report")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class PostReport {
+public class GuestReport {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,11 +22,14 @@ public class PostReport {
     @Column(name = "date_report", nullable = false, columnDefinition = "DATE")
     private String dateReport;
 
+    @Column(name = "description", columnDefinition = "LONGTEXT")
+    private String description;
+
     @ManyToOne
     @JoinColumn(name = "report_id", referencedColumnName = "id", nullable = false)
     private Report report;
 
     @ManyToOne
     @JoinColumn(name = "guest_id", referencedColumnName = "id", nullable = false)
-    private Post post;
+    private Guest guest;
 }

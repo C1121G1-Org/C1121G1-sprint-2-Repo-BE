@@ -25,5 +25,5 @@ public class Report {
 
     @OneToMany(mappedBy = "report")
     @JsonBackReference
-    private Set<PostReport> postReportSet;
+    private Set<GuestReport> guestReportSet;
 }

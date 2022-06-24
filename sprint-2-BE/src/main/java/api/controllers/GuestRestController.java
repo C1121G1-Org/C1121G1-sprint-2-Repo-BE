@@ -2,11 +2,15 @@ package api.controllers;
 
 import api.dto.ExtraInforDto;
 import api.dto.GuestDto;
+import api.dto.GuestInterfaceDTO;
 import api.models.*;
 import api.services.*;
 import api.services.impl.PassEncTech1;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,10 +18,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @CrossOrigin("*")
@@ -45,9 +46,28 @@ public class GuestRestController {
     @Autowired
     IFavoriteService iFavoriteService;
 
+
+    /*
+          Created by khoaPTD
+          Role: GUEST
+          Time: 20:00 23/06/2022
+          Function: findAllGuest() = Search Guest
+     */
     @GetMapping(value = "/list")
-    public String listGuest() {
-        return null;
+    public ResponseEntity<Page<GuestInterfaceDTO>> findAllGuest(@PageableDefault(value = 8) Pageable pageable ,
+                                                                @RequestParam Optional<String> keyName,
+                                                                @RequestParam Optional<String> keyGender,
+                                                                @RequestParam Optional<String> keyCareer,
+                                                                @RequestParam Optional<String> keyAddress,
+                                                                @RequestParam Optional<String> keyYearOfBirth,
+                                                                @RequestParam Optional<String> keyFavorite) {
+        Page<GuestInterfaceDTO> guestList = iGuestService.findGuestByKey(pageable,keyName,keyGender,keyCareer,keyAddress,keyYearOfBirth,keyFavorite);
+        if(guestList.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(guestList, HttpStatus.OK);
+        }
+
     }
 
     /*
@@ -67,13 +87,14 @@ public class GuestRestController {
             bindingResult.rejectValue("userName", "", "Tên đăng nhập đã tồn tại.");
         }
         // Validate duplicate email
-        if (getGuestByEmail(guestDto.getEmail()) != null) {
+        if (getGuestByUserName(guestDto.getEmail()) != null) {
             bindingResult.rejectValue("email", "", "Email đã tồn tại.");
         }
         // Mapping all errors into a map to send to Angular
         Map<String, String> errorMap = new HashMap<>();
         bindingResult
                 .getFieldErrors()
+                .stream()
                 .forEach(
                         fieldError -> {
                             errorMap.put(fieldError.getField(), fieldError.getDefaultMessage());
@@ -210,7 +231,6 @@ public class GuestRestController {
     public ResponseEntity<List<Target>> listTarget() {
         return new ResponseEntity<>(iTargetService.getAllTarget(), HttpStatus.OK);
     }
-
     @GetMapping(value = "/listFavorite")
     public ResponseEntity<List<Favorite>> listFavorite() {
         return new ResponseEntity<>(iFavoriteService.getAllFavorite(), HttpStatus.OK);

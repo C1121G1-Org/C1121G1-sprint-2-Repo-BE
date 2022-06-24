@@ -22,6 +22,9 @@ public class GuestReport {
     @Column(name = "date_report", nullable = false, columnDefinition = "DATE")
     private String dateReport;
 
+    @Column(name = "description", columnDefinition = "LONGTEXT")
+    private String description;
+
     @ManyToOne
     @JoinColumn(name = "report_id", referencedColumnName = "id", nullable = false)
     private Report report;

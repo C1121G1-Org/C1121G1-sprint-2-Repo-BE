@@ -1,7 +1,7 @@
 package api.services.impl;
 
 import api.dto.ExtraInforDto;
-import api.dto.Top100Dto;
+import api.dto.GuestInterfaceDTO;
 import api.models.Guest;
 import api.repositories.IGuestRepository;
 import api.services.IGuestService;
@@ -10,7 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Optional;
 
 @Service
 public class GuestServiceImpl implements IGuestService {
@@ -79,7 +79,9 @@ public class GuestServiceImpl implements IGuestService {
     }
 
     @Override
-    public Page<Top100Dto> viewTop100(Pageable pageable) {
-        return iGuestRepository.viewTop100(pageable);
+    public Page<GuestInterfaceDTO> findGuestByKey(Pageable pageable, Optional<String> keyName, Optional<String> keyGender, Optional<String> keyCareer, Optional<String> keyAddress, Optional<String> keyYearOfBirth, Optional<String> keyFavorite) {
+        return iGuestRepository.getPageGuest(pageable, keyName, keyGender, keyCareer, keyAddress, keyYearOfBirth, keyFavorite);
     }
+
+
 }

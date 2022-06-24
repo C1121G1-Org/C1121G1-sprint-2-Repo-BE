@@ -13,13 +13,15 @@ import org.springframework.transaction.annotation.Transactional;
 public interface IPostRepository extends JpaRepository<Post, Long> {
 
     @Transactional
-    @Query(value = "select post.id, post.content, post.image, post.post_date as postDate, post.privacy, post.feeling, post.guest_id as guestDto, count(like_post.guest_id) as totalLike from post " +
+    @Query(value = "select post.id, post.content, post.image, post.post_date as postDate, post.privacy, post.feeling, post.guest_id as guestId, guest.name,guest.image as imageGuest, count(like_post.guest_id) as totalLike from post " +
             "inner join like_post on post.id = like_post.post_id " +
+            "inner join guest on post.guest_id = guest.id " +
             "where like_post_flag =1  and post.guest_id = :guestId or post.guest_id in ( select friend_id from guest_friend where guest_id = :guestId) " +
             "group by like_post.post_id " +
             "Order by post_date desc ",
-            countQuery = "select post.id, post.content, post.image, post.post_date as postDate, post.privacy, post.feeling, post.guest_id as guestDto, count(like_post.guest_id) as totalLike from post " +
+            countQuery = "select post.id, post.content, post.image, post.post_date as postDate, post.privacy, post.feeling, post.guest_id as guestId,guest.name,guest.image as imageGuest, count(like_post.guest_id) as totalLike from post " +
                     "inner join like_post on post.id = like_post.post_id " +
+                    "inner join guest on post.guest_id = guest.id " +
                     "where like_post_flag =1  and post.guest_id = :guestId or post.guest_id in ( select friend_id from guest_friend where guest_id = :guestId) " +
                     "group by like_post.post_id " +
                     "Order by post_date desc ",

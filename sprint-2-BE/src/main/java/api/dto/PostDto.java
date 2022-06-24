@@ -24,7 +24,6 @@ public class PostDto {
 
     private String content;
 
-    private Guest guest;
+    private Long guestId;
 
-    private Integer totalLike;
 }

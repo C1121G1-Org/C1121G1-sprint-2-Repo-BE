@@ -2,6 +2,7 @@ package api.services.impl;
 
 import api.dto.IPostDto;
 import api.dto.PostDto;
+import api.models.Post;
 import api.repositories.IPostRepository;
 import api.services.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,5 +18,10 @@ public class PostServiceImpl implements IPostService {
     @Override
     public Page<IPostDto> findAll(Pageable pageable, Long guestId) {
         return iPostRepository.findAllPosts(pageable, guestId);
+    }
+
+    @Override
+    public void savePost(Post post) {
+         iPostRepository.save(post);
     }
 }

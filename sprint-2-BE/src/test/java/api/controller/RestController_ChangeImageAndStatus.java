@@ -38,7 +38,7 @@ public class RestController_ChangeImageAndStatus {
 
     //test id="", return error
     @Test
-    public void getInfoCustomer_id_empty() throws Exception {
+    public void getGuest_id_empty() throws Exception {
 
         this.mockMvc.perform(MockMvcRequestBuilders
                 .get("/api/Guest/{id}", ""))
@@ -88,6 +88,57 @@ public class RestController_ChangeImageAndStatus {
                 .andExpect(status().is2xxSuccessful());
     }
 
+    //test 6mb size img (oversize)
+    @Test
+    public void editGuest_img_oversize() throws Exception {
+        GuestDto guestDto=new GuestDto();
+
+        guestDto.setId("1");
+        guestDto.setAddress("Đại Lộc, Quảng Nam");
+        guestDto.setCareer("IT");
+        guestDto.setDateOfBirth("1993-12-10");
+        guestDto.setDeleteFlag("0");
+        guestDto.setEmail("youandme8668@gmail.com");
+        guestDto.setGender("1");
+        guestDto.setName("Võ Công Khoa");
+        guestDto.setImg("https://images.squarespace-cdn.com/content/v1/58290f14d1758e699d957c28/1480717146986-6NRZ2IL5OQKU8OU9TNTT/04+-+Oregon+Clearcut+20160418+5mb-pano-18-16x9.jpg?format=1500w");
+        //this image is 6mb size
+
+
+        this.mockMvc
+                .perform(MockMvcRequestBuilders
+                        .post("/api/guest/edit")
+                        .content(this.objectMapper.writeValueAsString(guestDto))
+                        .contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+
+    //test null image
+    @Test
+    public void editGuest_image_null() throws Exception {
+
+        GuestDto guestDto=new GuestDto();
+
+        guestDto.setId("1");
+        guestDto.setAddress("Đại Lộc, Quảng Nam");
+        guestDto.setCareer("IT");
+        guestDto.setDateOfBirth("1993-12-10");
+        guestDto.setDeleteFlag("0");
+        guestDto.setEmail("youandme8668@gmail.com");
+        guestDto.setGender("1");
+        guestDto.setName("Võ Công Khoa");
+        guestDto.setImg(null);
+
+        this.mockMvc
+                .perform(MockMvcRequestBuilders
+                        .post("/api/customer/edit")
+                        .content(this.objectMapper.writeValueAsString(guestDto))
+                        .contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+
     //test right Image
     @Test
     public void editGuest_Image_right() throws Exception {
@@ -102,6 +153,8 @@ public class RestController_ChangeImageAndStatus {
         guestDto.setEmail("youandme8668@gmail.com");
         guestDto.setGender("1");
         guestDto.setName("Võ Công Khoa");
+        guestDto.setImg("https://images.squarespace-cdn.com/content/v1/58290f14d1758e699d957c28/1480717146986-6NRZ2IL5OQKU8OU9TNTT/04+-+Oregon+Clearcut+20160418+5mb-pano-18-16x9.jpg?format=1500w");
+
 
 
         this.mockMvc
@@ -112,5 +165,7 @@ public class RestController_ChangeImageAndStatus {
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful());
     }
+
+
 
 }

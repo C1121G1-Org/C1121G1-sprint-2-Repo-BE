@@ -53,13 +53,14 @@ public interface IGuestService {
         Class:
     */
     Guest getGuestByEmail(String email);
+
     /*
             Created by KhoaPTD
             Role: N/A
             Time: 23:00 15/06/2022
-            Function: findGuestByKeyl = find Person by email
+            Function: findGuestByKey = find Person by key
             Class:
         */
-    Page<GuestInterfaceDTO> findGuestByKey(Pageable pageable, Optional<String> keyName, Optional<String> keyGender, Optional<String> keyCareer, Optional<String> keyAddress, Optional<String> keyYearOfBirth, Optional<String> keyFavorite);
+      Page<GuestInterfaceDTO> findGuestByKey(Pageable pageable, String keyName, String keyGender, String keyCareer, String keyAddress, String keyYearOfBirth, String keyFavorite);
 
 }

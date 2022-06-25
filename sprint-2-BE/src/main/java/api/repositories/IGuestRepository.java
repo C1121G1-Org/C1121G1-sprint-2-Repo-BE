@@ -75,6 +75,7 @@ public interface IGuestRepository extends JpaRepository<Guest, Long> {
     Guest getGuestByEmail(String email);
 
 
+
     /*
         Created by khoaPTD
         Role: N/A
@@ -90,11 +91,11 @@ public interface IGuestRepository extends JpaRepository<Guest, Long> {
             "guest_favorite.guest_id " +
             "in " +
             "(select guest_favorite.guest_id from guest_favorite where favorite_id = :keyFavorite) " +
-            "or`guest`.name like '%':keyName'%'"+
-            "or `guest`.date_of_birth :keyYearOfBirth'%'"+
+            "or`guest`.name like concat('%',:keyName,'%')"+
+            "or `guest`.date_of_birth like concat(:keyYearOfBirth,'%')"+
             "or`guest`.gender like :keyGender "+
-             "or  `guest`.address like '%',:keyAddress"+
-            " or `guest`.`career` like :keyCareer'%'", nativeQuery = true)
-    Page<GuestInterfaceDTO> getPageGuest(Pageable pageable, Optional<String> keyName, Optional<String> keyGender, Optional<String> keyCareer, Optional<String> keyAddress, Optional<String> keyYearOfBirth, Optional<String> keyFavorite);
+             "or  `guest`.address like  concat('%',:keyAddress)"+
+            " or `guest`.`career` like concat(:keyCareer,'%')", nativeQuery = true)
+    Page<GuestInterfaceDTO> getPageGuest(Pageable pageable, String keyName, String keyGender, String keyCareer, String keyAddress, String keyYearOfBirth, String keyFavorite);
 }
 

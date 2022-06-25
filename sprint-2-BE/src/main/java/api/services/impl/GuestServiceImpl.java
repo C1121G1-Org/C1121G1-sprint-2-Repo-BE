@@ -78,8 +78,9 @@ public class GuestServiceImpl implements IGuestService {
         return iGuestRepository.getGuestByEmail(email);
     }
 
+
     @Override
-    public Page<GuestInterfaceDTO> findGuestByKey(Pageable pageable, Optional<String> keyName, Optional<String> keyGender, Optional<String> keyCareer, Optional<String> keyAddress, Optional<String> keyYearOfBirth, Optional<String> keyFavorite) {
+    public Page<GuestInterfaceDTO> findGuestByKey(Pageable pageable, String keyName, String keyGender, String keyCareer, String keyAddress, String keyYearOfBirth, String keyFavorite) {
         return iGuestRepository.getPageGuest(pageable, keyName, keyGender, keyCareer, keyAddress, keyYearOfBirth, keyFavorite);
     }
 

@@ -54,12 +54,12 @@ public class GuestRestController {
      */
     @GetMapping(value = "/list")
     public ResponseEntity<Page<GuestInterfaceDTO>> findAllGuest(@PageableDefault(value = 8) Pageable pageable ,
-                                                                @RequestParam Optional<String> keyName,
-                                                                @RequestParam Optional<String> keyGender,
-                                                                @RequestParam Optional<String> keyCareer,
-                                                                @RequestParam Optional<String> keyAddress,
-                                                                @RequestParam Optional<String> keyYearOfBirth,
-                                                                @RequestParam Optional<String> keyFavorite) {
+                                                                @RequestParam(required = false, value = "") String keyName,
+                                                                @RequestParam(required = false, value = "") String  keyGender,
+                                                                @RequestParam(required = false, value = "") String keyCareer,
+                                                                @RequestParam(required = false, value = "") String  keyAddress,
+                                                                @RequestParam(required = false, value = "") String keyYearOfBirth,
+                                                                @RequestParam(required = false, value = "") String keyFavorite) {
         Page<GuestInterfaceDTO> guestList = iGuestService.findGuestByKey(pageable,keyName,keyGender,keyCareer,keyAddress,keyYearOfBirth,keyFavorite);
         if(guestList.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

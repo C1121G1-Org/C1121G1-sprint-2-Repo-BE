@@ -2,7 +2,7 @@ package api.services;
 
 import api.models.Account;
 
-public interface IAccountRoleService{
+public interface IAccountRoleService {
 
     /*
         Created by khoaVC

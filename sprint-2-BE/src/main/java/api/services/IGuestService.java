@@ -1,7 +1,10 @@
 package api.services;
 
 import api.dto.ExtraInforDto;
+import api.dto.Top100Dto;
 import api.models.Guest;
+
+import java.util.List;
 
 public interface IGuestService {
 
@@ -48,4 +51,6 @@ public interface IGuestService {
         Class:
     */
     Guest getGuestByEmail(String email);
+
+    List<Top100Dto> viewTop100();
 }

@@ -1,6 +1,4 @@
 package api.controllers;
-
-import api.dto.AccountDto;
 import api.dto.ChangePassword;
 import api.dto.ExtraInforDto;
 import api.dto.GuestDto;
@@ -12,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -219,6 +216,11 @@ public class GuestRestController {
         return new ResponseEntity<>(iFavoriteService.getAllFavorite(), HttpStatus.OK);
     }
 
+    @GetMapping(value = "/listTop100")
+    public ResponseEntity<?> viewTop100 () {
+        return new ResponseEntity<>(iGuestService.viewTop100(), HttpStatus.OK);
+    }
+
 
     /*
             Created by tamHT
@@ -229,8 +231,8 @@ public class GuestRestController {
     @PatchMapping("/updatePassword")
     public ResponseEntity<Account> update(@Valid @RequestBody ChangePassword changePassword) {
         Account account = iAccountService.getAccountByUserName(changePassword.getUsername());
-        if (account.getEncryptPassword().equals(changePassword.getCurrentPassword())&&
-                changePassword.getNewPassword().equals(changePassword.getConfirmNewPassword())){
+        if (account.getEncryptPassword().equals(changePassword.getCurrentPassword()) &&
+                changePassword.getNewPassword().equals(changePassword.getConfirmNewPassword())) {
             account.setEncryptPassword(changePassword.getNewPassword());
             iAccountService.update(account);
             return new ResponseEntity<>(HttpStatus.OK);

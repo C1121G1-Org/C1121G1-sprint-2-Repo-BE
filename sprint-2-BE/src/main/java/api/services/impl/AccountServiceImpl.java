@@ -35,4 +35,9 @@ public class AccountServiceImpl implements IAccountService {
     public Account getAccountByUserName(String userName) {
         return iAccountRepository.getAccountByUserName(userName);
     }
+
+    @Override
+    public void update(Account account) {
+        iAccountRepository.update(account);
+    }
 }

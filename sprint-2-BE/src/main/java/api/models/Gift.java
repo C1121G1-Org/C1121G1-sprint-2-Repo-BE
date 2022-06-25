@@ -16,6 +16,8 @@ public class Gift {
     private Long id;
     @Column(name = "name", nullable = false)
     private String name;
+    @Column(name ="amount_Coin", columnDefinition = "DOUBLE")
+    private String amountCoin;
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName ="id" )
     private CategoryGift categoryGift;

@@ -33,4 +33,9 @@ public interface IAccountRepository extends JpaRepository<Account, Long> {
     @Query(value = "select * from account where user_name = :userName ", nativeQuery = true)
     Account getAccountByUserName(@Param("userName") String userName);
 
+    @Transactional
+    @Modifying
+    @Query(value = "update Account set encryptPassword =(:#{#account.encryptPassword})where id = (:#{account.id})")
+    void update(Account account);
+
 }

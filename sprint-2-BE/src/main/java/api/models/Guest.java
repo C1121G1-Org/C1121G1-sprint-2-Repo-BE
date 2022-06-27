@@ -65,6 +65,7 @@ public class Guest {
     private Set<Gift> giftSet;
 
     @OneToMany(mappedBy = "guest")
+
     private Set<LikePost> likePostSet;
 
     @OneToMany(mappedBy = "guest")

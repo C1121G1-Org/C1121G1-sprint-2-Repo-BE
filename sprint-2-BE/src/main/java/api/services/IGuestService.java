@@ -2,6 +2,8 @@ package api.services;
 
 import api.dto.ExtraInforDto;
 import api.models.Guest;
+import org.springframework.data.repository.query.Param;
+
 
 public interface IGuestService {
 
@@ -48,4 +50,26 @@ public interface IGuestService {
         Class:
     */
     Guest getGuestByEmail(String email);
+
+
+    /*
+        Created by hoangDH
+        Role: Admin, member
+        Time: 16:11 23/06/2022
+        Function: update isLogin by guest;
+        Class:
+    */
+    public void updateAccountByIsLogin(Guest guest, Boolean isLogin);
+
+
+
+    /*
+        Created by hoangDH
+        Role: Admin, member
+        Time: 16:11 23/06/2022
+        Function: update img by guest;
+        Class:
+    */
+    void updateGuestByImage(Guest guest,@Param("id")Long id);
+
 }

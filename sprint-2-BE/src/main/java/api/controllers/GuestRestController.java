@@ -44,6 +44,7 @@ public class GuestRestController {
 
     @Autowired
     IFavoriteService iFavoriteService;
+    
 
     @GetMapping(value = "/list")
     public String listGuest() {

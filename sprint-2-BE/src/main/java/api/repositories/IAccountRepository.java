@@ -35,14 +35,5 @@ public interface IAccountRepository extends JpaRepository<Account, Long> {
     Account getAccountByUserName(@Param("userName") String userName);
 
 
-    /*
-        Created by hoangDH
-        Role: Admin, member
-        Time: 16:11 23/06/2022
-        Function: update isLogin by guest;
-        Class:
-    */
-   @Query(value="update `account` set `is_login`=: is_login where (`id`=:#{#guest.account.id})", nativeQuery = true)
-    void updateAccountByIsLogin(Guest guest,@Param("is_login")Boolean is_login);
 
 }

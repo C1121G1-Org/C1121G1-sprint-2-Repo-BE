@@ -24,12 +24,5 @@ public interface IAccountService {
     Account getAccountByUserName(String userName);
 
 
-    /*
-        Created by hoangDH
-        Role: Admin, member
-        Time: 16:11 23/06/2022
-        Function: update isLogin by guest;
-        Class:
-    */
-    void updateAccountByIsLogin(Guest guest,Boolean isLogin);
+
 }

@@ -72,4 +72,30 @@ public class GuestServiceImpl implements IGuestService {
     public Guest getGuestByEmail(String email) {
         return iGuestRepository.getGuestByEmail(email);
     }
+
+
+    /*
+        Created by hoangDH
+        Role: Admin, member
+        Time: 16:11 23/06/2022
+        Function: update isLogin by guest;
+        Class:
+    */
+    @Override
+    public void updateAccountByIsLogin(Guest guest, Boolean isLogin) {
+        iGuestRepository.updateAccountByIsLogin(guest,isLogin);
+    }
+
+
+    /*
+    Created by hoangDH
+    Role: Admin, member
+    Time: 16:11 23/06/2022
+    Function: update img by guest;
+    Class:
+*/
+    @Override
+    public void updateGuestByImage(Guest guest, Long id) {
+        iGuestRepository.updateGuestByImage(guest,id);
+    }
 }

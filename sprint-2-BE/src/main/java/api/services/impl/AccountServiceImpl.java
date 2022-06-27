@@ -38,15 +38,5 @@ public class AccountServiceImpl implements IAccountService {
     }
 
 
-    /*
-        Created by hoangDH
-        Role: Admin, member
-        Time: 16:11 23/06/2022
-        Function: update isLogin by guest;
-        Class:
-    */
-    @Override
-    public void updateAccountByIsLogin(Guest guest, Boolean isLogin) {
-        iAccountRepository.updateAccountByIsLogin(guest,isLogin);
-    }
+
 }

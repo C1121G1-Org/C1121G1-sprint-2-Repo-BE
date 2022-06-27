@@ -6,7 +6,11 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import javax.transaction.Transactional;
-
+/*
+    Created by HauPV
+    Time: 14:00 27/06/2022
+    Function: GuestFriend Repository
+*/
 @Transactional
 public interface IGuestFriendRepository extends JpaRepository<GuestFriend, Long> {
 

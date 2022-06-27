@@ -13,7 +13,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
-
+/*
+    Created by HauPV
+    Time: 14:00 27/06/2022
+    Function: Profile Controller
+*/
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping(value = "/profile", method = RequestMethod.GET)

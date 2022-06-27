@@ -47,4 +47,8 @@ public class Post {
     private Guest guest;
 
 
+    @OneToMany(mappedBy = "post")
+    @JsonBackReference
+    private Set<PostReport> postReportSet;
+
 }

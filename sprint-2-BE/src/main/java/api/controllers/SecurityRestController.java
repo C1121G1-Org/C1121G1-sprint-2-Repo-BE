@@ -58,6 +58,7 @@ public class SecurityRestController {
         String jwt = jwtUtility.generateJwtToken(loginRequest.getUsername());
 
         AccountDetailsImpl accountDetails = (AccountDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
         List<String> roles = accountDetails.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());

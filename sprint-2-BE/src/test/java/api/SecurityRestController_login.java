@@ -139,7 +139,7 @@ public class SecurityRestController_login {
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful());
     }
-    
+
 
 
 

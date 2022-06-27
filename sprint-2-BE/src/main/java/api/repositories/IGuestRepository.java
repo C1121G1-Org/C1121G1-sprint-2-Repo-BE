@@ -1,6 +1,7 @@
 package api.repositories;
 
 import api.dto.ExtraInforDto;
+
 import api.dto.Top100Dto;
 import api.models.Guest;
 import org.springframework.data.domain.Page;
@@ -11,7 +12,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+
 import java.util.List;
+
 
 public interface IGuestRepository extends JpaRepository<Guest, Long> {
 
@@ -73,10 +76,12 @@ public interface IGuestRepository extends JpaRepository<Guest, Long> {
     */
     @Query(value = "select * from guest where delete_flag = 0 and email = :email ", nativeQuery = true)
     Guest getGuestByEmail(String email);
+
     @Query(value = " select g.id,g.name,g.image,w.value,count(l.like_post_flag) as totalLike\n" +
             "from guest as g, post as p, like_post as l, wallet as w\n" +
             "where (g.id = p.guest_id) and (p.id = l.post_id) and (g.id = w.guest_id)\n" +
             "group by g.id "
             , nativeQuery = true)
     Page<Top100Dto> viewTop100 (Pageable pageable);
+
 }

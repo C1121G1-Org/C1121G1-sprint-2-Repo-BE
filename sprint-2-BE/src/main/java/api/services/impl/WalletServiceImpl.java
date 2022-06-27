@@ -1,5 +1,6 @@
 package api.services.impl;
 
+
 import api.models.Wallet;
 import api.repositories.IWalletRepository;
 import api.services.IWalletService;
@@ -11,6 +12,7 @@ public class WalletServiceImpl implements IWalletService {
     @Autowired
     IWalletRepository iWalletRepository;
 
+
     @Override
     public void chargeMoney(Double value, Long id) {
         iWalletRepository.chargeMoney(value, id);
@@ -20,4 +22,5 @@ public class WalletServiceImpl implements IWalletService {
     public Wallet findById(Long id) {
          return iWalletRepository.findById(id).orElse(null);
     }
+
 }

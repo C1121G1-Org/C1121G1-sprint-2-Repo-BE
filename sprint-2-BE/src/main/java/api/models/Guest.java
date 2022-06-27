@@ -74,6 +74,9 @@ public class Guest {
     @OneToMany(mappedBy = "guest")
     private Set<LikeComment> likeCommentSet;
 
+    @OneToMany(mappedBy = "guest")
+    private Set<PostReport> postReportSet;
+
     @Override
     public String toString() {
         return "Person{" +

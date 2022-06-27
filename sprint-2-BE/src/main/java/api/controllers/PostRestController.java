@@ -20,6 +20,7 @@ public class PostRestController {
 
     @GetMapping(value = "/list")
     public ResponseEntity<ResponseObject> listPost(){
+
         return null;
     }
 

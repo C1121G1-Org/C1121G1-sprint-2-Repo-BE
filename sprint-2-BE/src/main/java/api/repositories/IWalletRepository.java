@@ -2,10 +2,12 @@ package api.repositories;
 
 import api.models.Wallet;
 import org.springframework.data.jpa.repository.JpaRepository;
+
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.transaction.annotation.Transactional;
+
+import javax.transaction.Transactional;
 
 public interface IWalletRepository extends JpaRepository<Wallet, Long> {
     @Transactional

@@ -19,7 +19,6 @@ import java.util.List;
 @NoArgsConstructor
 public class ExtraInforDto {
     private String image;
-    private String favorite;
     private Boolean maritalStatus;
     private List<Integer> targetList;
     private List<Integer> favoriteList;

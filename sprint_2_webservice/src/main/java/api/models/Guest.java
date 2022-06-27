@@ -23,11 +23,14 @@ public class Guest {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @Column(name = "create_date", nullable = false, columnDefinition = "DATE")
+    private String createDate;
+
     @Column(name = "date_of_birth", nullable = false, columnDefinition = "DATE")
     private String dateOfBirth;
 
     @Column(name = "gender", nullable = false)
-    private boolean gender;
+    private Boolean gender;
 
     @Column(name = "career", nullable = false, length = 50)
     private String career;
@@ -59,6 +62,10 @@ public class Guest {
     @OneToMany(mappedBy = "guest")
     @JsonBackReference
     private Set<GuestTarget> guestTargetSet;
+
+    @OneToMany(mappedBy = "guest")
+    @JsonBackReference
+    private Set<GuestFavorite> guestFavoriteSet;
 
     @OneToMany(mappedBy = "guest")
     @JsonBackReference

@@ -1,6 +1,5 @@
 package api.controllers;
 
-
 import api.dto.ChargeMoneyDto;
 import api.models.ResponseObject;
 import api.services.IWalletService;
@@ -47,5 +46,4 @@ public class WalletRestController {
             return new ResponseEntity<>(HttpStatus.OK);
         }
     }
-
 }

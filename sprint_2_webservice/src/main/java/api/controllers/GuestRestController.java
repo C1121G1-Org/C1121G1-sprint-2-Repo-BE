@@ -2,29 +2,22 @@ package api.controllers;
 
 import api.dto.ExtraInforDto;
 import api.dto.GuestDto;
-
 import api.dto.Top100Dto;
-
 import api.models.*;
 import api.services.*;
 import api.services.impl.PassEncTech1;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.web.PageableDefault;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
-
 import javax.validation.constraints.Max;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -35,6 +28,8 @@ import java.util.Map;
 @RequestMapping("/api/guest")
 public class GuestRestController {
 
+    public static final Integer a = null;
+
     @Autowired
     PassEncTech1 passEncTech1;
 
@@ -43,6 +38,9 @@ public class GuestRestController {
 
     @Autowired
     IGuestTargetService iGuestTargetService;
+
+    @Autowired
+    IGuestFavoriteService iGuestFavoriteService;
 
     @Autowired
     IAccountService iAccountService;
@@ -78,13 +76,14 @@ public class GuestRestController {
             bindingResult.rejectValue("userName", "", "Tên đăng nhập đã tồn tại.");
         }
         // Validate duplicate email
-        if (getGuestByEmail(guestDto.getEmail()) != null) {
+        if (getGuestByUserName(guestDto.getEmail()) != null) {
             bindingResult.rejectValue("email", "", "Email đã tồn tại.");
         }
         // Mapping all errors into a map to send to Angular
         Map<String, String> errorMap = new HashMap<>();
         bindingResult
                 .getFieldErrors()
+                .stream()
                 .forEach(
                         fieldError -> {
                             errorMap.put(fieldError.getField(), fieldError.getDefaultMessage());
@@ -116,7 +115,9 @@ public class GuestRestController {
                 BeanUtils.copyProperties(guestDto, guest);
                 guest.setAccount(as);
                 iGuestService.create(guest);
-                return new ResponseEntity<>(HttpStatus.OK);
+                List<Guest> result = new ArrayList<>();
+                result.add(guest);
+                return new ResponseEntity<>(new ResponseObject<>(true, "OK", errorMap, result), HttpStatus.OK);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -134,36 +135,36 @@ public class GuestRestController {
     // If "targetList": [1,7] => Error 500??? => DQ error => How to resolve???
     // You can use @Transactional without (rollbackForClassName = {"Exception.class"}) and try...catch => it also auto rollback for you
     @Transactional(rollbackFor = Exception.class)
-    @PatchMapping(value = "/update/{id}")
-    public ResponseEntity<ResponseObject> updateGuest(@PathVariable Long id, @RequestBody ExtraInforDto extraInforDto) {
+    @PatchMapping(value = "/update/{userName}")
+    public ResponseEntity<ResponseObject> updateGuest(@PathVariable String userName, @RequestBody ExtraInforDto extraInforDto) {
         try {
             // Case null or empty data
             if ((extraInforDto.getImage() == null || extraInforDto.getImage().trim().equals(""))
                     && extraInforDto.getMaritalStatus() == null
                     && extraInforDto.getTargetList().size() == 0
-                    && (extraInforDto.getFavorite() == null || extraInforDto.getFavorite().trim().equals(""))) {
+                    && extraInforDto.getFavoriteList().size() == 0) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             } else {
-                Guest guest = iGuestService.findGuestById(id);
+                Guest guest = iGuestService.getGuestByUserName(userName);
                 if (guest != null) {
-                    // Case null or empty data
-//                if ((extraInforDto.getImage() == null || extraInforDto.getImage().trim().equals(""))
-//                        && extraInforDto.getMaritalStatus() == null
-//                        && extraInforDto.getTargetList().size() == 0) {
-//                    return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//                } else {
                     // Update image and maritalStatus for person
-                    iGuestService.updateGuestById(id, extraInforDto);
+                    iGuestService.updateGuestById(guest.getId(), extraInforDto);
 
                     // Add target list into table person_target
                     if (extraInforDto.getTargetList().size() > 0) {
                         List<Integer> targetList = extraInforDto.getTargetList();
                         for (Integer i : targetList) {
-                            iGuestTargetService.create(id, i);
+                            iGuestTargetService.create(guest.getId(), i);
+                        }
+                    }
+                    // Add favorite list into table person_favorite
+                    if (extraInforDto.getFavoriteList().size() > 0) {
+                        List<Integer> favoriteList = extraInforDto.getFavoriteList();
+                        for (Integer i : favoriteList) {
+                            iGuestFavoriteService.create(guest.getId(), i);
                         }
                     }
                     return new ResponseEntity<>(HttpStatus.OK);
-//                }
                 } else {
                     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
                 }
@@ -221,11 +222,11 @@ public class GuestRestController {
     public ResponseEntity<List<Target>> listTarget() {
         return new ResponseEntity<>(iTargetService.getAllTarget(), HttpStatus.OK);
     }
-
     @GetMapping(value = "/listFavorite")
     public ResponseEntity<List<Favorite>> listFavorite() {
         return new ResponseEntity<>(iFavoriteService.getAllFavorite(), HttpStatus.OK);
     }
+
 
     @GetMapping(value = "/listTop100")
     public ResponseEntity<Page<Top100Dto>> viewTop100( @RequestParam(defaultValue = "0") int page){

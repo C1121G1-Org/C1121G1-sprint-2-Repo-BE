@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a481f7ff-66aa-42f4-b6a6-c931099437e9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/api/repositories/ICommentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/repositories/ICommentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/api/repositories/IGuestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/repositories/IGuestRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/api/repositories/ILikeCommentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/repositories/ILikeCommentRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,6 +69,7 @@
       <workItem from="1656404633156" duration="34000" />
       <workItem from="1656405811798" duration="733000" />
       <workItem from="1656406616244" duration="141000" />
+      <workItem from="1656406790990" duration="572000" />
     </task>
     <servers />
   </component>

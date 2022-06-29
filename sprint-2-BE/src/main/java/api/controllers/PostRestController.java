@@ -6,6 +6,7 @@ import api.models.Post;
 import api.models.ResponseObject;
 import api.services.IGuestService;
 import api.services.IPostService;
+import api.services.impl.PostServiceImpl;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -26,10 +27,10 @@ import java.util.Map;
 @RequestMapping("/api/post")
 public class PostRestController {
     @Autowired
-    IPostService iPostService;
+    private IPostService iPostService;
 
     @Autowired
-    IGuestService iGuestService;
+    private IGuestService iGuestService;
 
     /*
         Created by TuanNQ
@@ -38,7 +39,7 @@ public class PostRestController {
     */
     @PostMapping(value = "/create")
     public ResponseEntity<ResponseObject> createPost(@Valid @RequestBody PostDto postDto,
-                                                     BindingResult bindingResult){
+                                                     BindingResult bindingResult) {
         Map<String, String> errorMap = new HashMap<>();
         if (bindingResult.hasErrors()) {
             bindingResult
@@ -74,7 +75,7 @@ public class PostRestController {
     }
 
     @PatchMapping(value = "/delete/{id}")
-    public ResponseEntity<ResponseObject> deletePost(@PathVariable String id){
+    public ResponseEntity<ResponseObject> deletePost(@PathVariable String id) {
         return null;
     } //Xóa bằng cách update lại các delete_flag = 1
 }

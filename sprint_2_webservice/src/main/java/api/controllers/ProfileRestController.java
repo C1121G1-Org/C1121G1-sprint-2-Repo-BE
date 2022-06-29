@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
     Created by HauPV
     Time: 14:00 27/06/2022
     Function: Profile Controller
+    Role : User/Admin
 */
 @RestController
 @CrossOrigin(origins = "*")

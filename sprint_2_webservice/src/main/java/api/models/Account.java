@@ -30,6 +30,8 @@ public class Account {
     @Column(name = "is_enabled", nullable = false)
     private Boolean isEnabled;
 
+    private Boolean isLogin;
+
     @Column(name = "verification_code", length = 255)
     private String verificationCode;
 

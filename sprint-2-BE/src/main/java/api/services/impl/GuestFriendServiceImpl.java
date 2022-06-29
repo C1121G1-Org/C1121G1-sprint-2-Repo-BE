@@ -11,6 +11,9 @@ import api.repositories.IGuestRepository;
 import api.services.IGuestFriendService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 /*
     Created by HauPV
     Time: 14:00 27/06/2022
@@ -45,6 +48,21 @@ public class GuestFriendServiceImpl implements IGuestFriendService {
     @Override
     public GuestFriend findGuestFriendById(Long id) {
         return this.iGuestFriendRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<GuestFriend> findAllGuestFriendByGuestId(Integer id) {
+        return this.iGuestFriendRepository.findAllGuestFriendByGuestId(id);
+    }
+
+    @Override
+    public GuestFriend findAllGuestFriendByGuestIdAndFriendId(Long guestId, Long friendId) {
+        return this.iGuestFriendRepository.findAllGuestFriendByGuestIdAndFriendId(guestId, friendId);
+    }
+
+    @Override
+    public void deleteGuestFriendById(Long id) {
+        this.iGuestFriendRepository.deleteGuestFriendById(id);
     }
 
 }

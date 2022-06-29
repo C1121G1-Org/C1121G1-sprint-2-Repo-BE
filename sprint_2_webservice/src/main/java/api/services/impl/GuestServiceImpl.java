@@ -9,6 +9,8 @@ import api.services.IGuestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -81,5 +83,29 @@ public class GuestServiceImpl implements IGuestService {
     public Page<Top100Dto> viewTop100(Pageable pageable) {
         return iGuestRepository.viewTop100(pageable);
     }
+
+    /*
+    Created by hoangDH
+    Role: Admin, member
+    Time: 16:11 23/06/2022
+    Function: update isLogin by guest;
+    Class:
+    */
+    @Override
+    public void updateAccountByIsLogin(Guest guest, Boolean is_login){
+        iGuestRepository.updateAccountByIsLogin(guest,is_login);
+    };
+
+    /*
+        Created by hoangDH
+        Role: Admin, member
+        Time: 16:11 23/06/2022
+        Function: update img by guest;
+        Class:
+    */
+    @Override
+    public void updateGuestByImage(Guest guest,Long id){
+        iGuestRepository.updateGuestByImage(guest,id);
+    };
 
 }

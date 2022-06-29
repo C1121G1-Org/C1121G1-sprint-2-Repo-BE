@@ -58,6 +58,8 @@ public class GuestDto implements Validator {
     @Email(message = "Bạn nhập sai định dạng email.")
     private String email;
 
+    private String image;
+
 
 
     @Override

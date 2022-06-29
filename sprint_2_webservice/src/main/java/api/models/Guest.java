@@ -72,10 +72,11 @@ public class Guest {
     private Set<Gift> giftSet;
 
     @OneToMany(mappedBy = "guest")
-
+    @JsonBackReference
     private Set<LikePost> likePostSet;
 
     @OneToMany(mappedBy = "guest")
+    @JsonBackReference
     private Set<LikeComment> likeCommentSet;
 
     @Override

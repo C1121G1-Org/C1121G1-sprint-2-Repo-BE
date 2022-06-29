@@ -65,4 +65,35 @@ public class GuestFriendServiceImpl implements IGuestFriendService {
         this.iGuestFriendRepository.deleteGuestFriendById(id);
     }
 
+
+    /*
+        Created by ChienLV
+        Time: 15:00 29/06/2022
+        Function: Guest Friend Service
+    */
+
+    @Override
+    public List<GuestFriend> findAllFriendRequests(Long id) {
+        return iGuestFriendRepository.findAllFriendRequests(id);
+    }
+
+    @Override
+    public List<GuestFriend> findAllFriendSuggestions(Long id) {
+        return iGuestFriendRepository.findAllFriendSuggestions(id);
+    }
+
+    @Override
+    public void acceptFriend(Long id) {
+        iGuestFriendRepository.acceptFriend(id);
+    }
+
+    @Override
+    public void refuseFriend(Long id) {
+        iGuestFriendRepository.refuseFriend(id);
+    }
+
+    @Override
+    public void removeSuggestion(Long id) {
+        iGuestFriendRepository.removeSuggestion(id);
+    }
 }

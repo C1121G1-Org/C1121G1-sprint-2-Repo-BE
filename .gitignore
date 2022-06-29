@@ -1,1 +1,8 @@
+<<<<<<< HEAD
+\sprint_2_webservice\src\test\java\api\controllers\**
+\sprint_2_webservice\src\main\resources\**
+=======
 \sprint-2-BE\src\main\resources\**
+\sprint-2-BE\src\test\**
+\sprint-2-BE\src\main\resources\application.properties
+>>>>>>> main

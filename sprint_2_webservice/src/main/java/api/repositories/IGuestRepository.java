@@ -84,4 +84,25 @@ public interface IGuestRepository extends JpaRepository<Guest, Long> {
             , nativeQuery = true)
     Page<Top100Dto> viewTop100 (Pageable pageable);
 
+    /*
+        Created by hoangDH
+        Role: Admin, member
+        Time: 16:11 23/06/2022
+        Function: update isLogin by guest;
+        Class:
+    */
+    @Query(value="update `account` set `is_login`=:is_login where (`id`=:#{#guest.account.id})", nativeQuery = true)
+    void updateAccountByIsLogin(Guest guest,@Param("is_login")Boolean is_login);
+
+    /*
+        Created by hoangDH
+        Role: Admin, member
+        Time: 16:11 23/06/2022
+        Function: update img by guest;
+        Class:
+    */
+    @Query(value="update `guest` set `image`=:#{#guest.image} where (`id`=:id)", nativeQuery = true)
+    void updateGuestByImage(Guest guest,@Param("id")Long id);
+
+
 }

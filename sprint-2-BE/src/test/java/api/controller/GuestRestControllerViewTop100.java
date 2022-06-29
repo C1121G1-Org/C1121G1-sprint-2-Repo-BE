@@ -19,8 +19,13 @@ class GuestRestControllerViewTop100 {
 
     @Test
     void viewTop100_1(){
+        ResponseEntity<Page<Top100Dto>> pageResponseEntity = this.guestRestController.viewTop100(0);
+        Assertions.assertEquals(200,pageResponseEntity.getStatusCodeValue());
+    }
+    @Test
+    void viewTop100_2(){
         ResponseEntity<Page<Top100Dto>> pageResponseEntity = this.guestRestController.viewTop100(1);
-        Assertions.assertEquals(404,pageResponseEntity.getStatusCodeValue());
+        Assertions.assertEquals(500,pageResponseEntity.getStatusCodeValue());
     }
 
 }

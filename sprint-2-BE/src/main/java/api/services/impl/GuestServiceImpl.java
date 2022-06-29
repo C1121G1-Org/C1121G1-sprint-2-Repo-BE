@@ -79,7 +79,7 @@ public class GuestServiceImpl implements IGuestService {
     }
 
     @Override
-    public Page<Top100Dto> viewTop100(Pageable pageable) {
-        return iGuestRepository.viewTop100(pageable);
+    public Page<Top100Dto> viewTop100(Pageable pageable ) {
+        return iGuestRepository.viewTop100(pageable );
     }
 }

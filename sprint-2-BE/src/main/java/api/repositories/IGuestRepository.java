@@ -76,7 +76,11 @@ public interface IGuestRepository extends JpaRepository<Guest, Long> {
     @Query(value = " select g.id,g.name,g.image,w.value,count(l.like_post_flag) as totalLike\n" +
             "from guest as g, post as p, like_post as l, wallet as w\n" +
             "where (g.id = p.guest_id) and (p.id = l.post_id) and (g.id = w.guest_id)\n" +
-            "group by g.id "
+            "group by g.id",
+            countQuery = "select count(*) from guest \n" +
+                    "    inner join wallet on guest.id = wallet.guest_id\n" +
+                    "    inner join post on guest.id = post.guest_id\n" +
+                    "    inner join like_post on post.id = like_post.post_id;"
             , nativeQuery = true)
     Page<Top100Dto> viewTop100 (Pageable pageable);
 }

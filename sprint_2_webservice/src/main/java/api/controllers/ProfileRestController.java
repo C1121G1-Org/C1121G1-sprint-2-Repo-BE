@@ -12,11 +12,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+
 /*
     Created by HauPV
     Time: 14:00 27/06/2022
     Function: Profile Controller
+    Role : User/Admin
 */
 @RestController
 @CrossOrigin(origins = "*")
@@ -45,7 +49,7 @@ public class ProfileRestController {
     }
 
     @PostMapping("/add-friend")
-    public ResponseEntity<Map<String, String>> addFriend(@RequestBody GuestFriendDto guestFriendDto) {
+    public ResponseEntity<?> addFriend(@RequestBody GuestFriendDto guestFriendDto) {
         Map<String, String> errMap = new HashMap<>();
 
         if (guestFriendDto == null || guestFriendDto.getFriendDto() == null || guestFriendDto.getGuestDto() == null) {
@@ -53,30 +57,55 @@ public class ProfileRestController {
             return new ResponseEntity<>(errMap, HttpStatus.BAD_REQUEST);
         }
 
+        if (iGuestFriendService.findAllGuestFriendByGuestIdAndFriendId(guestFriendDto.getGuestDto().getId(),
+                guestFriendDto.getFriendDto().getId()) != null) {
+            errMap.put("exist", "already your friend !");
+            return new ResponseEntity<>(errMap, HttpStatus.BAD_REQUEST);
+        }
+
         Guest guest = new Guest();
         Friend friend = new Friend();
         GuestFriend guestFriend = new GuestFriend();
 
-        BeanUtils.copyProperties(guestFriendDto,guestFriend);
-        BeanUtils.copyProperties(guestFriendDto.getGuestDto(),guest);
-        BeanUtils.copyProperties(guestFriendDto.getFriendDto(),friend);
+        BeanUtils.copyProperties(guestFriendDto, guestFriend);
+        BeanUtils.copyProperties(guestFriendDto.getGuestDto(), guest);
+        BeanUtils.copyProperties(guestFriendDto.getFriendDto(), friend);
 
         guestFriend.setFriend(friend);
         guestFriend.setGuest(guest);
         System.out.println(guestFriend);
 
         this.iGuestFriendService.save(guestFriend);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(guestFriend, HttpStatus.OK);
     }
 
-    @GetMapping("/guest-friend/{id}")
-    public ResponseEntity<GuestFriend> getGetFriend(@PathVariable Long id) {
-        GuestFriend guestFriend = this.iGuestFriendService.findGuestFriendById(id);
+    @GetMapping("/guest-friend/{guestId}/{friendId}")
+    public ResponseEntity<GuestFriend> getGetFriend(@PathVariable Long guestId, @PathVariable Long friendId) {
+        GuestFriend guestFriend = this.iGuestFriendService.findAllGuestFriendByGuestIdAndFriendId(guestId, friendId);
 
         if (guestFriend == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
         return new ResponseEntity<>(guestFriend, HttpStatus.OK);
+    }
+
+    @GetMapping("/list-friend/{id}")
+    public ResponseEntity<List<Friend>> listFriend(@PathVariable Integer id) {
+        List<GuestFriend> guestFriendList = this.iGuestFriendService.findAllGuestFriendByGuestId(id);
+        if (guestFriendList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        List<Friend> friends = guestFriendList.stream().map(f -> f.getFriend()).collect(Collectors.toList());
+        return new ResponseEntity<>(friends, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete-friend/{id}")
+    public ResponseEntity<Void> deleteFriend(@PathVariable Long id) {
+        if (iGuestFriendService.findGuestFriendById(id) == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        this.iGuestFriendService.deleteGuestFriendById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

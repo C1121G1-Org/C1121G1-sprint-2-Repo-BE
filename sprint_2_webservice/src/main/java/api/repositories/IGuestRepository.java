@@ -87,6 +87,8 @@ public interface IGuestRepository extends JpaRepository<Guest, Long> {
         Function: update isLogin by guest;
         Class:
     */
+    @Transactional
+    @Modifying
     @Query(value="update `account` set `is_login`=:is_login where (`id`=:#{#guest.account.id})", nativeQuery = true)
     void updateAccountByIsLogin(Guest guest,@Param("is_login")Boolean is_login);
 
@@ -97,7 +99,9 @@ public interface IGuestRepository extends JpaRepository<Guest, Long> {
         Function: update img by guest;
         Class:
     */
-    @Query(value="update `guest` set `image`=:#{#guest.image} where (`id`=:id)", nativeQuery = true)
+    @Transactional
+    @Modifying
+    @Query(value="update `guest` set `image`=:#{#guest.image} where `id`=:id", nativeQuery = true)
     void updateGuestByImage(Guest guest,@Param("id")Long id);
 
 

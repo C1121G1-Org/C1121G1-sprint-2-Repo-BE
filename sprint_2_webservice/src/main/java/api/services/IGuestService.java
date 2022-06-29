@@ -6,6 +6,8 @@ import api.dto.Top100Dto;
 import api.models.Guest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 
 public interface IGuestService {
@@ -55,5 +57,24 @@ public interface IGuestService {
     Guest getGuestByEmail(String email);
 
     Page<Top100Dto> viewTop100(Pageable pageable);
+
+    /*
+    Created by hoangDH
+    Role: Admin, member
+    Time: 16:11 23/06/2022
+    Function: update isLogin by guest;
+    Class:
+*/
+    void updateAccountByIsLogin(Guest guest,Boolean is_login);
+
+    /*
+        Created by hoangDH
+        Role: Admin, member
+        Time: 16:11 23/06/2022
+        Function: update img by guest;
+        Class:
+    */
+    void updateGuestByImage(Guest guest,Long id);
+
 
 }

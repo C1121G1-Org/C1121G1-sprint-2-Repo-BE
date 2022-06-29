@@ -237,4 +237,51 @@ public class GuestRestController {
         return new ResponseEntity<>(top100Dtos, HttpStatus.OK);
     }
 
+
+    /*
+        Created by hoangDH
+        Role: Admin, member
+        Time: 16:11 23/06/2022
+        Function: update img by guest;
+        Class:
+    */
+    @PatchMapping(value="/updateImage")
+    public ResponseEntity<Void>updateImageById(@RequestBody GuestDto guestDto,@RequestParam(name="id")Long id){
+        Guest guest=iGuestService.findGuestById(id);
+        if(guest!=null){
+            if(guestDto.getImage()==null||guestDto.getImage().trim().equals("")){
+                if(guest.getGender()==false){
+                    guest.setImage("https://scr.vn/wp-content/uploads/2020/07/%E1%BA%A2nh-%C4%91%E1%BA%A1i-di%E1%BB%87n-FB-m%E1%BA%B7c-%C4%91%E1%BB%8Bnh-n%E1%BB%AF.jpg");
+                    iGuestService.updateGuestByImage(guest,id);
+                    return new ResponseEntity<>(HttpStatus.OK);
+                }
+                else{
+                    guest.setImage("https://scr.vn/wp-content/uploads/2020/07/Avatar-Facebook-tr%E1%BA%AFng.jpg");
+                    iGuestService.updateGuestByImage(guest,id);
+                    return new ResponseEntity<>(HttpStatus.OK);
+                }
+            }
+            else{
+                guest.setImage(guestDto.getImage());
+                iGuestService.updateGuestByImage(guest,id);
+                return new ResponseEntity<>(HttpStatus.OK);
+            }
+        }
+        else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping(value="{id}")
+    public ResponseEntity<Guest>getGuestById(@PathVariable Long id){
+            Guest guest=iGuestService.findGuestById(id);
+            if(guest!=null)
+            {
+                return new ResponseEntity<>(guest,HttpStatus.OK);
+            }
+            else{
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+    }
+
 }

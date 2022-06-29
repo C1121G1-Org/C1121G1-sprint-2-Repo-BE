@@ -33,6 +33,9 @@ public class Account {
     @Column(name = "verification_code", length = 255)
     private String verificationCode;
 
+    @Column(name="is_login")
+    private Boolean isLogin;
+
 //    @OneToOne(mappedBy = "account")
 //    @JsonBackReference
 //    private Employee employee;

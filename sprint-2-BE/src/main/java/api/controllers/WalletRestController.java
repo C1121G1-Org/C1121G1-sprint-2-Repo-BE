@@ -36,7 +36,7 @@ public class WalletRestController {
     } //Xóa bằng cách update lại các delete_flag = 1
     //------------------------------
     //Son-DCM bd
-    @PatchMapping(value = "/updateWallet/{chargeMoney}")
+    @PatchMapping(value = "/updateWallet")
     public ResponseEntity<?> rechargeMoney(@RequestBody ChargeMoneyDto chargeMoney){
         if (iWalletService.findById(Long.parseLong(chargeMoney.getId())) == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

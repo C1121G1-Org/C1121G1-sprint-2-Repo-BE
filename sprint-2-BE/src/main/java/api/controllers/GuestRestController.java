@@ -220,8 +220,8 @@ public class GuestRestController {
     public ResponseEntity<List<Favorite>> listFavorite() {
         return new ResponseEntity<>(iFavoriteService.getAllFavorite(), HttpStatus.OK);
     }
-    @GetMapping(value = "/listTop100/{page}")
-    public ResponseEntity<Page<Top100Dto>> viewTop100( @PathVariable int page){
+    @GetMapping(value = "/listTop100")
+    public ResponseEntity<Page<Top100Dto>> viewTop100( @RequestParam int page){
         Page<Top100Dto> top100Dtos = iGuestService.viewTop100(PageRequest.of(page, 10));
         if (top100Dtos.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

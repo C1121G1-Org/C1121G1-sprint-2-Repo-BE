@@ -25,4 +25,20 @@ public interface IGuestFriendService {
     GuestFriend findAllGuestFriendByGuestIdAndFriendId(Long guestId, Long friendId);
 
     void deleteGuestFriendById(Long id);
+
+/*
+    Created by ChienLV
+    Time: 15:00 29/06/2022
+    Function: Guest Friend Service
+*/
+
+    List<GuestFriend> findAllFriendRequests(Long id);
+
+    List<GuestFriend> findAllFriendSuggestions(Long id);
+
+    void acceptFriend(Long id);
+
+    void refuseFriend(Long id);
+
+    void removeSuggestion(Long id);
 }

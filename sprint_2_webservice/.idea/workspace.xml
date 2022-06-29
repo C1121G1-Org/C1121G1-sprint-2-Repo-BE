@@ -5,129 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b6a5a0bf-3b15-45fc-a23e-f25c70fa7c5a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/api/controllers/ProfileRestController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/api/dto/FriendDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/api/dto/GuestFriendDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/api/repositories/ICommentRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/api/repositories/IGuestFavoriteRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/api/repositories/IGuestFriendRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/api/repositories/ILikeCommentRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/api/services/IGuestFriendService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/api/services/impl/GuestFriendServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/api/controllers/GuestRestController_createGuest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/api/controllers/GuestRestController_updateGuest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/Sprint1WebserviceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/Sprint1WebserviceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/controllers/CommentRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/controllers/CommentRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/controllers/FriendRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/controllers/FriendRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/controllers/GiftRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/controllers/GiftRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/controllers/GuestRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/controllers/GuestRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/controllers/PostRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/controllers/PostRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/controllers/ReportRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/controllers/ReportRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/controllers/WalletRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/controllers/WalletRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/dto/AccountDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/dto/AccountDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/dto/ChargeMoneyDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/dto/ChargeMoneyDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/dto/ExtraInforDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/dto/ExtraInforDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/dto/GuestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/dto/GuestDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/dto/Top100Dto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/dto/Top100Dto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/models/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/models/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/models/AccountRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/models/AccountRole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/models/CategoryGift.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/models/CategoryGift.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/models/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/models/Comment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/models/Favorite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/models/Favorite.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/models/Friend.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/models/Friend.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/models/Gift.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/models/Gift.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/models/Guest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/models/Guest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/models/GuestFavorite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/models/GuestFavorite.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/models/GuestFriend.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/models/GuestFriend.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/models/GuestTarget.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/models/GuestTarget.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/models/LikeComment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/models/LikeComment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/models/LikePost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/models/LikePost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/models/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/models/Post.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/models/PostReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/models/PostReport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/models/Report.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/models/Report.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/models/ResponseObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/models/ResponseObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/models/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/models/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/models/Target.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/models/Target.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/models/Wallet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/models/Wallet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/repositories/IAccountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/repositories/IAccountRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/repositories/IAccountRoleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/repositories/IAccountRoleRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/repositories/ICategoryGiftRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/repositories/ICategoryGiftRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/repositories/ICommentRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/repositories/IFavoriteRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/repositories/IFavoriteRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/repositories/IFriendRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/repositories/IFriendRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/repositories/IGiftRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/repositories/IGiftRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/repositories/IGuestFavoriteRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/repositories/IGuestFriendRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/repositories/IGuestReportRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/repositories/IGuestReportRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/repositories/IGuestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/repositories/IGuestRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/repositories/IGuestTargetRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/repositories/IGuestTargetRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/repositories/ILikeCommentRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/repositories/ILikePostRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/repositories/ILikePostRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/repositories/IPostRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/repositories/IPostRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/repositories/IReportRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/repositories/IReportRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/repositories/IRoleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/repositories/IRoleRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/repositories/ITargetRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/repositories/ITargetRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/repositories/IWalletRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/repositories/IWalletRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/services/IAccountRoleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/IAccountRoleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/services/IAccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/IAccountService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/services/ICategoryGiftService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/ICategoryGiftService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/services/ICommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/ICommentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/services/IFavoriteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/IFavoriteService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/services/IFriendService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/IFriendService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/services/IGiftService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/IGiftService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/services/IGuestFavoriteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/IGuestFavoriteService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/services/IGuestFriendService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/services/IGuestReportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/IGuestReportService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/services/IGuestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/IGuestService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/services/IGuestTargetService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/IGuestTargetService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/services/ILikeCommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/ILikeCommentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/services/ILikePostService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/ILikePostService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/services/IPostService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/IPostService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/services/IReportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/IReportService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/services/IRoleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/IRoleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/services/ITargetService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/ITargetService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/services/IWalletService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/IWalletService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/services/impl/AccountRoleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/impl/AccountRoleServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/services/impl/AccountServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/impl/AccountServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/services/impl/CategoryGiftServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/impl/CategoryGiftServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/services/impl/CommentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/impl/CommentServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/services/impl/EmailSenderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/impl/EmailSenderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/services/impl/FavoriteServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/impl/FavoriteServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/services/impl/FriendServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/impl/FriendServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/services/impl/GiftServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/impl/GiftServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/services/impl/GuestFavoriteServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/impl/GuestFavoriteServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/services/impl/GuestFriendServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/services/impl/GuestReportServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/impl/GuestReportServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/services/impl/GuestServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/impl/GuestServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/services/impl/GuestTargetServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/impl/GuestTargetServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/services/impl/LikeCommentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/impl/LikeCommentServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/services/impl/LikePostServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/impl/LikePostServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/services/impl/PassEncTech1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/impl/PassEncTech1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/services/impl/PostServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/impl/PostServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/services/impl/ReportServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/impl/ReportServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/services/impl/RoleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/impl/RoleServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/services/impl/TargetServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/impl/TargetServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/java/api/services/impl/WalletServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/impl/WalletServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/test/java/api/Sprint1WebserviceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/api/Sprint1WebserviceApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint-2-BE/src/test/java/api/controller/GuestRestControllerViewTop100.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4.1/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.1/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4.1/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.1/dependencies-accessors/dependencies-accessors.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,6 +53,9 @@
       </map>
     </option>
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="2BCKSrP36zZW4AR49JoPV539V9j" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -204,12 +85,13 @@
       </method>
     </configuration>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="a481f7ff-66aa-42f4-b6a6-c931099437e9" name="Default Changelist" comment="" />
+      <changelist id="b6a5a0bf-3b15-45fc-a23e-f25c70fa7c5a" name="Changes" comment="" />
       <created>1656404629329</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -218,11 +100,12 @@
       <workItem from="1656405811798" duration="733000" />
       <workItem from="1656406616244" duration="141000" />
       <workItem from="1656406790990" duration="572000" />
+      <workItem from="1656494156513" duration="385000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
     <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1656406011354">

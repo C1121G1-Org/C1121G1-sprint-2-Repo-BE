@@ -12,18 +12,23 @@ import java.util.List;
 @Transactional
 public interface IGuestFriendRepository extends JpaRepository<GuestFriend, Long> {
     /*
-     Created by ChienLV
-     Time: 20:00 25/06/2022
- */
+         Created by ChienLV
+         Date: 15:00 29/06/2022
+         Desc: findAllFriendRequests(id) => Lấy list lời mời kết bạn dựa vào id của guest khi đăng nhập vào;
+         Nó sẽ lấy những record nào có is_accept = 0 trong bảng guest_friend của guest có id = id truyền vào;
+    */
     @Query(value = "Select * " +
             "from guest_friend " +
             "where guest_friend.is_accept = 0 and guest_friend.guest_id = :id ", nativeQuery = true)
     List<GuestFriend> findAllFriendRequests(@Param("id") Long id);
 
     /*
-     Created by ChienLV
-     Time: 20:00 25/06/2022
- */
+         Created by ChienLV
+         Date: 15:00 29/06/2022
+         Desc: findAllFriendSuggestions(id) => Lấy list gợi kết bạn dựa vào id của guest khi đăng nhập vào;
+         Nó sẽ lấy những record nào có is_accept = 1 và is_suggest = 1 trong bảng guest_friend của những guest
+         có bạn chung với guest có id = id truyền vào;
+    */
     @Query(value = "select * " +
             "from guest_friend " +
             "where guest_friend.is_accept = 1 and guest_friend.is_suggest = 1 " +
@@ -33,9 +38,11 @@ public interface IGuestFriendRepository extends JpaRepository<GuestFriend, Long>
     List<GuestFriend> findAllFriendSuggestions(@Param("id") Long id);
 
     /*
-     Created by ChienLV
-     Time: 20:00 25/06/2022
- */
+       Created by ChienLV
+       Date: 15:00 29/06/2022
+       Desc: acceptFriend(id) => Chấp nhận lời mời kết bạn dựa vào id của bảng guest_friend;
+       Đổi is_accept từ 0 thành 1 trong table guest_friend;
+     */
     @Modifying
     @Query(value = "update guest_friend " +
             "set is_accept = 1 " +
@@ -43,18 +50,22 @@ public interface IGuestFriendRepository extends JpaRepository<GuestFriend, Long>
     void acceptFriend(@Param("id") Long id);
 
     /*
-     Created by ChienLV
-     Time: 20:00 25/06/2022
- */
+       Created by ChienLV
+       Date: 15:00 29/06/2022
+       Desc: refuseFriend(id) =>Từ chối lời mời kết bạn dựa vào id của bảng guest_friend;
+       Xóa luôn record có id truyền vào trong table guest_friend;
+     */
     @Modifying
     @Query(value = "delete from guest_friend " +
             "where id = :id and is_accept = 0 ", nativeQuery = true)
     void refuseFriend(@Param("id") Long id);
 
     /*
-     Created by ChienLV
-     Time: 20:00 25/06/2022
- */
+       Created by ChienLV
+       Date: 15:00 29/06/2022
+       Desc: removeSuggestion(id) => Từ chối lời gợi ý kết bạn dựa vào id của bảng guest_friend;
+       Đổi is_suggest từ 1 thành 0 trong table guest_friend;
+     */
     @Modifying
     @Query(value = "update guest_friend " +
             "set is_suggest = 0 " +

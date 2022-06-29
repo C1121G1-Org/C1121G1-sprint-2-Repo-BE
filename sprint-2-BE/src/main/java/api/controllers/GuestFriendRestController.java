@@ -1,8 +1,6 @@
 package api.controllers;
 
 import api.models.GuestFriend;
-import api.models.ResponseObject;
-import api.services.IFriendService;
 import api.services.IGuestFriendService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,8 +18,9 @@ public class GuestFriendRestController {
     IGuestFriendService iGuestFriendService;
 
     /*
-       Created by ChienLV
-       Time: 20:00 25/06/2022
+     Created by ChienLV
+     Date: 15:00 29/06/2022
+     Desc: getListFriendRequests(id) => Lấy list lời mời kết bạn dựa vào id của guest khi đăng nhập vào lấy từ Angular;
    */
     @GetMapping(value = "/list-friend-requests/{id}")
     public ResponseEntity<List<GuestFriend>> getListFriendRequests(@PathVariable Long id){
@@ -33,8 +32,9 @@ public class GuestFriendRestController {
     }
 
     /*
-       Created by ChienLV
-       Time: 20:00 25/06/2022
+     Created by ChienLV
+     Date: 15:00 29/06/2022
+     Desc: getListFriendSuggestions(id) => Lấy list gợi ý kết bạn dựa vào id của guest khi đăng nhập vào lấy từ Angular;
    */
     @GetMapping(value = "/list-friend-suggestions/{id}")
     public ResponseEntity<List<GuestFriend>> getListFriendSuggestions(@PathVariable Long id){
@@ -46,30 +46,33 @@ public class GuestFriendRestController {
     }
 
     /*
-       Created by ChienLV
-       Time: 20:00 25/06/2022
+     Created by ChienLV
+     Date: 15:00 29/06/2022
+     Desc: acceptFriend(id) => Chấp nhận lời mời kết bạn dựa vào id của bảng guest_friend;
    */
-    @PatchMapping(value = "/accept-friend-request/{id}")
+    @GetMapping(value = "/accept-friend-request/{id}")
     public ResponseEntity<Void> acceptFriend(@PathVariable Long id){
         iGuestFriendService.acceptFriend(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     /*
-       Created by ChienLV
-       Time: 20:00 25/06/2022
+     Created by ChienLV
+     Date: 15:00 29/06/2022
+     Desc: refuseFriend(id) => Từ chối lời mời kết bạn dựa vào id của bảng guest_friend;
    */
-    @PatchMapping(value = "/refuse-friend-request/{id}")
+    @GetMapping(value = "/refuse-friend-request/{id}")
     public ResponseEntity<Void> refuseFriend(@PathVariable Long id){
         iGuestFriendService.refuseFriend(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     /*
-       Created by ChienLV
-       Time: 20:00 25/06/2022
+     Created by ChienLV
+     Date: 15:00 29/06/2022
+     Desc: removeSuggestion(id) => Từ chối lời gợi ý kết bạn dựa vào id của bảng guest_friend;
    */
-    @PatchMapping(value = "/remove-friend-suggestion/{id}")
+    @GetMapping(value = "/remove-friend-suggestion/{id}")
     public ResponseEntity<Void> removeSuggestion(@PathVariable Long id){
         iGuestFriendService.removeSuggestion(id);
         return new ResponseEntity<>(HttpStatus.OK);

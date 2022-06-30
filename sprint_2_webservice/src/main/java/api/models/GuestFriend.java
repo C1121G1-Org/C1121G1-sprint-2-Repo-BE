@@ -16,7 +16,7 @@ public class GuestFriend {
     @Column(columnDefinition = "BIT(1) default b'0'")
     private boolean isAccept;
 
-    @Column(columnDefinition = "BIT(1) default b'1'")
+    @Column(columnDefinition = "BIT(1) default b'0'")
     private boolean isSuggest;
 
     @ManyToOne

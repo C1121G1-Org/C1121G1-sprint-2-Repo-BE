@@ -1,5 +1,6 @@
 package api.repositories;
 
+import api.models.Guest;
 import api.models.GuestFriend;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -36,4 +37,5 @@ public interface IGuestFriendRepository extends JpaRepository<GuestFriend, Long>
             "where id = :#{#id} ;",
             nativeQuery = true)
     void deleteGuestFriendById(Long id);
+
 }

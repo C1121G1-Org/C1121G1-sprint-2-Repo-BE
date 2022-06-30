@@ -4,10 +4,12 @@ package api.services.impl;
 import api.models.Friend;
 import api.models.Guest;
 import api.models.GuestFriend;
+import api.models.Post;
 import api.repositories.IFriendRepository;
 import api.repositories.IGuestFriendRepository;
 import api.repositories.IGuestRepository;
 
+import api.repositories.IPostRepository;
 import api.services.IGuestFriendService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +31,9 @@ public class GuestFriendServiceImpl implements IGuestFriendService {
 
     @Autowired
     IGuestRepository iGuestRepository;
+
+    @Autowired
+    IPostRepository iPostRepository ;
 
     @Override
     public Friend findFriendById(Long id) {
@@ -63,6 +68,16 @@ public class GuestFriendServiceImpl implements IGuestFriendService {
     @Override
     public void deleteGuestFriendById(Long id) {
         this.iGuestFriendRepository.deleteGuestFriendById(id);
+    }
+
+    @Override
+    public Guest findGuestByUsername(String username) {
+        return this.iGuestRepository.findGuestByAccount_UserName(username);
+    }
+
+    @Override
+    public List<Post> findAllGuestPost(Long guestId) {
+        return this.iPostRepository.findAllGuestPost(guestId);
     }
 
 }

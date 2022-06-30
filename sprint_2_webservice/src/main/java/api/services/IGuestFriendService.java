@@ -3,6 +3,7 @@ package api.services;
 import api.models.Friend;
 import api.models.Guest;
 import api.models.GuestFriend;
+import api.models.Post;
 
 import java.util.List;
 
@@ -25,4 +26,8 @@ public interface IGuestFriendService {
     GuestFriend findAllGuestFriendByGuestIdAndFriendId(Long guestId, Long friendId);
 
     void deleteGuestFriendById(Long id);
+
+    Guest findGuestByUsername(String username);
+
+    List<Post> findAllGuestPost(Long guestId);
 }

@@ -30,4 +30,21 @@ public interface IGuestFriendService {
     Guest findGuestByUsername(String username);
 
     List<Post> findAllGuestPost(Long guestId);
+
+/*
+    Created by ChienLV
+    Time: 15:00 29/06/2022
+    Function: Guest Friend Service
+*/
+
+    List<GuestFriend> findAllFriendRequests(Long id);
+
+    List<GuestFriend> findAllFriendSuggestions(Long id);
+
+    void acceptFriend(Long id);
+
+    void refuseFriend(Long id);
+
+    void removeSuggestion(Long id);
+
 }

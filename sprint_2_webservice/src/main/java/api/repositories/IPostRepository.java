@@ -27,7 +27,7 @@ public interface IPostRepository extends JpaRepository<Post, Long> {
     nativeQuery = true)
     void createPost(Post post);
 
-    @Query(value = " SELECT * FROM `sprint-2-db`.post where guest_id = :#{#guestId} ;",
+    @Query(value = " SELECT * FROM `sprint-2-db`.post where guest_id = :#{#guestId} and privacy = 'Công khai'",
             nativeQuery = true)
     List<Post> findAllGuestPost(Long guestId);
 

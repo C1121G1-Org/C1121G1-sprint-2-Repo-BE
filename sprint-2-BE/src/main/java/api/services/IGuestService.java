@@ -1,7 +1,10 @@
 package api.services;
 
 import api.dto.ExtraInforDto;
+import api.dto.IGuestDto;
 import api.models.Guest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface IGuestService {
 
@@ -48,4 +51,19 @@ public interface IGuestService {
         Class:
     */
     Guest getGuestByEmail(String email);
+
+    /**
+     Created by TuanPD
+     ROLE: ADMIN
+     Time: 13:00 27/07/2022
+     Function: getAllMember = Select All by Member
+     Class:
+     **/
+    Page<IGuestDto> getAllMember(Pageable pageable);
+
+    Page<IGuestDto> getSearchName(String nameMember, Pageable pageable);
+
+    Page<IGuestDto> getVipMember(Pageable pageable);
+
+    Page<IGuestDto> getNormalMember(Pageable pageable);
 }

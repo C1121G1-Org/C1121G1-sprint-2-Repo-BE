@@ -26,21 +26,23 @@ public class AccountDetailsImpl implements UserDetails {
     private String imageLink;
     @JsonIgnore
     private String password;
+    private String dateBan;
     private List<GrantedAuthority> authorities = null;
 
-    public AccountDetailsImpl(Long id, String username, Boolean enabled, String password, String imageLink, List<GrantedAuthority> authorities) {
+    public AccountDetailsImpl(Long id, String username, Boolean enabled, String imageLink, String password, String dateBan, List<GrantedAuthority> authorities) {
         this.id = id;
         this.username = username;
         this.enabled = enabled;
-        this.password = password;
         this.imageLink = imageLink;
+        this.password = password;
+        this.dateBan = dateBan;
         this.authorities = authorities;
     }
 
     /*
-        Function: method build(Account account) is used to convert the Account object
-                  to an AccountDetailsImpl object which implements the UserDetails interface.
-    */
+            Function: method build(Account account) is used to convert the Account object
+                      to an AccountDetailsImpl object which implements the UserDetails interface.
+        */
     public static AccountDetailsImpl build(Account account) {
         List<GrantedAuthority> authorities = account.getAccountRoleSet().stream()
                 .map(role -> new SimpleGrantedAuthority(role.getRole().getRoleName()))
@@ -51,6 +53,7 @@ public class AccountDetailsImpl implements UserDetails {
                 account.getIsEnabled(),
                 account.getEncryptPassword(),
                 account.getGuest().getImage(),
+                account.getDateBan(),
                 authorities);
     }
 

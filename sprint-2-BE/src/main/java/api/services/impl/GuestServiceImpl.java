@@ -1,10 +1,13 @@
 package api.services.impl;
 
 import api.dto.ExtraInforDto;
+import api.dto.IGuestDto;
 import api.models.Guest;
 import api.repositories.IGuestRepository;
 import api.services.IGuestService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -71,5 +74,32 @@ public class GuestServiceImpl implements IGuestService {
     @Override
     public Guest getGuestByEmail(String email) {
         return iGuestRepository.getGuestByEmail(email);
+    }
+
+    /**
+     Created by TuanPD
+     ROLE: ADMIN
+     Time: 13:00 27/07/2022
+     Function: getAllMember = Select All by Member
+     Class:
+     **/
+    @Override
+    public Page<IGuestDto> getAllMember( Pageable pageable) {
+        return iGuestRepository.getAllMember(pageable);
+    }
+
+    @Override
+    public Page<IGuestDto> getSearchName(String nameMember, Pageable pageable) {
+        return iGuestRepository.getSearchName(nameMember, pageable);
+    }
+
+    @Override
+    public Page<IGuestDto> getVipMember(Pageable pageable) {
+        return iGuestRepository.getVipMember(pageable);
+    }
+
+    @Override
+    public Page<IGuestDto> getNormalMember(Pageable pageable) {
+        return iGuestRepository.getNormalMember(pageable);
     }
 }

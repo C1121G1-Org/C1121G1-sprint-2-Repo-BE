@@ -1,12 +1,15 @@
 package api.controllers;
 
 import api.dto.ExtraInforDto;
-import api.dto.GuestDto;
+import api.dto.*;
 import api.models.*;
 import api.services.*;
 import api.services.impl.PassEncTech1;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +21,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 @RestController
 @CrossOrigin("*")
@@ -45,10 +49,75 @@ public class GuestRestController {
     @Autowired
     IFavoriteService iFavoriteService;
 
-    @GetMapping(value = "/list")
-    public String listGuest() {
-        return null;
+    /*
+         Created by TuanPD
+         ROLE: ADMIN
+         Time: 13:00 27/07/2022
+         Function: getAllMember = Select All by Member
+         Class:
+    */
+    @GetMapping("/list/member")
+    public ResponseEntity<Page<IGuestDto>> getAllMember(@RequestParam(defaultValue = "0") int page) {
+        Pageable pageable = PageRequest.of(page, 5);
+        Page<IGuestDto> iReportDtoPage = iGuestService.getAllMember(pageable);
+        if (iReportDtoPage.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(iReportDtoPage, HttpStatus.OK);
     }
+
+    /*
+     Created by TuanPD
+     ROLE: ADMIN
+     Time: 13:00 27/07/2022
+     Function: getSearchMember = Select Search All Member Follow Name
+     Class:
+    */
+    @GetMapping("/search")
+    public ResponseEntity<Page<IGuestDto>> getSearchName(@RequestParam(value = "nameMember", defaultValue = "") String nameMember,
+                                                         @RequestParam(defaultValue = "0") int page) {
+        Pageable pageable = PageRequest.of(page, 5);
+        Page<IGuestDto> iReportDtoPage = iGuestService.getSearchName(nameMember, pageable);
+//        if (iReportDtoPage.isEmpty()) {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+        return new ResponseEntity<>(iReportDtoPage, HttpStatus.OK);
+    }
+
+    /*
+     Created by TuanPD
+     ROLE: ADMIN
+     Time: 13:00 27/07/2022
+     Function: getVipMember = Select All vip by Member
+     Class:
+    */
+    @GetMapping("/vip")
+    public ResponseEntity<Page<IGuestDto>> getAllMemberVip(@RequestParam(defaultValue = "0") int page) {
+        Pageable pageable = PageRequest.of(page, 5);
+        Page<IGuestDto> iReportDtoPage = iGuestService.getVipMember(pageable);
+        if (iReportDtoPage.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(iReportDtoPage, HttpStatus.OK);
+    }
+
+    /*
+         Created by TuanPD
+         ROLE: ADMIN
+         Time: 13:00 27/07/2022
+         Function: getNormalMember = Select All normal by Member
+         Class:
+        */
+    @GetMapping("/normal")
+    public ResponseEntity<Page<IGuestDto>> getAllMemberNormal(@RequestParam(defaultValue = "0") int page) {
+        Pageable pageable = PageRequest.of(page, 5);
+        Page<IGuestDto> iReportDtoPage = iGuestService.getNormalMember(pageable);
+        if (iReportDtoPage.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(iReportDtoPage, HttpStatus.OK);
+    }
+
 
     /*
         Created by khoaVC

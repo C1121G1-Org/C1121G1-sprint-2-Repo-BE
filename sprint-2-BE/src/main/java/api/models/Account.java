@@ -32,6 +32,8 @@ public class Account {
 
     @Column(name = "verification_code", length = 255)
     private String verificationCode;
+    @Column(name = "date_ban", columnDefinition = "DATE")
+    private String dateBan;
 
 //    @OneToOne(mappedBy = "account")
 //    @JsonBackReference

@@ -1,5 +1,6 @@
 package api.repositories;
 
+import api.models.Guest;
 import api.models.GuestFriend;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -17,21 +18,37 @@ import java.util.List;
 @Transactional
 public interface IGuestFriendRepository extends JpaRepository<GuestFriend, Long> {
 
+    /*
+    Created by HauPV
+    Time: 14:00 27/06/2022
+*/
     @Modifying
     @Query(value = "INSERT INTO `sprint-2-db`.`guest_friend` (`friend_id`, `guest_id`) VALUES (:#{#guestFriend.friend.id}, :#{#guestFriend.guest.id}) ; ",
             nativeQuery = true)
     void insertGuestFriend(GuestFriend guestFriend);
 
+    /*
+    Created by HauPV
+    Time: 14:00 27/06/2022
+   */
     @Query(value = "SELECT * FROM `sprint-2-db`.guest_friend " +
             " where guest_friend.guest_id = :#{#id} ;",
             nativeQuery = true)
     List<GuestFriend> findAllGuestFriendByGuestId(Integer id);
 
+        /*
+     Created by HauPV
+     Time: 14:00 27/06/2022
+    */
     @Query(value = "SELECT * FROM `sprint-2-db`.guest_friend " +
             "where guest_id = :#{#guestId} and friend_id = :#{#friendId} ;",
             nativeQuery = true)
     GuestFriend findAllGuestFriendByGuestIdAndFriendId(Long guestId, Long friendId);
 
+        /*
+     Created by HauPV
+     Time: 14:00 27/06/2022
+    */
     @Modifying
     @Query(value = "DELETE FROM `sprint-2-db`.guest_friend " +
             "where id = :#{#id} ;",
@@ -98,4 +115,5 @@ public interface IGuestFriendRepository extends JpaRepository<GuestFriend, Long>
             "set is_suggest = 0 " +
             "where id = :id ", nativeQuery = true)
     void removeSuggestion(@Param("id") Long id);
+
 }

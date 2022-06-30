@@ -4,6 +4,7 @@ import api.dto.GuestFriendDto;
 import api.models.Friend;
 import api.models.Guest;
 import api.models.GuestFriend;
+import api.models.Post;
 import api.services.IGuestFriendService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +58,11 @@ public class ProfileRestController {
             return new ResponseEntity<>(errMap, HttpStatus.BAD_REQUEST);
         }
 
+        if (guestFriendDto.getGuestDto().getId() == guestFriendDto.getFriendDto().getId()) {
+            errMap.put("exist", "Cannot add yourself");
+            return new ResponseEntity<>(errMap, HttpStatus.BAD_REQUEST);
+        }
+
         if (iGuestFriendService.findAllGuestFriendByGuestIdAndFriendId(guestFriendDto.getGuestDto().getId(),
                 guestFriendDto.getFriendDto().getId()) != null) {
             errMap.put("exist", "already your friend !");
@@ -107,5 +113,23 @@ public class ProfileRestController {
         }
         this.iGuestFriendService.deleteGuestFriendById(id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/get-guest-by-username/{username}")
+    public ResponseEntity<Guest> getGuestByUsername(@PathVariable String username) {
+        Guest guest = this.iGuestFriendService.findGuestByUsername(username);
+        if (guest == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(guest, HttpStatus.OK);
+    }
+
+    @GetMapping("/guest-post/{guestId}")
+    public ResponseEntity<List<Post>> getGuestPost(@PathVariable Long guestId) {
+        List<Post> posts = this.iGuestFriendService.findAllGuestPost(guestId);
+        if (posts.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(posts, HttpStatus.OK);
     }
 }

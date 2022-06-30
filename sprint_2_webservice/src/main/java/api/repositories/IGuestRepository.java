@@ -104,5 +104,14 @@ public interface IGuestRepository extends JpaRepository<Guest, Long> {
     @Query(value="update `guest` set `image`=:#{#guest.image} where (`id`=:id)", nativeQuery = true)
     void updateGuestByImage(Guest guest,@Param("id")Long id);
 
-
+    /*
+        Created by HauPV
+        Role: Admin, member
+        Time: 14:00 29/06/2022
+    */
+//    @Query(value = "SELECT guest.id , address , career , date_of_birth , delete_flag , email , gender , image , marital_status , name , account_id , create_date FROM guest " +
+//            "join account on guest.account_id = account.id " +
+//            "where account.user_name = :'#{#username} ;",
+//            nativeQuery = true)
+    Guest findGuestByAccount_UserName(String username);
 }

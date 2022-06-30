@@ -3,6 +3,7 @@ package api.services;
 import api.models.Friend;
 import api.models.Guest;
 import api.models.GuestFriend;
+import api.models.Post;
 
 import java.util.List;
 
@@ -26,6 +27,10 @@ public interface IGuestFriendService {
 
     void deleteGuestFriendById(Long id);
 
+    Guest findGuestByUsername(String username);
+
+    List<Post> findAllGuestPost(Long guestId);
+
 /*
     Created by ChienLV
     Time: 15:00 29/06/2022
@@ -41,4 +46,5 @@ public interface IGuestFriendService {
     void refuseFriend(Long id);
 
     void removeSuggestion(Long id);
+
 }

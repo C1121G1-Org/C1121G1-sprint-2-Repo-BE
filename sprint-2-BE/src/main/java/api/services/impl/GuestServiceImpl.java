@@ -77,7 +77,13 @@ public class GuestServiceImpl implements IGuestService {
     public Guest getGuestByEmail(String email) {
         return iGuestRepository.getGuestByEmail(email);
     }
-
+    /*
+           Created by SonDCM
+           Role: GUEST
+           Time: 15:20 19/06/2022
+           Function: viewTop100() = view Top 100
+           Class:
+   */
     @Override
     public Page<Top100Dto> viewTop100(Pageable pageable ) {
         return iGuestRepository.viewTop100(pageable );

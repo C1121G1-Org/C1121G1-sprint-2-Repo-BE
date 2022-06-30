@@ -220,6 +220,13 @@ public class GuestRestController {
     public ResponseEntity<List<Favorite>> listFavorite() {
         return new ResponseEntity<>(iFavoriteService.getAllFavorite(), HttpStatus.OK);
     }
+    /*
+        Created by SonDCM
+        Role: GUEST
+        Time: 15:20 19/06/2022
+        Function: viewTop100() = view Top 100
+        Class:
+*/
     @GetMapping(value = "/listTop100")
     public ResponseEntity<Page<Top100Dto>> viewTop100( @RequestParam int page){
         Page<Top100Dto> top100Dtos = iGuestService.viewTop100(PageRequest.of(page, 10));

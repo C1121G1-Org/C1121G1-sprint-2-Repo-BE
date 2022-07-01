@@ -35,4 +35,15 @@ public class AccountServiceImpl implements IAccountService {
     public Account getAccountByUserName(String userName) {
         return iAccountRepository.getAccountByUserName(userName);
     }
+
+    /*
+      Created by TamHT
+      Role: Acount
+      Time: 20:00 30/06/2022
+      Class:
+  */
+    @Override
+    public void changePassword(String encryptPassword, Long accountId) {
+        iAccountRepository.changPassword(encryptPassword, accountId);
+    }
 }

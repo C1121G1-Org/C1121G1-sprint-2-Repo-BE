@@ -1,12 +1,17 @@
 package api.repositories;
 
 import api.dto.ExtraInforDto;
+import api.dto.Top100Dto;
 import api.models.Guest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 public interface IGuestRepository extends JpaRepository<Guest, Long> {
 
@@ -68,4 +73,16 @@ public interface IGuestRepository extends JpaRepository<Guest, Long> {
     */
     @Query(value = "select * from guest where delete_flag = 0 and email = :email ", nativeQuery = true)
     Guest getGuestByEmail(String email);
+
+
+    @Query(value = " select g.id,g.name,g.image,w.value,count(l.like_post_flag) as totalLike\n" +
+            "from guest as g, post as p, like_post as l, wallet as w\n" +
+            "where (g.id = p.guest_id) and (p.id = l.post_id) and (g.id = w.guest_id)\n" +
+            "group by g.id",
+            countQuery = "select count(*) from guest \n" +
+                    "    inner join wallet on guest.id = wallet.guest_id\n" +
+                    "    inner join post on guest.id = post.guest_id\n" +
+                    "    inner join like_post on post.id = like_post.post_id;"
+            , nativeQuery = true)
+    Page<Top100Dto> viewTop100 (Pageable pageable);
 }

@@ -62,7 +62,7 @@ public class Guest {
 
     @OneToMany(mappedBy = "guest")
     @JsonBackReference
-    private Set<Gift> giftSet;
+    private Set<GiftGuest> giftGuestSet;
 
     @OneToMany(mappedBy = "guest")
     @JsonBackReference

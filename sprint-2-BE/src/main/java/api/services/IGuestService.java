@@ -1,7 +1,14 @@
 package api.services;
 
 import api.dto.ExtraInforDto;
+import api.dto.Top100Dto;
 import api.models.Guest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
+import java.util.List;
+
+import java.util.List;
 
 public interface IGuestService {
 
@@ -22,6 +29,7 @@ public interface IGuestService {
         Class:
     */
     Guest findGuestById(Long id);
+
     /*
         Created by khoaVC
         Role: MEMBER
@@ -48,4 +56,16 @@ public interface IGuestService {
         Class:
     */
     Guest getGuestByEmail(String email);
+
+
+    /*
+      Created by khoaVC
+      Role: GUEST
+      Time: 23:00 15/06/2022
+      Function: getPersonByEmail = find Person by email
+      Class:
+  */
+    public void update(Guest guest);
+
+    Page<Top100Dto> viewTop100(Pageable pageable);
 }

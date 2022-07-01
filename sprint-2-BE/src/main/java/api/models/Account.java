@@ -33,6 +33,7 @@ public class Account {
     @Column(name = "verification_code", length = 255)
     private String verificationCode;
 
+
 //    @OneToOne(mappedBy = "account")
 //    @JsonBackReference
 //    private Employee employee;
@@ -40,6 +41,9 @@ public class Account {
     @OneToOne(mappedBy = "account")
     @JsonBackReference
     private Guest guest;
+
+    @Column(name = "is_login", nullable = false)
+    private Boolean isLogin = false;
 
     @OneToMany(mappedBy = "account")
     @JsonBackReference

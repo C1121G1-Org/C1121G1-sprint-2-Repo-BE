@@ -21,4 +21,11 @@ public interface IAccountService {
         Class:
     */
     Account getAccountByUserName(String userName);
+
+    /*
+           Created by KhaiTT
+           Date: 22:40 31/05/2022
+           Function: This changePassword() method change account password.
+       */
+    void changePassword(String encryptPassword, Long accountId);
 }

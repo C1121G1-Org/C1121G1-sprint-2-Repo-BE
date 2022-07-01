@@ -80,4 +80,16 @@ public class GuestServiceImpl implements IGuestService {
     public List<Top100Dto> viewTop100() {
         return iGuestRepository.viewTop100();
     }
+
+    /*
+     Created by HT
+     Role: GUEST
+     Time: 09:40 30/06/2022
+     Class:
+ */
+    @Override
+    public void update(Guest guest) {
+        iGuestRepository.save(guest);
+    }
+
 }

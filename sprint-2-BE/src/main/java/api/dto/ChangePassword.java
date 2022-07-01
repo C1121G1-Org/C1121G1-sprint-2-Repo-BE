@@ -18,7 +18,6 @@ import javax.validation.constraints.Pattern;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ChangePassword {
-    private String username;
     @NotBlank(message = "Vui lòng nhập mật khẩu hiện tại.")
     private String currentPassword;
 

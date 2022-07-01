@@ -25,6 +25,7 @@ public interface IGuestService {
         Class:
     */
     Guest findGuestById(Long id);
+
     /*
         Created by khoaVC
         Role: MEMBER
@@ -53,4 +54,13 @@ public interface IGuestService {
     Guest getGuestByEmail(String email);
 
     List<Top100Dto> viewTop100();
+
+    /*
+      Created by khoaVC
+      Role: GUEST
+      Time: 23:00 15/06/2022
+      Function: getPersonByEmail = find Person by email
+      Class:
+  */
+    public void update(Guest guest);
 }

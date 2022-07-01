@@ -3,12 +3,16 @@ import api.dto.ChangePassword;
 import api.dto.ExtraInforDto;
 import api.dto.GuestDto;
 import api.models.*;
+import api.security.JwtFilter;
+import api.security.JwtUtility;
 import api.services.*;
 import api.services.impl.PassEncTech1;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +27,6 @@ import java.util.Map;
 @CrossOrigin("*")
 @RequestMapping("/api/guest")
 public class GuestRestController {
-
     @Autowired
     PassEncTech1 passEncTech1;
 
@@ -44,6 +47,16 @@ public class GuestRestController {
 
     @Autowired
     IFavoriteService iFavoriteService;
+    @Autowired
+    private JwtFilter jwtFilter;
+
+    @Autowired
+    private PasswordEncoder encoder;
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private JwtUtility jwtUtility;
 
     @GetMapping(value = "/list")
     public String listGuest() {
@@ -230,13 +243,14 @@ public class GuestRestController {
     */
     @PatchMapping("/updatePassword")
     public ResponseEntity<Account> update(@Valid @RequestBody ChangePassword changePassword) {
-        Account account = iAccountService.getAccountByUserName(changePassword.getUsername());
-        if (account.getEncryptPassword().equals(changePassword.getCurrentPassword()) &&
+        Account account = jwtFilter.findAccountByJwtToken();
+        if (encoder.matches(changePassword.getCurrentPassword(), account.getEncryptPassword()) &&
                 changePassword.getNewPassword().equals(changePassword.getConfirmNewPassword())) {
-            account.setEncryptPassword(changePassword.getNewPassword());
-            iAccountService.update(account);
+            String encryptPassword = encoder.encode(changePassword.getNewPassword());
+            iAccountService.changePassword(encryptPassword, account.getId());
             return new ResponseEntity<>(HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
+
 }

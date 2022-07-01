@@ -20,8 +20,8 @@ public class GiftServiceImpl implements IGiftService {
     ICategoryGiftRepository iCategoryGiftRepository;
 
     @Override
-    public Page<Gift> getAllGift(Pageable pageable) {
-        return iGiftRepository.getAllGift(pageable);
+    public Page<Gift> getAllGift(Pageable pageable, Integer categoryId) {
+        return iGiftRepository.getAllGift(pageable , categoryId);
     }
 
     @Override

@@ -13,6 +13,7 @@ public interface IWalletRepository extends JpaRepository<Wallet, Long> {
     @Modifying
     @Query(value = "update wallet as w \n" +
             "    set w.value = w.value + ?1 \n " +
+            "    set w.value = w.value + ?1 ,w.coin = w.coin + ?1*10\n " +
             "where guest_id =?2", nativeQuery = true)
     void chargeMoney (@Param(value = "value") Double value, @Param(value = "guest_id") Long id);
 }

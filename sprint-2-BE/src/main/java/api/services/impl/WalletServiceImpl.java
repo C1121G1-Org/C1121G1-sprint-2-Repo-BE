@@ -19,5 +19,6 @@ public class WalletServiceImpl implements IWalletService {
     @Override
     public Wallet findById(Long id) {
         return iWalletRepository.findById(id).orElse(null);
+
     }
 }

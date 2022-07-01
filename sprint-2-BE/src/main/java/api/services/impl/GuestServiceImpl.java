@@ -6,6 +6,8 @@ import api.models.Guest;
 import api.repositories.IGuestRepository;
 import api.services.IGuestService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -76,10 +78,6 @@ public class GuestServiceImpl implements IGuestService {
         return iGuestRepository.getGuestByEmail(email);
     }
 
-    @Override
-    public List<Top100Dto> viewTop100() {
-        return iGuestRepository.viewTop100();
-    }
 
     /*
      Created by HT
@@ -92,4 +90,7 @@ public class GuestServiceImpl implements IGuestService {
         iGuestRepository.save(guest);
     }
 
+    public Page<Top100Dto> viewTop100(Pageable pageable ) {
+        return iGuestRepository.viewTop100(pageable);
+    }
 }

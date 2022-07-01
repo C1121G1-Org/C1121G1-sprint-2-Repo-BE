@@ -58,14 +58,6 @@ public interface IGuestService {
 
     Page<Top100Dto> viewTop100(Pageable pageable);
 
-    /*
-    Created by hoangDH
-    Role: Admin, member
-    Time: 16:11 23/06/2022
-    Function: update isLogin by guest;
-    Class:
-*/
-    void updateAccountByIsLogin(Guest guest,Boolean is_login);
 
     /*
         Created by hoangDH

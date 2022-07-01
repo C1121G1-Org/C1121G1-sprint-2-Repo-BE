@@ -84,17 +84,6 @@ public class GuestServiceImpl implements IGuestService {
         return iGuestRepository.viewTop100(pageable);
     }
 
-    /*
-    Created by hoangDH
-    Role: Admin, member
-    Time: 16:11 23/06/2022
-    Function: update isLogin by guest;
-    Class:
-    */
-    @Override
-    public void updateAccountByIsLogin(Guest guest, Boolean is_login){
-        iGuestRepository.updateAccountByIsLogin(guest,is_login);
-    };
 
     /*
         Created by hoangDH

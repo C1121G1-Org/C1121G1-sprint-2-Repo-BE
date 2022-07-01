@@ -61,7 +61,6 @@ public class GuestDto implements Validator {
     private String image;
 
 
-
     @Override
     public boolean supports(Class<?> clazz) {
         return false;

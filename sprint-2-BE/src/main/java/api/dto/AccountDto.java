@@ -28,6 +28,7 @@ public class AccountDto implements Validator {
     @Size(min = 6, max = 32, message = "Tên đăng nhập phải từ 6 - 32 ký tự.")
     private String userName;
 
+    @NotBlank(message = "mật khẩu không dược để trống")
     private String encryptPassword;
 
     private Boolean isEnabled;

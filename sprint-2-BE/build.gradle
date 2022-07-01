@@ -33,6 +33,14 @@ dependencies {
     Function: spring mail gradle library.
 */
     implementation 'org.springframework.boot:spring-boot-starter-mail'
+    /*
+     Created by TuanPA
+    Date: 10:10 23/06/2022
+    Function: security gradle library.
+*/
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    testImplementation 'org.springframework.security:spring-security-test'
+    implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
 }
 
 tasks.named('test') {

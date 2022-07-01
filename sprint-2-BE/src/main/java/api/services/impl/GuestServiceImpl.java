@@ -78,8 +78,19 @@ public class GuestServiceImpl implements IGuestService {
         return iGuestRepository.getGuestByEmail(email);
     }
 
+
+    /*
+     Created by HT
+     Role: GUEST
+     Time: 09:40 30/06/2022
+     Class:
+ */
     @Override
+    public void update(Guest guest) {
+        iGuestRepository.save(guest);
+    }
+
     public Page<Top100Dto> viewTop100(Pageable pageable ) {
-        return iGuestRepository.viewTop100(pageable );
+        return iGuestRepository.viewTop100(pageable);
     }
 }

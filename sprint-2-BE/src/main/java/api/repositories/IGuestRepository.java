@@ -73,6 +73,8 @@ public interface IGuestRepository extends JpaRepository<Guest, Long> {
     */
     @Query(value = "select * from guest where delete_flag = 0 and email = :email ", nativeQuery = true)
     Guest getGuestByEmail(String email);
+
+
     @Query(value = " select g.id,g.name,g.image,w.value,count(l.like_post_flag) as totalLike\n" +
             "from guest as g, post as p, like_post as l, wallet as w\n" +
             "where (g.id = p.guest_id) and (p.id = l.post_id) and (g.id = w.guest_id)\n" +

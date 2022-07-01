@@ -22,4 +22,5 @@ public interface IAccountRoleRepository extends JpaRepository<AccountRole, Long>
     @Query(value = "insert into account_role (account_id, role_id) values " +
             "(:#{#account.id}, :i) ", nativeQuery = true)
     void create(Account account, @Param("i") Long i);
+
 }

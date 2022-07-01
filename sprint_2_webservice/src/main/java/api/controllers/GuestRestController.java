@@ -1,8 +1,6 @@
 package api.controllers;
 
-import api.dto.ExtraInforDto;
-import api.dto.GuestDto;
-import api.dto.Top100Dto;
+import api.dto.*;
 import api.models.*;
 import api.services.*;
 import api.services.impl.PassEncTech1;
@@ -10,14 +8,12 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
-import javax.validation.constraints.Max;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -242,36 +238,69 @@ public class GuestRestController {
         Created by hoangDH
         Role: Admin, member
         Time: 16:11 23/06/2022
-        Function: update img by guest;
+        Function: update img and image by account id;
         Class:
     */
-    @PatchMapping(value="/updateImage")
-    public ResponseEntity<Void>updateImageById(@RequestBody GuestDto guestDto,@RequestParam(name="id")Long id){
-        Guest guest=iGuestService.findGuestById(id);
-        if(guest!=null){
-            if(guestDto.getImage()==null||guestDto.getImage().trim().equals("")){
-                if(guest.getGender()==false){
-                    guest.setImage("https://scr.vn/wp-content/uploads/2020/07/%E1%BA%A2nh-%C4%91%E1%BA%A1i-di%E1%BB%87n-FB-m%E1%BA%B7c-%C4%91%E1%BB%8Bnh-n%E1%BB%AF.jpg");
-                    iGuestService.updateGuestByImage(guest,id);
-                    return new ResponseEntity<>(HttpStatus.OK);
-                }
-                else{
-                    guest.setImage("https://scr.vn/wp-content/uploads/2020/07/Avatar-Facebook-tr%E1%BA%AFng.jpg");
-                    iGuestService.updateGuestByImage(guest,id);
-                    return new ResponseEntity<>(HttpStatus.OK);
-                }
-            }
-            else{
-                guest.setImage(guestDto.getImage());
-                iGuestService.updateGuestByImage(guest,id);
-                return new ResponseEntity<>(HttpStatus.OK);
+    @Transactional(rollbackFor = Exception.class)
+    @PatchMapping(value="/updateAccountAndGuest")
+    public ResponseEntity<ResponseObject>updateIsLoginById(@Valid @RequestBody UpdateGuestAndAccountDto updateGuestAndAccountDto
+                                                            ,BindingResult bindingResult, @RequestParam(name="id")Long id) {
+        updateGuestAndAccountDto.validate(updateGuestAndAccountDto, bindingResult);
+        // Mapping all errors into a map to send to Angular
+        Map<String, String> errorMap = new HashMap<>();
+        bindingResult
+                .getFieldErrors()
+                .stream()
+                .forEach(
+                        fieldError -> {
+                            errorMap.put(fieldError.getField(), fieldError.getDefaultMessage());
+                        });
+        // Print log errors
+        if (bindingResult.hasErrors()) {
+            for (Map.Entry<String, String> entry : errorMap.entrySet()) {
+                System.out.printf("%s: %s\n", entry.getKey(), entry.getValue());
             }
         }
-        else{
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if (!bindingResult.hasErrors()) {
+            try {
+                Account account=iAccountService.findAccountById(id);
+                Guest guest=iGuestService.findGuestById(id);
+                List<Guest> result = new ArrayList<>();
+                if(guest!=null){
+                    account.setIsLogin(updateGuestAndAccountDto.getIsLogin());
+                    iAccountService.updateAccountByIsLogin(account,id);
+                    if(updateGuestAndAccountDto.getImage()==null||updateGuestAndAccountDto.getImage().trim().equals("")){
+                        if(guest.getGender()==false){
+                            guest.setImage("https://scr.vn/wp-content/uploads/2020/07/%E1%BA%A2nh-%C4%91%E1%BA%A1i-di%E1%BB%87n-FB-m%E1%BA%B7c-%C4%91%E1%BB%8Bnh-n%E1%BB%AF.jpg");
+                            iGuestService.updateGuestByImage(guest,id);
+                        }
+                        else{
+                            guest.setImage("https://scr.vn/wp-content/uploads/2020/07/Avatar-Facebook-tr%E1%BA%AFng.jpg");
+                            iGuestService.updateGuestByImage(guest,id);
+                        }
+                    }
+                    else{
+                        guest.setImage(updateGuestAndAccountDto.getImage());
+                        iGuestService.updateGuestByImage(guest,id);
+                    }
+                    return new ResponseEntity<>(new ResponseObject<>(true, "OK", errorMap, result), HttpStatus.OK);
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
+        return new ResponseEntity<>(new ResponseObject<>(false, "FAILED", errorMap, new ArrayList<>()), HttpStatus.BAD_REQUEST);
     }
 
+
+
+    /*
+        Created by hoangDH
+        Role: Admin, member
+        Time: 16:11 23/06/2022
+        Function: get guest by id;
+        Class:
+    */
     @GetMapping(value="{id}")
     public ResponseEntity<Guest>getGuestById(@PathVariable Long id){
             Guest guest=iGuestService.findGuestById(id);
@@ -282,6 +311,43 @@ public class GuestRestController {
             else{
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
+    }
+
+    /*
+        Created by hoangDH
+        Role: Admin, member
+        Time: 16:11 23/06/2022
+        Function: get account by id;
+        Class:
+    */
+    @GetMapping(value="/account/{id}")
+    public ResponseEntity<Account>getAccountById(@PathVariable Long id){
+        Account account=iAccountService.findAccountById(id);
+        if(account!=null)
+        {
+            return new ResponseEntity<>(account,HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    /*
+        Created by hoangDH
+        Role: Admin, member
+        Time: 16:11 23/06/2022
+        Function: get account and guest by account id
+        Class:
+    */
+    @GetMapping(value="/updateAccAndGuest")
+    public ResponseEntity<Object>getUpdateAccountAndGuest(@RequestParam(name="id") Long id){
+        UpdateGuestAndAccount updateGuestAndAccountDto=iAccountService.getGuestAndAccount(id);
+        if(updateGuestAndAccountDto==null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        else{
+            return new ResponseEntity<>(updateGuestAndAccountDto,HttpStatus.OK);
+        }
     }
 
 }

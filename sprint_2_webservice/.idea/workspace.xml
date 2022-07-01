@@ -1,15 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="a481f7ff-66aa-42f4-b6a6-c931099437e9" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/api/dto/CommentDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/api/dto/LikeCommentDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/api/dto/UpdateGuestAndAccount.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/api/dto/UpdateGuestAndAccountDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/api/controllers/CommentRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/controllers/CommentRestController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/api/controllers/GuestRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/controllers/GuestRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/api/dto/AccountDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/dto/AccountDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/api/dto/GuestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/dto/GuestDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/api/models/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/models/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/api/models/Guest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/models/Guest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/api/repositories/IAccountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/repositories/IAccountRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/api/repositories/ICommentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/repositories/ICommentRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/api/repositories/IGuestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/repositories/IGuestRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/api/services/IAccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/IAccountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/api/services/ICommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/ICommentService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/api/services/IGuestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/IGuestService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/api/services/ILikeCommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/ILikeCommentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/api/services/impl/AccountServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/impl/AccountServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/api/services/impl/CommentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/impl/CommentServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/api/services/impl/GuestServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/impl/GuestServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/api/services/impl/LikeCommentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/services/impl/LikeCommentServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +66,13 @@
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
@@ -51,10 +91,23 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/build.gradle" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../module 4/C1121g1_Module_4/caseStudy/build.gradle" />
     <property name="show.unlinked.gradle.project.popup" value="true" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Spring Boot.Sprint1WebserviceApplication">
+    <configuration name="CommentDto" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="api.dto.CommentDto" />
+      <module name="sprint_1_webservice.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="api.dto.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Sprint1WebserviceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="sprint_1_webservice.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="api.Sprint1WebserviceApplication" />
@@ -62,6 +115,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.CommentDto" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -78,78 +136,110 @@
       <workItem from="1656406616244" duration="141000" />
       <workItem from="1656406790990" duration="572000" />
       <workItem from="1656407907184" duration="620000" />
-      <workItem from="1656461805026" duration="12480000" />
+      <workItem from="1656461805026" duration="12821000" />
+      <workItem from="1656494080027" duration="1488000" />
+      <workItem from="1656552938156" duration="24130000" />
+      <workItem from="1656637229148" duration="13150000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1656406011354">
+    <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser" timestamp="1656663258685">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1656406011354" />
-    <state width="1493" height="351" key="GridCell.Tab.0.bottom" timestamp="1656493304449">
+    <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1656663258685" />
+    <state x="46" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1656564741175">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="351" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1656493304449" />
-    <state width="1493" height="351" key="GridCell.Tab.0.center" timestamp="1656493304449">
+    <state x="46" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1656564741175" />
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1656665930109">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="351" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1656493304449" />
-    <state width="1493" height="351" key="GridCell.Tab.0.left" timestamp="1656493304449">
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1656665930109" />
+    <state width="1493" height="291" key="GridCell.Tab.0.bottom" timestamp="1656666211679">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="351" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1656493304449" />
-    <state width="1493" height="351" key="GridCell.Tab.0.right" timestamp="1656493304449">
+    <state width="1493" height="291" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1656666211679" />
+    <state width="1493" height="291" key="GridCell.Tab.0.center" timestamp="1656666211678">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="351" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1656493304449" />
-    <state width="1493" height="351" key="GridCell.Tab.1.bottom" timestamp="1656493304450">
+    <state width="1493" height="291" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1656666211678" />
+    <state width="1493" height="291" key="GridCell.Tab.0.left" timestamp="1656666211678">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="351" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1656493304450" />
-    <state width="1493" height="351" key="GridCell.Tab.1.center" timestamp="1656493304450">
+    <state width="1493" height="291" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1656666211678" />
+    <state width="1493" height="291" key="GridCell.Tab.0.right" timestamp="1656666211679">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="351" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1656493304450" />
-    <state width="1493" height="351" key="GridCell.Tab.1.left" timestamp="1656493304450">
+    <state width="1493" height="291" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1656666211679" />
+    <state width="1493" height="291" key="GridCell.Tab.1.bottom" timestamp="1656666211679">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="351" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1656493304450" />
-    <state width="1493" height="351" key="GridCell.Tab.1.right" timestamp="1656493304450">
+    <state width="1493" height="291" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1656666211679" />
+    <state width="1493" height="291" key="GridCell.Tab.1.center" timestamp="1656666211679">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="351" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1656493304450" />
-    <state width="1493" height="351" key="GridCell.Tab.2.bottom" timestamp="1656493304450">
+    <state width="1493" height="291" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1656666211679" />
+    <state width="1493" height="291" key="GridCell.Tab.1.left" timestamp="1656666211679">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="351" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1656493304450" />
-    <state width="1493" height="351" key="GridCell.Tab.2.center" timestamp="1656493304450">
+    <state width="1493" height="291" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1656666211679" />
+    <state width="1493" height="291" key="GridCell.Tab.1.right" timestamp="1656666211679">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="351" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1656493304450" />
-    <state width="1493" height="351" key="GridCell.Tab.2.left" timestamp="1656493304450">
+    <state width="1493" height="291" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1656666211679" />
+    <state width="1493" height="291" key="GridCell.Tab.2.bottom" timestamp="1656584477260">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="351" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1656493304450" />
-    <state width="1493" height="351" key="GridCell.Tab.2.right" timestamp="1656493304450">
+    <state width="1493" height="291" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1656584477260" />
+    <state width="1493" height="291" key="GridCell.Tab.2.center" timestamp="1656584477259">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="351" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1656493304450" />
+    <state width="1493" height="291" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1656584477259" />
+    <state width="1493" height="291" key="GridCell.Tab.2.left" timestamp="1656584477259">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="291" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1656584477259" />
+    <state width="1493" height="291" key="GridCell.Tab.2.right" timestamp="1656584477260">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="291" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1656584477260" />
     <state width="775" height="419" key="XDebugger.FullValuePopup" timestamp="1656470314244">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="775" height="419" key="XDebugger.FullValuePopup/0.0.1536.824@0.0.1536.824" timestamp="1656470314244" />
+    <state x="425" y="187" key="run.anything.popup" timestamp="1656493722862">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1656493722862" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/api/controllers/GuestRestController.java</url>
-          <line>251</line>
-          <option name="timeStamp" value="4" />
+          <line>343</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/api/services/impl/AccountServiceImpl.java</url>
+          <line>73</line>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

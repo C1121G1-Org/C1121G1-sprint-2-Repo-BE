@@ -16,7 +16,7 @@ public interface ICommentRepository extends JpaRepository<Comment, Long> {
            Class:
        */
     @Query(value = "insert into `comment` (`comment_content`,`time`,`guest_id`,`post_id`)" +
-            "values (:#{#comment.commentContent},:#{#comment.time},:#{#comment.guest},:#{#comment.post})", nativeQuery = true)
+            "values (:#{#comment.commentContent},:#{#comment.time},:#{#comment.guest.id},:#{#comment.post.id})", nativeQuery = true)
     void createComment(Comment comment);
 
     /*

@@ -68,7 +68,6 @@ public class GiftRestController {
         wallet.setCoin(totalCoinReceive - Double.parseDouble(giftGuest.getGift().getAmountCoin()));
         guest.setWallet(wallet);
         iGuestService.update(guest);
-
         return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
 }

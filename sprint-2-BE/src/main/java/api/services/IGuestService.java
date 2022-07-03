@@ -2,6 +2,7 @@ package api.services;
 
 import api.dto.ExtraInforDto;
 import api.dto.Top100Dto;
+import api.models.Friend;
 import api.models.Guest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,6 +19,7 @@ public interface IGuestService {
         Class:
     */
     void create(Guest guest);
+
 
     /*
         Created by khoaVC

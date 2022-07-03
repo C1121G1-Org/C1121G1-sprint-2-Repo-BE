@@ -10,4 +10,8 @@ import java.util.List;
 public interface IPostReportService {
 
     Page<IReportDto> getPostReport(String guestName, String reportName, String dateReport, String reportPeopleName, Pageable pageable);
+
+    PostReport getById(Long id);
+
+    void createPostReport(PostReport postReport);
 }

@@ -21,4 +21,14 @@ public class PostReportServiceIpml implements IPostReportService {
     public Page<IReportDto> getPostReport(String guestName, String reportName, String dateReport, String reportPeopleName, Pageable pageable) {
         return iPostReportRepository.getPostReport(guestName, reportName, dateReport, reportPeopleName, pageable);
     }
+
+    @Override
+    public PostReport getById(Long id) {
+        return iPostReportRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public void createPostReport(PostReport postReport) {
+        iPostReportRepository.luu(postReport);
+    }
 }

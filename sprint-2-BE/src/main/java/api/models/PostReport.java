@@ -27,6 +27,10 @@ public class PostReport {
     private Report report;
 
     @ManyToOne
-    @JoinColumn(name = "guest_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "post_id", referencedColumnName = "id", nullable = false)
     private Post post;
+
+    @ManyToOne
+    @JoinColumn(name = "people_report_id", referencedColumnName = "id", nullable = false)
+    private Guest guest;
 }

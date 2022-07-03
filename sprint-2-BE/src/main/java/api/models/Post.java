@@ -45,4 +45,7 @@ public class Post {
     @ManyToOne
     @JoinColumn(name = "guest_id", referencedColumnName = "id", nullable = false)
     private Guest guest;
+
+    @OneToMany(mappedBy = "post")
+    private Set<PostReport> postReportSet;
 }

@@ -1,5 +1,6 @@
 package api.services.impl;
 
+import api.models.PostReport;
 import api.models.Report;
 import api.repositories.IReportRepository;
 import api.services.IReportService;
@@ -21,5 +22,10 @@ public class ReportServiceImpl implements IReportService {
     @Override
     public List<Report> findAll() {
         return iReportRepository.findAll();
+    }
+
+    @Override
+    public Report getById(Long id) {
+        return iReportRepository.findById(id).orElse(null);
     }
 }

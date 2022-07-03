@@ -38,4 +38,8 @@ public interface IPostReportRepository extends JpaRepository<PostReport, Long> {
                     "and dateReport >= :dateReport ", nativeQuery = true)
     Page<IReportDto> getPostReport(String guestName, String reportName,
                                    String dateReport, String reportPeopleName, Pageable pageable);
+
+    @Query(value = "insert into post_report (date_report, people_report_id, post_id, report_id) " +
+            "values(now(), :#{#postReport.peopleReportId}, :#{#postReport.})", nativeQuery = true)
+    void luu(PostReport postReport);
 }

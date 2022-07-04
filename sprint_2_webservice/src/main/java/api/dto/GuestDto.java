@@ -31,22 +31,15 @@ public class GuestDto implements Validator {
     @Size(min = 6, max = 32, message = "Tên đăng nhập phải từ 6 - 32 ký tự.")
     private String userName;
 
-    @NotBlank(message = "Tên không được để trống.")
-    @Size(min = 6, max = 32, message = "Tên phải từ 6 - 32 ký tự.")
-    private String name;
-
     @NotBlank(message = "Mật khẩu không được để trống.")
     @Size(min = 6, max = 32, message = "Mật khẩu phải từ 6 - 32 ký tự.")
     private String password;
 
-    @NotBlank(message = "Ngày tạo mới không được để trống.")
-    private String createDate;
-
     @NotBlank(message = "Ngày sinh không được để trống.")
     private String dateOfBirth;
 
-    @NotNull(message = "Giới tính không được để trống")
-    private Boolean gender;
+//    @NotNull(message = "Giới tính không được để trống") //Chưa bắt được null
+    private boolean gender;
 
     @NotBlank(message = "Nghề nghiệp không được để trống.")
     private String career;
@@ -93,18 +86,19 @@ public class GuestDto implements Validator {
             }
         }
 
-        // Validate createDate
-        if (guestDto.getCreateDate().equals("")) {
-            errors.rejectValue("createDate", "createDate.notBlank", "Ngày tạo mới không được để trống.");
-        } else {
-            LocalDate today = LocalDate.now();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            LocalDate createDate = LocalDate.parse(guestDto.getCreateDate(), formatter);
-            if (createDate.isAfter(today)) {
-                errors.rejectValue("createDate", "createDate.today", "Ngày tạo mới phải lớn hơn hoặc bằng ngày hôm nay.");
-            }
-        }
-
     }
 
+    @Override
+    public String toString() {
+        return "PersonDto{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", dateOfBirth='" + dateOfBirth + '\'' +
+                ", gender=" + gender +
+                ", career='" + career + '\'' +
+                ", address='" + address + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }

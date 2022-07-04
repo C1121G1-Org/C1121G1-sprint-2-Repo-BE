@@ -1,7 +1,7 @@
 package api.dto;
 
 public class ChargeMoneyDto {
-    private String guestId;
+   private String guestId;
 
     public String getId() {
         return guestId;

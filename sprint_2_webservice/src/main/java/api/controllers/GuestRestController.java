@@ -1,6 +1,9 @@
 package api.controllers;
 
 import api.dto.*;
+import api.dto.ExtraInforDto;
+import api.dto.GuestDto;
+import api.dto.Top100Dto;
 import api.models.*;
 import api.services.*;
 import api.services.impl.PassEncTech1;
@@ -24,8 +27,6 @@ import java.util.Map;
 @RequestMapping("/api/guest")
 public class GuestRestController {
 
-    public static final Integer a = null;
-
     @Autowired
     PassEncTech1 passEncTech1;
 
@@ -34,9 +35,6 @@ public class GuestRestController {
 
     @Autowired
     IGuestTargetService iGuestTargetService;
-
-    @Autowired
-    IGuestFavoriteService iGuestFavoriteService;
 
     @Autowired
     IAccountService iAccountService;
@@ -72,14 +70,13 @@ public class GuestRestController {
             bindingResult.rejectValue("userName", "", "Tên đăng nhập đã tồn tại.");
         }
         // Validate duplicate email
-        if (getGuestByUserName(guestDto.getEmail()) != null) {
+        if (getGuestByEmail(guestDto.getEmail()) != null) {
             bindingResult.rejectValue("email", "", "Email đã tồn tại.");
         }
         // Mapping all errors into a map to send to Angular
         Map<String, String> errorMap = new HashMap<>();
         bindingResult
                 .getFieldErrors()
-                .stream()
                 .forEach(
                         fieldError -> {
                             errorMap.put(fieldError.getField(), fieldError.getDefaultMessage());
@@ -111,9 +108,7 @@ public class GuestRestController {
                 BeanUtils.copyProperties(guestDto, guest);
                 guest.setAccount(as);
                 iGuestService.create(guest);
-                List<Guest> result = new ArrayList<>();
-                result.add(guest);
-                return new ResponseEntity<>(new ResponseObject<>(true, "OK", errorMap, result), HttpStatus.OK);
+                return new ResponseEntity<>(HttpStatus.OK);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -131,36 +126,36 @@ public class GuestRestController {
     // If "targetList": [1,7] => Error 500??? => DQ error => How to resolve???
     // You can use @Transactional without (rollbackForClassName = {"Exception.class"}) and try...catch => it also auto rollback for you
     @Transactional(rollbackFor = Exception.class)
-    @PatchMapping(value = "/update/{userName}")
-    public ResponseEntity<ResponseObject> updateGuest(@PathVariable String userName, @RequestBody ExtraInforDto extraInforDto) {
+    @PatchMapping(value = "/update/{id}")
+    public ResponseEntity<ResponseObject> updateGuest(@PathVariable Long id, @RequestBody ExtraInforDto extraInforDto) {
         try {
             // Case null or empty data
             if ((extraInforDto.getImage() == null || extraInforDto.getImage().trim().equals(""))
                     && extraInforDto.getMaritalStatus() == null
                     && extraInforDto.getTargetList().size() == 0
-                    && extraInforDto.getFavoriteList().size() == 0) {
+                    && (extraInforDto.getFavorite() == null || extraInforDto.getFavorite().trim().equals(""))) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             } else {
-                Guest guest = iGuestService.getGuestByUserName(userName);
+                Guest guest = iGuestService.findGuestById(id);
                 if (guest != null) {
+                    // Case null or empty data
+//                if ((extraInforDto.getImage() == null || extraInforDto.getImage().trim().equals(""))
+//                        && extraInforDto.getMaritalStatus() == null
+//                        && extraInforDto.getTargetList().size() == 0) {
+//                    return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//                } else {
                     // Update image and maritalStatus for person
-                    iGuestService.updateGuestById(guest.getId(), extraInforDto);
+                    iGuestService.updateGuestById(id, extraInforDto);
 
                     // Add target list into table person_target
                     if (extraInforDto.getTargetList().size() > 0) {
                         List<Integer> targetList = extraInforDto.getTargetList();
                         for (Integer i : targetList) {
-                            iGuestTargetService.create(guest.getId(), i);
-                        }
-                    }
-                    // Add favorite list into table person_favorite
-                    if (extraInforDto.getFavoriteList().size() > 0) {
-                        List<Integer> favoriteList = extraInforDto.getFavoriteList();
-                        for (Integer i : favoriteList) {
-                            iGuestFavoriteService.create(guest.getId(), i);
+                            iGuestTargetService.create(id, i);
                         }
                     }
                     return new ResponseEntity<>(HttpStatus.OK);
+//                }
                 } else {
                     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
                 }
@@ -218,11 +213,11 @@ public class GuestRestController {
     public ResponseEntity<List<Target>> listTarget() {
         return new ResponseEntity<>(iTargetService.getAllTarget(), HttpStatus.OK);
     }
+
     @GetMapping(value = "/listFavorite")
     public ResponseEntity<List<Favorite>> listFavorite() {
         return new ResponseEntity<>(iFavoriteService.getAllFavorite(), HttpStatus.OK);
     }
-
 
     @GetMapping(value = "/listTop100")
     public ResponseEntity<Page<Top100Dto>> viewTop100( @RequestParam(defaultValue = "0") int page){

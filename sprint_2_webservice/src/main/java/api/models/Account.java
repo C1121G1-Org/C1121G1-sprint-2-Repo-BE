@@ -36,9 +36,7 @@ public class Account {
     @Column(name="is_login")
     private Boolean isLogin;
 
-//    @OneToOne(mappedBy = "account")
-//    @JsonBackReference
-//    private Employee employee;
+
 
     @OneToOne(mappedBy = "account")
     @JsonBackReference

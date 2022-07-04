@@ -51,7 +51,7 @@ public interface ICommentService {
       Function: update comment by id;
       Class:
   */
-    Comment updateCommentById(Comment comment,Long id);
+    void updateCommentById(Comment comment,Long id);
 
     /*
       Created by hoangDH
@@ -60,6 +60,5 @@ public interface ICommentService {
       Function: delete comment by id;
       Class:
   */
-    @Query(value = "delete from `comment` where `id`=:id", nativeQuery = true)
     void deleteCommentById(Long id);
 }

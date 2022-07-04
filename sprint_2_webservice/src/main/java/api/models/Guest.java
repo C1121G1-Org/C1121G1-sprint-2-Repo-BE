@@ -65,14 +65,14 @@ public class Guest {
 
     @OneToMany(mappedBy = "guest")
     @JsonBackReference
-    private Set<GuestFavorite> guestFavoriteSet;
-
-    @OneToMany(mappedBy = "guest")
-    @JsonBackReference
     private Set<Gift> giftSet;
 
     @OneToMany(mappedBy = "guest")
     @JsonBackReference
+    private Set<GuestReport> guestReportSet;
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "guest")
     private Set<LikePost> likePostSet;
 
     @OneToMany(mappedBy = "guest")

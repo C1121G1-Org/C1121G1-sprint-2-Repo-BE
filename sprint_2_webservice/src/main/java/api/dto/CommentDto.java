@@ -29,6 +29,10 @@ public class CommentDto implements Validator {
     @NotBlank(message = "Ngày tạo comment không được để trống!")
     @Pattern(regexp = "^\\d{4}[\\-\\/\\s]?((((0[13578])|(1[02]))[\\-\\/\\s]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[\\-\\/\\s]?(([0-2][0-9])|(30)))|(02[\\-\\/\\s]?[0-2][0-9]))$", message = "vui lòng nhập đúng định dạng")
     private String time;
+    @NotNull(message = "post id không được null!")
+    private Long post_id;
+    @NotNull(message = "guest id không được null!")
+    private Long guest_id;
 
     @Override
     public boolean supports(Class<?> clazz) {

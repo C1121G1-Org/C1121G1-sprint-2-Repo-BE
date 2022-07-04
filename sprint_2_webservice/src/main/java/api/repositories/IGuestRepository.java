@@ -1,6 +1,7 @@
 package api.repositories;
 
 import api.dto.ExtraInforDto;
+
 import api.dto.Top100Dto;
 import api.models.Guest;
 import org.springframework.data.domain.Page;
@@ -10,7 +11,10 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
+
+
 import java.util.List;
+
 
 public interface IGuestRepository extends JpaRepository<Guest, Long> {
 
@@ -23,8 +27,8 @@ public interface IGuestRepository extends JpaRepository<Guest, Long> {
     */
     @Transactional
     @Modifying
-    @Query(value = "insert into guest (name, address, career, date_of_birth, create_date, email, gender, delete_flag, account_id) values " +
-            "(:#{#guest.name},:#{#guest.address},:#{#guest.career},:#{#guest.dateOfBirth},:#{#guest.createDate},:#{#guest.email},:#{#guest.gender}, " +
+    @Query(value = "insert into guest (address, career, date_of_birth, email, gender, delete_flag, account_id) values " +
+            "(:#{#guest.address},:#{#guest.career},:#{#guest.dateOfBirth},:#{#guest.email},:#{#guest.gender}, " +
             ":#{#guest.deleteFlag}, :#{#guest.account.id}) ", nativeQuery = true)
     void create(Guest guest);
 
@@ -93,7 +97,15 @@ public interface IGuestRepository extends JpaRepository<Guest, Long> {
     @Query(value="update `guest` set `image`=:#{#guest.image} where `id`=:id", nativeQuery = true)
     void updateGuestByImage(Guest guest,@Param("id")Long id);
 
-
-
+    /*
+        Created by HauPV
+        Role: Admin, member
+        Time: 14:00 29/06/2022
+    */
+//    @Query(value = "SELECT guest.id , address , career , date_of_birth , delete_flag , email , gender , image , marital_status , name , account_id , create_date FROM guest " +
+//            "join account on guest.account_id = account.id " +
+//            "where account.user_name = :'#{#username} ;",
+//            nativeQuery = true)
+    Guest findGuestByAccount_UserName(String username);
 
 }

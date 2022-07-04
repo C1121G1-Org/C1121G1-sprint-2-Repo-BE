@@ -1,5 +1,6 @@
 package api.services;
 
+
 import api.models.Wallet;
 
 public interface IWalletService {

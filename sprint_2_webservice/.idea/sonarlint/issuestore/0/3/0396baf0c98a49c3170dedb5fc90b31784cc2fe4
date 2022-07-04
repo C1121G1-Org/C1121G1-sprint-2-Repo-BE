@@ -1,10 +1,0 @@
-
-Y
-java:S4973="<Strings and Boxed types should be compared using "equals()".(¦Á8‘¼ãš›0
-e
-java:S4488"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(’Ûù8®¾ãš›0
-H
-java:S14525"&Remove usage of generic wildcard type.(ü½‰‚ÿÿÿÿÿ8À¾ãš›0
-T	java:S106R"9Replace this use of System.out or System.err by a logger.(êã¬N8Œ¿ãš›0
-_
-java:S1612i"CReplace this lambda with method reference 'GuestFriend::getFriend'.(Ô¦58 ¿ãš›0

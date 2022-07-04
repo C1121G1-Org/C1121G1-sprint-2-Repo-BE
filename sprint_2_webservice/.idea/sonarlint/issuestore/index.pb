@@ -7,5 +7,3 @@ c
 3src/main/java/api/repositories/IPostRepository.java,a\5\a5586aa7b8ae96f14efe6a11abc026129cc9e104
 j
 :src/main/java/api/repositories/IGuestFriendRepository.java,d\5\d51911168f8af52100f9cc7daa5f9483dd3209ea
-c
-3src/main/java/api/Sprint1WebserviceApplication.java,5\9\59e03adffe120fc376093366fcb9c1a5207282e7

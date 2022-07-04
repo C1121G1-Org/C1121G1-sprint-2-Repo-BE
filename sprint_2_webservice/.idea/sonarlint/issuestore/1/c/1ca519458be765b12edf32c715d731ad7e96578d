@@ -1,0 +1,25 @@
+
+Z	java:S112o"FDefine and throw a dedicated exception instead of using a generic one.(â∆·e
+J
+java:S3740J"/Provide the parametrized type for this generic.(Ÿ‡©ª˘ˇˇˇˇ
+K
+java:S3740ä"/Provide the parametrized type for this generic.(ÚéŸµ˝ˇˇˇˇ
+B
+java:S1602Y",Remove useless curly braces around statement(©ı™ø
+l
+java:S3457_"Q%n should be used in place of \n to produce the platform-specific line separator.(àõ’»˝ˇˇˇˇ
+S	java:S106_"9Replace this use of System.out or System.err by a logger.(àõ’»˝ˇˇˇˇ
+S	java:S106y"9Replace this use of System.out or System.err by a logger.(©˛Í‹˙ˇˇˇˇ
+n
+java:S3776ä"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(ÚéŸµ˝ˇˇˇˇ
+U
+java:S1155è">Use isEmpty() to check whether the collection is empty or not.(‹©¢è
+R	java:S125ñ"<This block of commented-out lines of code should be removed.(ÿ’ºæ
+U
+java:S1155ü">Use isEmpty() to check whether the collection is empty or not.(µ¥∏⁄
+W	java:S125¶"<This block of commented-out lines of code should be removed.(Èÿª⁄˚ˇˇˇˇ
+T	java:S106¨"9Replace this use of System.out or System.err by a logger.(©˛Í‹˙ˇˇˇˇ
+^
+java:S1128"IRemove this unused import 'org.springframework.data.web.PageableDefault'.(ØíŒ<
+S
+java:S1128"=Remove this unused import 'javax.validation.constraints.Max'.(˛…Ω¶

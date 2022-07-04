@@ -1,5 +1,6 @@
 package api.services;
 
+import api.dto.LikeCmtAndGuest;
 import api.models.LikeComment;
 import api.repositories.ILikeCommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public interface ILikeCommentService {
         Class:
     */
 
-    List<LikeComment> listLikeComment(Long id);
+    List<LikeCmtAndGuest> listLikeComment(Long id);
 
 
     /*
@@ -47,7 +48,7 @@ public interface ILikeCommentService {
     Function: Update like comment;
     Class:
 */
-    void updateLikeComment(LikeComment likeComment);
+    void updateLikeComment(LikeComment likeComment,Long id);
 
     /*
     Created by hoangDH
@@ -56,5 +57,5 @@ public interface ILikeCommentService {
     Function: Find like comment by comment and guest id;
     Class:
     */
-    LikeComment findLikeCommentByGuestIdAndCommentId(Long commentId, Long guestId);
+    LikeComment findLikeCommentByGuestIdAndCommentId(Long guestId, Long commentId);
 }

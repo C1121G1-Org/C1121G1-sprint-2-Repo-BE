@@ -71,9 +71,9 @@ public class CommentServiceImpl implements ICommentService {
       Class:
   */
     @Override
-    public Comment updateCommentById(Comment comment,Long id){
-        return iCommentRepository.updateCommentById(comment, id);
-    };
+    public void updateCommentById(Comment comment,Long id){
+         iCommentRepository.updateCommentById(comment, id);}
+
 
     /*
       Created by hoangDH

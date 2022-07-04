@@ -1,5 +1,6 @@
 package api.services.impl;
 
+import api.dto.LikeCmtAndGuest;
 import api.models.LikeComment;
 import api.repositories.ILikeCommentRepository;
 import api.services.ILikeCommentService;
@@ -32,7 +33,7 @@ public class LikeCommentServiceImpl implements ILikeCommentService {
         Class:
     */
 
-    public List<LikeComment> listLikeComment(Long id){
+    public List<LikeCmtAndGuest> listLikeComment(Long id){
         return iLikeCommentRepository.listLikeComment(id);
     };
 
@@ -56,8 +57,8 @@ public class LikeCommentServiceImpl implements ILikeCommentService {
     Function: Update like comment;
     Class:
 */
-    public void updateLikeComment(LikeComment likeComment){
-        iLikeCommentRepository.updateLikeComment(likeComment);
+    public void updateLikeComment(LikeComment likeComment,Long id){
+        iLikeCommentRepository.updateLikeComment(likeComment,id);
     };
 
     /*
@@ -67,7 +68,7 @@ public class LikeCommentServiceImpl implements ILikeCommentService {
     Function: Find like comment by comment and guest id;
     Class:
     */
-    public LikeComment findLikeCommentByGuestIdAndCommentId(Long commentId, Long guestId){
-        return iLikeCommentRepository.findLikeCommentByGuestIdAndCommentId(commentId, guestId);
+    public LikeComment findLikeCommentByGuestIdAndCommentId(Long guestId, Long commentId){
+        return iLikeCommentRepository.findLikeCommentByGuestIdAndCommentId(guestId, commentId);
     };
 }

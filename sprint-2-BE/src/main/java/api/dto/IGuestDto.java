@@ -2,7 +2,11 @@ package api.dto;
 
 public interface IGuestDto {
 
+    Long getPostReportId();
+
     Long getGuestId();
+
+    Long getPostId();
 
     String getGuestName();
 
@@ -17,6 +21,10 @@ public interface IGuestDto {
     Double getAmountRecharge();
 
     String getReportName();
+
+    Long getReportId();
+
+    Long getReportedPeopleId();
 
     Long getNumberOfViolations();
 }

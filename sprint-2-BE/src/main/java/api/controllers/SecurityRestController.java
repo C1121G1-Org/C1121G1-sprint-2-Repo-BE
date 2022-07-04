@@ -1,7 +1,6 @@
 package api.controllers;
 
 import api.models.Account;
-import api.models.ResponseObject;
 import api.payload.request.LoginRequest;
 import api.payload.response.JwtResponse;
 import api.security.JwtUtility;
@@ -39,10 +38,10 @@ public class SecurityRestController {
 
     @Autowired
     private IAccountService iAccountService;
-//
+
 //    @Autowired
 //    private JwtFilter jwtFilter;
-//
+
 //    @Autowired
 //    private PasswordEncoder encoder;
 
@@ -52,6 +51,7 @@ public class SecurityRestController {
     */
     @PostMapping("/login")
     public ResponseEntity<JwtResponse> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword())
         );
@@ -60,6 +60,7 @@ public class SecurityRestController {
         String jwt = jwtUtility.generateJwtToken(loginRequest.getUsername());
 
         AccountDetailsImpl accountDetails = (AccountDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
         List<String> roles = accountDetails.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
@@ -71,6 +72,8 @@ public class SecurityRestController {
     public ResponseEntity<Account> warningReport(){
         return null;
     }
+
+
 
 
 }

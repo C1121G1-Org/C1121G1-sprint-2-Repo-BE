@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,10 +18,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @RestController
@@ -48,6 +46,7 @@ public class GuestRestController {
 
     @Autowired
     IFavoriteService iFavoriteService;
+
 
     /*
          Created by TuanPD
@@ -78,9 +77,9 @@ public class GuestRestController {
                                                          @RequestParam(defaultValue = "0") int page) {
         Pageable pageable = PageRequest.of(page, 5);
         Page<IGuestDto> iReportDtoPage = iGuestService.getSearchName(nameMember, pageable);
-//        if (iReportDtoPage.isEmpty()) {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
+        if (iReportDtoPage.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(iReportDtoPage, HttpStatus.OK);
     }
 
@@ -283,5 +282,47 @@ public class GuestRestController {
     @GetMapping(value = "/listFavorite")
     public ResponseEntity<List<Favorite>> listFavorite() {
         return new ResponseEntity<>(iFavoriteService.getAllFavorite(), HttpStatus.OK);
+    }
+
+    /*
+      Created by khoaPTD
+      Role: GUEST
+      Time: 20:00 23/06/2022
+      Function: findAllGuest() = Search Guest
+ */
+    @GetMapping(value = "/searchList")
+    public ResponseEntity<List<GuestInterfaceDTO>> findAllGuest(@RequestParam(required = false, value = "") String keyName,
+                                                                @RequestParam(required = false, value = "") String keyGender,
+                                                                @RequestParam(required = false, value = "") String keyCareer,
+                                                                @RequestParam(required = false, value = "") String keyAddress,
+                                                                @RequestParam(required = false, value = "") String keyYearOfBirth,
+                                                                @RequestParam(required = false, value = "") String keyFavorite) {
+        List<GuestInterfaceDTO> guestList = iGuestService.findGuestByKey(keyName, keyGender, keyCareer, keyAddress, keyYearOfBirth, keyFavorite);
+        if (guestList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(guestList, HttpStatus.OK);
+        }
+
+    }
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<Guest> findGuestById(@PathVariable Long id) {
+        Optional<Guest> guest = Optional.ofNullable(this.iGuestService.findGuestById(id));
+        if (guest.isPresent()) {
+            return new ResponseEntity<>(guest.get(), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping(value = "/searchName")
+    public ResponseEntity<Page<GuestInterfaceDTO>> findAllGuestName(@PageableDefault(value = 8) Pageable pageable,
+                                                                    @RequestParam(required = false, value = "") String keyName) {
+        Page<GuestInterfaceDTO> guestList = iGuestService.findGuestByName(pageable, keyName);
+        if (guestList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(guestList, HttpStatus.OK);
+        }
     }
 }

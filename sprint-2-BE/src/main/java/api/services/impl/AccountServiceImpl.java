@@ -37,4 +37,10 @@ public class AccountServiceImpl implements IAccountService {
     }
 
 
+    @Override
+    public void getActionAccount(String dateBan, Long idPost) {
+        iAccountRepository.actionBanAccount(dateBan,idPost);
+    }
+
+
 }

@@ -1,6 +1,7 @@
 package api.services.impl;
 
 import api.dto.ExtraInforDto;
+import api.dto.GuestInterfaceDTO;
 import api.dto.IGuestDto;
 import api.models.Guest;
 import api.repositories.IGuestRepository;
@@ -9,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class GuestServiceImpl implements IGuestService {
@@ -77,14 +80,14 @@ public class GuestServiceImpl implements IGuestService {
     }
 
     /**
-     Created by TuanPD
-     ROLE: ADMIN
-     Time: 13:00 27/07/2022
-     Function: getAllMember = Select All by Member
-     Class:
+     * Created by TuanPD
+     * ROLE: ADMIN
+     * Time: 13:00 27/07/2022
+     * Function: getAllMember = Select All by Member
+     * Class:
      **/
     @Override
-    public Page<IGuestDto> getAllMember( Pageable pageable) {
+    public Page<IGuestDto> getAllMember(Pageable pageable) {
         return iGuestRepository.getAllMember(pageable);
     }
 
@@ -101,5 +104,15 @@ public class GuestServiceImpl implements IGuestService {
     @Override
     public Page<IGuestDto> getNormalMember(Pageable pageable) {
         return iGuestRepository.getNormalMember(pageable);
+    }
+
+    @Override
+    public List<GuestInterfaceDTO> findGuestByKey(String keyName, String keyGender, String keyCareer, String keyAddress, String keyYearOfBirth, String keyFavorite) {
+        return iGuestRepository.getPageGuest(keyName, keyGender, keyCareer, keyAddress, keyYearOfBirth, keyFavorite);
+    }
+
+    @Override
+    public Page<GuestInterfaceDTO> findGuestByName(Pageable pageable, String keyName) {
+        return iGuestRepository.getPageGuestName(pageable, keyName);
     }
 }

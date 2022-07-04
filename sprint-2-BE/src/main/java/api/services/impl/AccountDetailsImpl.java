@@ -51,8 +51,8 @@ public class AccountDetailsImpl implements UserDetails {
                 account.getId(),
                 account.getGuest().getName(),
                 account.getIsEnabled(),
-                account.getEncryptPassword(),
                 account.getGuest().getImage(),
+                account.getEncryptPassword(),
                 account.getDateBan(),
                 authorities);
     }

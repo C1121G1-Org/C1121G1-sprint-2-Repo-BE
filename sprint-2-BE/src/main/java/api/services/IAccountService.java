@@ -22,5 +22,5 @@ public interface IAccountService {
     */
     Account getAccountByUserName(String userName);
 
-
+    void getActionAccount(String dateBan, Long idPost);
 }

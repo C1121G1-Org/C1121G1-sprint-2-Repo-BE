@@ -1,10 +1,13 @@
 package api.services;
 
 import api.dto.ExtraInforDto;
+import api.dto.GuestInterfaceDTO;
 import api.dto.IGuestDto;
 import api.models.Guest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+
+import java.util.List;
 
 public interface IGuestService {
 
@@ -66,4 +69,9 @@ public interface IGuestService {
     Page<IGuestDto> getVipMember(Pageable pageable);
 
     Page<IGuestDto> getNormalMember(Pageable pageable);
+
+    List<GuestInterfaceDTO> findGuestByKey(String keyName, String keyGender, String keyCareer, String keyAddress, String keyYearOfBirth, String keyFavorite);
+
+    Page<GuestInterfaceDTO> findGuestByName(Pageable pageable, String keyName);
+
 }

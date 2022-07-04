@@ -32,6 +32,7 @@ public class Account {
 
     @Column(name = "verification_code", length = 255)
     private String verificationCode;
+//    Ngày hết hạn ban
     @Column(name = "date_ban", columnDefinition = "DATE")
     private String dateBan;
 

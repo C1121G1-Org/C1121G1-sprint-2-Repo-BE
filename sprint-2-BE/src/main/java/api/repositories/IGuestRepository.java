@@ -1,6 +1,7 @@
 package api.repositories;
 
 import api.dto.ExtraInforDto;
+import api.dto.GuestInterfaceDTO;
 import api.dto.IGuestDto;
 import api.models.Guest;
 import org.springframework.data.domain.Page;
@@ -10,6 +11,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 public interface IGuestRepository extends JpaRepository<Guest, Long> {
 
@@ -187,12 +190,12 @@ public interface IGuestRepository extends JpaRepository<Guest, Long> {
     Page<IGuestDto> getSearchName(@Param("nameMember") String nameMember, Pageable pageable);
 
     /*
-             Created by TuanPD
-             ROLE: ADMIN
-             Time: 13:00 27/07/2022
-             Function: getVipMember = Select vip by Member
-             Class:
-            */
+      Created by TuanPD
+      ROLE: ADMIN
+      Time: 13:00 27/07/2022
+      Function: getVipMember = Select vip by Member
+      Class:
+    */
     @Query(value = "SELECT \n" +
             "    guest.id AS guestId,\n" +
             "    guest.`name` AS guestName,\n" +
@@ -245,6 +248,13 @@ public interface IGuestRepository extends JpaRepository<Guest, Long> {
                     "ORDER BY guest.id DESC", nativeQuery = true)
     Page<IGuestDto> getVipMember(Pageable pageable);
 
+    /*
+          Created by TuanPD
+          ROLE: ADMIN
+          Time: 13:00 27/07/2022
+          Function: getVipMember = Select vip by Member
+          Class:
+        */
     @Query(value = "SELECT \n" +
             "    guest.id AS guestId,\n" +
             "    guest.`name` AS guestName,\n" +
@@ -296,4 +306,51 @@ public interface IGuestRepository extends JpaRepository<Guest, Long> {
                     "GROUP BY guest.id\n" +
                     "ORDER BY guest.id DESC", nativeQuery = true)
     Page<IGuestDto> getNormalMember(Pageable pageable);
+
+    /*
+    Created by khoaPTD
+    Role: N/A
+    Time: 09:40 16/06/2022
+    Function: getPageGuest = find Person by Key word
+    Class:
+    */
+    @Query(value = "SELECT guest.id ,guest.image, guest.address , guest.name , guest.gender ,guest.career , guest.date_of_birth as dateOfBirth , guest_favorite.id as id_guest_fatorite , favorite.id as id_fatorite " +
+            "from guest " +
+            "join guest_favorite on guest.id = guest_favorite.guest_id " +
+            "join  favorite on favorite.id  = guest_favorite.id " +
+            "where`guest`.delete_flag = 0 and " +
+            " guest_favorite.guest_id in " +
+            "(select guest_favorite.guest_id from guest_favorite where favorite_id = :keyFavorite) " +
+            "or`guest`.name like concat('%',:keyName)" +
+            "or `guest`.date_of_birth like concat(:keyYearOfBirth,'%')" +
+            "or`guest`.gender like :keyGender " +
+            "or  `guest`.address like  concat('%',:keyAddress)" +
+            " or `guest`.`career` like concat('%',:keyCareer,'%')",
+            countQuery = "SELECT count(*) " +
+                    "from guest " +
+                    "join guest_favorite on guest.id = guest_favorite.guest_id" +
+                    "join  favorite on favorite.id  = guest_favorite.id  " +
+                    "where`guest`.delete_flag = 0 and " +
+                    " guest_favorite.guest_id  " +
+                    "in " +
+                    "(select guest_favorite.guest_id from guest_favorite where favorite_id = :keyFavorite) " +
+                    "or`guest`.name like concat(:keyName,'%')" +
+                    "or `guest`.date_of_birth like concat(:keyYearOfBirth,'%')" +
+                    "or`guest`.gender like :keyGender " +
+                    "or  `guest`.address like  concat('%',:keyAddress)" +
+                    " or `guest`.`career` like concat('%',:keyCareer,'%')", nativeQuery = true)
+    List<GuestInterfaceDTO> getPageGuest(@Param("keyName") String keyName, @Param("keyGender") String keyGender, @Param("keyCareer") String keyCareer, @Param("keyAddress") String keyAddress, @Param("keyYearOfBirth") String keyYearOfBirth, @Param("keyFavorite") String keyFavorite);
+
+
+    /*
+           Created by hiếuMMT
+           Role: N/A
+           Time: 09:40 16/06/2022
+           Function: getPageGuest = find Person by KeyName
+           Class:
+    */
+    @Query(value = "SELECT * FROM `sprint-2-db`.guest where guest.`name` like concat('%',:keyName,'%') and `guest`.delete_flag = 0", nativeQuery = true)
+    Page<GuestInterfaceDTO> getPageGuestName(Pageable pageable, String keyName);
+
+
 }

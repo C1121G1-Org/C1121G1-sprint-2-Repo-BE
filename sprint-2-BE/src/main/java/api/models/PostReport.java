@@ -7,13 +7,13 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Table(name = "guest_report")
+@Table(name = "post_report")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class GuestReport {
+public class PostReport {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +27,10 @@ public class GuestReport {
     private Report report;
 
     @ManyToOne
-    @JoinColumn(name = "guest_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "post_id", referencedColumnName = "id", nullable = false)
+    private Post post;
+
+    @ManyToOne
+    @JoinColumn(name = "people_report_id", referencedColumnName = "id")
     private Guest guest;
 }

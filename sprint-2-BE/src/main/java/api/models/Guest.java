@@ -26,6 +26,9 @@ public class Guest {
     @Column(name = "date_of_birth", nullable = false, columnDefinition = "DATE")
     private String dateOfBirth;
 
+    @Column(name = "create_date", nullable = false, columnDefinition = "DATE")
+    private String createDate;
+
     @Column(name = "gender", nullable = false)
     private boolean gender;
 
@@ -65,14 +68,17 @@ public class Guest {
     private Set<Gift> giftSet;
 
     @OneToMany(mappedBy = "guest")
-    @JsonBackReference
-    private Set<GuestReport> guestReportSet;
-
-    @OneToMany(mappedBy = "guest")
     private Set<LikePost> likePostSet;
 
     @OneToMany(mappedBy = "guest")
+    private Set<Post> postSet;
+
+    @OneToMany(mappedBy = "guest")
     private Set<LikeComment> likeCommentSet;
+
+    @OneToMany(mappedBy = "guest")
+    @JsonBackReference
+    private Set<PostReport> postReports;
 
     @Override
     public String toString() {

@@ -23,7 +23,7 @@ public interface IPostRepository extends JpaRepository<Post, Long> {
     @Transactional
     @Modifying
     @Query(value = "insert into post (`image`, `post_date`, `privacy`, `feeling`, `content`, `guest_id`) " +
-            "values (:#{#post.image}, now(), ifnull(:#{#post.privacy}, 'Công khai'), :#{#post.feeling}, :#{#post.content}, :#{#post.guest.id})",
+            "values (:#{#post.image}, now(), :#{#post.privacy}, :#{#post.feeling}, :#{#post.content}, :#{#post.guest.id})",
     nativeQuery = true)
     void createPost(Post post);
 

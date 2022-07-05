@@ -1,1 +1,5 @@
-\sprint-2-BE\src\main\resources\**
+
+/sprint-2-BE/src/main/resources/**
+/sprint-2-BE/src/test/**
+/sprint-2-BE/src/main/resources/application.properties
+

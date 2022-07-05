@@ -1,8 +1,10 @@
 package api.controllers;
 
+import api.models.Account;
 import api.payload.request.LoginRequest;
 import api.payload.response.JwtResponse;
 import api.security.JwtUtility;
+import api.services.IAccountService;
 import api.services.impl.AccountDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,12 +37,12 @@ public class SecurityRestController {
     @Autowired
     private JwtUtility jwtUtility;
 
-//    @Autowired
-//    private IAccountService iAccountService;
-//
+    @Autowired
+    private IAccountService iAccountService;
+
 //    @Autowired
 //    private JwtFilter jwtFilter;
-//
+
 //    @Autowired
 //    private PasswordEncoder encoder;
 
@@ -66,4 +68,13 @@ public class SecurityRestController {
 
         return new ResponseEntity<>(new JwtResponse(jwt, accountDetails.getId(), accountDetails.getUsername(), accountDetails.getImageLink(), roles), HttpStatus.OK);
     }
+
+    @PatchMapping(value = "/warning/{id}")
+    public ResponseEntity<Account> warningReport(){
+        return null;
+    }
+
+
+
+
 }

@@ -12,8 +12,13 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 /*
+<<<<<<< HEAD
     Created by TuanPA
     Date: 10:17 25/6/2022
+=======
+    Created by KhaiTT
+    Date: 10:17 31/05/2022
+>>>>>>> 5c8cc972a80699e5382019a4673ce0591f06352a
     Function: class AccountDetailsImpl implements interface UserDetails to override all method
               of interface UserDetails to store account information which is later encapsulated
               into Authentication objects.
@@ -26,21 +31,23 @@ public class AccountDetailsImpl implements UserDetails {
     private String imageLink;
     @JsonIgnore
     private String password;
+    private String dateBan;
     private List<GrantedAuthority> authorities = null;
 
-    public AccountDetailsImpl(Long id, String username, Boolean enabled, String password, String imageLink, List<GrantedAuthority> authorities) {
+    public AccountDetailsImpl(Long id, String username, Boolean enabled, String imageLink, String password, String dateBan, List<GrantedAuthority> authorities) {
         this.id = id;
         this.username = username;
         this.enabled = enabled;
-        this.password = password;
         this.imageLink = imageLink;
+        this.password = password;
+        this.dateBan = dateBan;
         this.authorities = authorities;
     }
 
     /*
-        Function: method build(Account account) is used to convert the Account object
-                  to an AccountDetailsImpl object which implements the UserDetails interface.
-    */
+            Function: method build(Account account) is used to convert the Account object
+                      to an AccountDetailsImpl object which implements the UserDetails interface.
+        */
     public static AccountDetailsImpl build(Account account) {
         List<GrantedAuthority> authorities = account.getAccountRoleSet().stream()
                 .map(role -> new SimpleGrantedAuthority(role.getRole().getRoleName()))
@@ -49,8 +56,9 @@ public class AccountDetailsImpl implements UserDetails {
                 account.getId(),
                 account.getUserName(),
                 account.getIsEnabled(),
-                account.getEncryptPassword(),
                 account.getGuest().getImage(),
+                account.getEncryptPassword(),
+                account.getDateBan(),
                 authorities);
     }
 

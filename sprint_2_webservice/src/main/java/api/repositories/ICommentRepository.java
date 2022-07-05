@@ -2,8 +2,10 @@ package api.repositories;
 
 import api.models.Comment;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -15,8 +17,10 @@ public interface ICommentRepository extends JpaRepository<Comment, Long> {
            Function: create comment;
            Class:
        */
+    @Transactional
+    @Modifying
     @Query(value = "insert into `comment` (`comment_content`,`time`,`guest_id`,`post_id`)" +
-            "values (:#{#comment.commentContent},:#{#comment.time},:#{#comment.guest},:#{#comment.post})", nativeQuery = true)
+            "values (:#{#comment.commentContent},:#{#comment.time},:#{#comment.guest.id},:#{#comment.post.id})", nativeQuery = true)
     void createComment(Comment comment);
 
     /*
@@ -37,7 +41,7 @@ public interface ICommentRepository extends JpaRepository<Comment, Long> {
         Function: count comment by id;
         Class:
     */
-    @Query(value = "select count `id`from `comment` where `post_id`=:id", nativeQuery = true)
+    @Query(value = "select count(`id`) from `comment` where `post_id`=:id", nativeQuery = true)
     Long countCommentByPostId(@Param("id")Long id);
 
     /*
@@ -47,7 +51,7 @@ public interface ICommentRepository extends JpaRepository<Comment, Long> {
         Function: find comment by id;
         Class:
     */
-    @Query(value = "select count `id`from `comment` where `id`=:id", nativeQuery = true)
+    @Query(value = "select * from `comment` where `id`=:id", nativeQuery = true)
     Comment findCommentById(@Param("id")Long id);
 
     /*
@@ -57,8 +61,10 @@ public interface ICommentRepository extends JpaRepository<Comment, Long> {
       Function: update comment by id;
       Class:
   */
+    @Transactional
+    @Modifying
     @Query(value = "update `comment` set `comment_content`=:#{#comment.commentContent},`time`=:#{#comment.time} where `id`=:id", nativeQuery = true)
-    Comment updateCommentById(Comment comment,@Param("id")Long id);
+    void updateCommentById(Comment comment,@Param("id")Long id);
 
     /*
       Created by hoangDH
@@ -67,6 +73,8 @@ public interface ICommentRepository extends JpaRepository<Comment, Long> {
       Function: delete comment by id;
       Class:
   */
+    @Transactional
+    @Modifying
     @Query(value = "delete from `comment` where `id`=:id", nativeQuery = true)
     void deleteCommentById(@Param("id")Long id);
 }

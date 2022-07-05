@@ -46,5 +46,7 @@ public class Post {
     @JoinColumn(name = "guest_id", referencedColumnName = "id", nullable = false)
     private Guest guest;
 
-
+    @OneToMany(mappedBy = "post")
+    @JsonBackReference
+    private Set<PostReport> postReportSet;
 }

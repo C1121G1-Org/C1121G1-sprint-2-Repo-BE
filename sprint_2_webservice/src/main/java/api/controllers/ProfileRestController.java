@@ -4,6 +4,7 @@ import api.dto.GuestFriendDto;
 import api.models.Friend;
 import api.models.Guest;
 import api.models.GuestFriend;
+import api.models.Post;
 import api.services.IGuestFriendService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -121,5 +122,16 @@ public class ProfileRestController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(guest, HttpStatus.OK);
+    }
+
+
+
+    @GetMapping("/guest-post/{guestId}")
+    public ResponseEntity<List<Post>> getGuestPost(@PathVariable Long guestId) {
+        List<Post> posts = this.iGuestFriendService.findAllGuestPost(guestId);
+        if (posts.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(posts, HttpStatus.OK);
     }
 }

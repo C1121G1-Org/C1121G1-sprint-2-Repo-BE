@@ -1,10 +1,9 @@
 package api.controllers;
 
+import api.dto.*;
 import api.dto.ExtraInforDto;
 import api.dto.GuestDto;
-
 import api.dto.Top100Dto;
-
 import api.models.*;
 import api.services.*;
 import api.services.impl.PassEncTech1;
@@ -13,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 
 import org.springframework.http.HttpStatus;
@@ -23,8 +23,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-import javax.validation.constraints.Max;
-
+import java.util.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -57,11 +56,6 @@ public class GuestRestController {
 
     @Autowired
     IFavoriteService iFavoriteService;
-
-    @GetMapping(value = "/list")
-    public String listGuest() {
-        return null;
-    }
 
     /*
         Created by khoaVC
@@ -230,12 +224,235 @@ public class GuestRestController {
     }
 
     @GetMapping(value = "/listTop100")
-    public ResponseEntity<Page<Top100Dto>> viewTop100( @RequestParam(defaultValue = "0") int page){
+    public ResponseEntity<Page<Top100Dto>> viewTop100(@RequestParam(defaultValue = "0") int page) {
         Page<Top100Dto> top100Dtos = iGuestService.viewTop100(PageRequest.of(page, 10));
-        if (top100Dtos.isEmpty()){
+        if (top100Dtos.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(top100Dtos, HttpStatus.OK);
+    }
+
+
+    /*
+      Created by khoaPTD
+      Role: GUEST
+      Time: 20:00 23/06/2022
+      Function: findAllGuest() = Search Guest
+ */
+    @GetMapping(value = "/searchList")
+    public ResponseEntity<List<GuestInterfaceDTO>> findAllGuest(@RequestParam(required = false, value = "") String keyName,
+                                                                @RequestParam(required = false, value = "") String keyGender,
+                                                                @RequestParam(required = false, value = "") String keyCareer,
+                                                                @RequestParam(required = false, value = "") String keyAddress,
+                                                                @RequestParam(required = false, value = "") String keyYearOfBirth,
+                                                                @RequestParam(required = false, value = "") String keyFavorite) {
+        List<GuestInterfaceDTO> guestList = iGuestService.findGuestByKey(keyName, keyGender, keyCareer, keyAddress, keyYearOfBirth, keyFavorite);
+        if (guestList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(guestList, HttpStatus.OK);
+        }
+
+    }
+
+//    @GetMapping(value = "/{id}")
+//    public ResponseEntity<Guest> findGuestById(@PathVariable Long id) {
+//        Optional<Guest> guest = Optional.ofNullable(this.iGuestService.findGuestById(id));
+//        if (guest.isPresent()) {
+//            return new ResponseEntity<>(guest.get(), HttpStatus.OK);
+//        }
+//        return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+//    }
+
+    @GetMapping(value = "/searchName")
+    public ResponseEntity<Page<GuestInterfaceDTO>> findAllGuestName(@PageableDefault(value = 8) Pageable pageable,
+                                                                    @RequestParam(required = false, value = "") String keyName) {
+        Page<GuestInterfaceDTO> guestList = iGuestService.findGuestByName(pageable, keyName);
+        if (guestList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(guestList, HttpStatus.OK);
+        }
+    }
+
+
+    /*
+         Created by TuanPD
+         ROLE: ADMIN
+         Time: 13:00 27/07/2022
+         Function: getAllMember = Select All by Member
+         Class:
+    */
+    @GetMapping("/list/member")
+    public ResponseEntity<Page<IGuestDto>> getAllMember(@RequestParam(defaultValue = "0") int page) {
+        Pageable pageable = PageRequest.of(page, 5);
+        Page<IGuestDto> iReportDtoPage = iGuestService.getAllMember(pageable);
+        if (iReportDtoPage.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(iReportDtoPage, HttpStatus.OK);
+    }
+
+    /*
+     Created by TuanPD
+     ROLE: ADMIN
+     Time: 13:00 27/07/2022
+     Function: getSearchMember = Select Search All Member Follow Name
+     Class:
+    */
+    @GetMapping("/search")
+    public ResponseEntity<Page<IGuestDto>> getSearchName(@RequestParam(value = "nameMember", defaultValue = "") String nameMember,
+                                                         @RequestParam(defaultValue = "0") int page) {
+        Pageable pageable = PageRequest.of(page, 5);
+        Page<IGuestDto> iReportDtoPage = iGuestService.getSearchName(nameMember, pageable);
+        if (iReportDtoPage.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(iReportDtoPage, HttpStatus.OK);
+    }
+
+    /*
+     Created by TuanPD
+     ROLE: ADMIN
+     Time: 13:00 27/07/2022
+     Function: getVipMember = Select All vip by Member
+     Class:
+    */
+    @GetMapping("/vip")
+    public ResponseEntity<Page<IGuestDto>> getAllMemberVip(@RequestParam(defaultValue = "0") int page) {
+        Pageable pageable = PageRequest.of(page, 5);
+        Page<IGuestDto> iReportDtoPage = iGuestService.getVipMember(pageable);
+        if (iReportDtoPage.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(iReportDtoPage, HttpStatus.OK);
+    }
+
+    /*
+         Created by TuanPD
+         ROLE: ADMIN
+         Time: 13:00 27/07/2022
+         Function: getNormalMember = Select All normal by Member
+         Class:
+        */
+    @GetMapping("/normal")
+    public ResponseEntity<Page<IGuestDto>> getAllMemberNormal(@RequestParam(defaultValue = "0") int page) {
+        Pageable pageable = PageRequest.of(page, 5);
+        Page<IGuestDto> iReportDtoPage = iGuestService.getNormalMember(pageable);
+        if (iReportDtoPage.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(iReportDtoPage, HttpStatus.OK);
+    }
+
+
+    /*
+     Created by hoangDH
+     Role: Admin, member
+     Time: 16:11 23/06/2022
+     Function: update img and image by account id;
+     Class:
+    */
+    @Transactional(rollbackFor = Exception.class)
+    @PatchMapping(value = "/updateAccountAndGuest")
+    public ResponseEntity<ResponseObject> updateIsLoginById(@Valid @RequestBody UpdateGuestAndAccountDto updateGuestAndAccountDto
+            , BindingResult bindingResult, @RequestParam(name = "id") Long id) {
+        updateGuestAndAccountDto.validate(updateGuestAndAccountDto, bindingResult);
+        // Mapping all errors into a map to send to Angular
+
+        Map<String, String> errorMap = new HashMap<>();
+        bindingResult
+                .getFieldErrors()
+                .stream()
+                .forEach(
+                        fieldError -> {
+                            errorMap.put(fieldError.getField(), fieldError.getDefaultMessage());
+                        });
+        // Print log errors
+        if (bindingResult.hasErrors()) {
+            for (Map.Entry<String, String> entry : errorMap.entrySet()) {
+                System.out.printf("%s: %s\n", entry.getKey(), entry.getValue());
+            }
+        }
+        if (!bindingResult.hasErrors()) {
+            try {
+                Account account = iAccountService.findAccountById(id);
+                Guest guest = iGuestService.findGuestById(id);
+                List<Guest> result = new ArrayList<>();
+                if (guest != null) {
+                    account.setIsLogin(updateGuestAndAccountDto.getIsLogin());
+                    iAccountService.updateAccountByIsLogin(account, id);
+                    if (updateGuestAndAccountDto.getImage() == null || updateGuestAndAccountDto.getImage().trim().equals("")) {
+                        if (guest.getGender() == false) {
+                            guest.setImage("https://scr.vn/wp-content/uploads/2020/07/%E1%BA%A2nh-%C4%91%E1%BA%A1i-di%E1%BB%87n-FB-m%E1%BA%B7c-%C4%91%E1%BB%8Bnh-n%E1%BB%AF.jpg");
+                            iGuestService.updateGuestByImage(guest, id);
+                        } else {
+                            guest.setImage("https://scr.vn/wp-content/uploads/2020/07/Avatar-Facebook-tr%E1%BA%AFng.jpg");
+                            iGuestService.updateGuestByImage(guest, id);
+                        }
+                    } else {
+                        guest.setImage(updateGuestAndAccountDto.getImage());
+                        iGuestService.updateGuestByImage(guest, id);
+                    }
+                    return new ResponseEntity<>(new ResponseObject<>(true, "OK", errorMap, result), HttpStatus.OK);
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return new ResponseEntity<>(new ResponseObject<>(false, "FAILED", errorMap, new ArrayList<>()), HttpStatus.BAD_REQUEST);
+    }
+
+
+    /*
+        Created by hoangDH
+        Role: Admin, member
+        Time: 16:11 23/06/2022
+        Function: get guest by id;
+        Class:
+    */
+    @GetMapping(value = "{id}")
+    public ResponseEntity<Guest> getGuestById(@PathVariable Long id) {
+        Guest guest = iGuestService.findGuestById(id);
+        if (guest != null) {
+            return new ResponseEntity<>(guest, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    /*
+        Created by hoangDH
+        Role: Admin, member
+        Time: 16:11 23/06/2022
+        Function: get account by id;
+        Class:
+    */
+    @GetMapping(value = "/account/{id}")
+    public ResponseEntity<Account> getAccountById(@PathVariable Long id) {
+        Account account = iAccountService.findAccountById(id);
+        if (account != null) {
+            return new ResponseEntity<>(account, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    /*
+        Created by hoangDH
+        Role: Admin, member
+        Time: 16:11 23/06/2022
+        Function: get account and guest by account id
+        Class:
+    */
+    @GetMapping(value = "/updateAccAndGuest")
+    public ResponseEntity<Object> getUpdateAccountAndGuest(@RequestParam(name = "id") Long id) {
+        UpdateGuestAndAccount updateGuestAndAccountDto = iAccountService.getGuestAndAccount(id);
+        if (updateGuestAndAccountDto == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(updateGuestAndAccountDto, HttpStatus.OK);
+        }
     }
 
 }

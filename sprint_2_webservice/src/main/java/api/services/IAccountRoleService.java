@@ -12,5 +12,4 @@ public interface IAccountRoleService{
         Class:
     */
     void create(Account account, Long i);
-
 }

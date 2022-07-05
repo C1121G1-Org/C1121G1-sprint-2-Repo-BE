@@ -23,7 +23,7 @@ public class Post {
     @Column(columnDefinition = "longtext")
     private String image;
 
-    @Column(columnDefinition = "date", nullable = false)
+    @Column(columnDefinition = "datetime", nullable = false)
     private String postDate;
 
     @Column(nullable = false)
@@ -46,7 +46,5 @@ public class Post {
     @JoinColumn(name = "guest_id", referencedColumnName = "id", nullable = false)
     private Guest guest;
 
-    @OneToMany(mappedBy = "post")
-    @JsonBackReference
-    private Set<PostReport> postReportSet;
+
 }

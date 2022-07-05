@@ -1,6 +1,5 @@
 package api.services.impl;
 
-import api.services.SendEmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -16,12 +15,11 @@ import java.io.UnsupportedEncodingException;
     Function: Config email sender.
 */
 @Service
-public class EmailSenderService implements SendEmailService {
+public class EmailSenderService {
     @Autowired
     private JavaMailSender mailSender;
 
-    @Override
-    public void sendEmail(String email, String name, String nameReport) throws MessagingException, UnsupportedEncodingException {
+    public void sendEmail(String email, String name, String code) throws MessagingException, UnsupportedEncodingException {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
 
@@ -33,7 +31,7 @@ public class EmailSenderService implements SendEmailService {
         String content = "<p style='font-size: 15px'>Xin chào, <strong style='font-size: 20px; color: blue'>" + name + "</strong></p> "
                 + "<p style='font-size: 15px'>Chúng tôi nhận được yêu cầu thay đổi mật khẩu cho tài khoản C1121G1 Store của bạn.</p> "
                 + "<p style='font-size: 15px'>Sau đây là liên kết xác nhận của bạn: </p> "
-                + "<h2 style='font-size: 30px; color: red'>" + nameReport + "</h2>"
+                + "<h2 style='font-size: 30px; color: red'>" + code + "</h2>"
                 + "<p>Vui lòng không chia sẻ mã xác nhận này với người khác, mã này chỉ có hiệu lực trong <span style='color: red'> 60s </span>"
                 + "<p>Trân trọng,</p>"
                 + "<p>Đội ngũ C1121G1 Store.</p>";

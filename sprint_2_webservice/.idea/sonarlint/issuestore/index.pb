@@ -3,8 +3,6 @@ j
 :src/main/java/api/repositories/IGuestFriendRepository.java,d\5\d51911168f8af52100f9cc7daa5f9483dd3209ea
 R
 "src/main/java/api/dto/PostDto.java,d\0\d0d37c104f06fb2624de67bcde7187049535f0d5
-\
-,src/main/java/api/services/IPostService.java,9\2\9228ce3f0e938e4c9ec0a0b9cb4346fc7ea14fb4
 d
 4src/main/java/api/services/impl/PostServiceImpl.java,1\c\1c38f4085e62a4565dd42e6b28f76d9e5bd8eb4a
 c

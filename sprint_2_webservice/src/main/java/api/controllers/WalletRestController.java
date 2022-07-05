@@ -2,12 +2,18 @@ package api.controllers;
 
 
 import api.dto.ChargeMoneyDto;
+import api.dto.IFriendDto;
 import api.models.ResponseObject;
 import api.services.IWalletService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
@@ -47,5 +53,19 @@ public class WalletRestController {
             return new ResponseEntity<>(HttpStatus.OK);
         }
     }
+
+//    @GetMapping(value = {"/list/{id}"})
+//    public ResponseEntity<Page<IFriendDto>> findAllFriend(@PageableDefault(value = 8) Pageable pageable,
+//                                                          @RequestParam Optional<String> keyName,
+//                                                          @PathVariable Long id) {
+//        String nameValue = keyName.orElse("");
+//
+//        Page<IFriendDto> friendPage = iFriendService.findAllFriend(pageable, nameValue, id);
+//
+//        if (friendPage.isEmpty()) {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//        return new ResponseEntity<>(friendPage, HttpStatus.OK);
+//    }
 
 }

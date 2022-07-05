@@ -8,6 +8,9 @@ import api.services.IGuestService;
 import api.services.IPostService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -23,10 +26,10 @@ import java.util.Map;
 @RequestMapping("/api/post")
 public class PostRestController {
     @Autowired
-    private IPostService iPostService;
+    IPostService iPostService;
 
     @Autowired
-    private IGuestService iGuestService;
+    IGuestService iGuestService;
 
     /*
         Created by TuanNQ
@@ -35,7 +38,7 @@ public class PostRestController {
     */
     @PostMapping(value = "/create")
     public ResponseEntity<ResponseObject> createPost(@Valid @RequestBody PostDto postDto,
-                                                     BindingResult bindingResult) {
+                                                     BindingResult bindingResult){
         Map<String, String> errorMap = new HashMap<>();
         if (bindingResult.hasErrors()) {
             bindingResult
@@ -71,7 +74,7 @@ public class PostRestController {
     }
 
     @PatchMapping(value = "/delete/{id}")
-    public ResponseEntity<ResponseObject> deletePost(@PathVariable String id) {
+    public ResponseEntity<ResponseObject> deletePost(@PathVariable String id){
         return null;
     } //Xóa bằng cách update lại các delete_flag = 1
 }

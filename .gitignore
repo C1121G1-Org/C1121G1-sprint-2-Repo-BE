@@ -1,1 +1,14 @@
+<<<<<<< HEAD
+/sprint-2-BE/src/main/resources/**
+/sprint-2-BE/src/test/**
+/sprint-2-BE/src/main/resources/application.properties
+=======
+<<<<<<< HEAD
+\sprint_2_webservice\src\test\java\api\controllers\**
+\sprint_2_webservice\src\main\resources\**
+=======
 \sprint-2-BE\src\main\resources\**
+\sprint-2-BE\src\test\**
+\sprint-2-BE\src\main\resources\application.properties
+>>>>>>> main
+>>>>>>> 078f204c4a15507a16a917ce9226f87d395eaac9

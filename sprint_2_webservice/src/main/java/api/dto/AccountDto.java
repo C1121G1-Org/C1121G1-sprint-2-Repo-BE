@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /*
@@ -33,6 +34,10 @@ public class AccountDto implements Validator {
     private Boolean isEnabled;
 
     private String verificationCode;
+
+    @NotNull(message = "Trạng thái đăng nhập không được để trống")
+    private Boolean isLogin;
+
 
     @Override
     public boolean supports(Class<?> clazz) {

@@ -7,11 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Set;
-/*
-    Created by HauPV
-    Time: 14:00 27/06/2022
-    Function: Friend Entity
-*/
+
 @Getter
 @Setter
 @Entity

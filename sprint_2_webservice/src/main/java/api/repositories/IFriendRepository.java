@@ -1,4 +1,5 @@
 package api.repositories;
+
 import api.dto.IFriendDto;
 import api.models.Friend;
 import org.springframework.data.domain.Page;
@@ -21,6 +22,7 @@ public interface IFriendRepository extends JpaRepository<Friend, Long> {
 //                    " where delete_flag = 0 and name like concat('%', :name ,'%') ",
 //            nativeQuery = true )
 //    Page<IFriendDto> pageFindAll(Pageable pageable, @Param("name") String keyword);
+
 
     @Query(value = "select friend.id as id, friend.name as name, friend.address as address, friend.date_of_birth as dateOfBirth," +
             " friend.image as image, friend.career as career from guest_friend " +

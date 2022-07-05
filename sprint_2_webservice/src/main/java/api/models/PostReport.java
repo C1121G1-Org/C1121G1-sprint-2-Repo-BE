@@ -33,4 +33,5 @@ public class PostReport {
     @ManyToOne
     @JoinColumn(name = "people_report_id", referencedColumnName = "id")
     private Guest guest;
+
 }

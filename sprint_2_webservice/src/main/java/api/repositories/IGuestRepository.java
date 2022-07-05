@@ -1,13 +1,10 @@
 package api.repositories;
 
 import api.dto.ExtraInforDto;
-<<<<<<< HEAD:sprint-2-BE/src/main/java/api/repositories/IGuestRepository.java
+
 import api.dto.GuestInterfaceDTO;
 import api.dto.IGuestDto;
-=======
-
 import api.dto.Top100Dto;
->>>>>>> f8bff5e374d80f77abd3db31e9c05bbac00422e4:sprint_2_webservice/src/main/java/api/repositories/IGuestRepository.java
 import api.models.Guest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,15 +14,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-<<<<<<< HEAD:sprint-2-BE/src/main/java/api/repositories/IGuestRepository.java
-import java.util.List;
-
-=======
 
 import java.util.List;
 
 
->>>>>>> f8bff5e374d80f77abd3db31e9c05bbac00422e4:sprint_2_webservice/src/main/java/api/repositories/IGuestRepository.java
 public interface IGuestRepository extends JpaRepository<Guest, Long> {
 
     /*
@@ -50,7 +42,7 @@ public interface IGuestRepository extends JpaRepository<Guest, Long> {
         Class:
     */
     @Query(value = "select * from guest where delete_flag = 0 and id = :id ", nativeQuery = true)
-    Guest findGuestById(@Param("id") Long id);
+    Guest findGuestById(@Param("id")Long id);
 
     /*
         Created by khoaVC
@@ -87,7 +79,37 @@ public interface IGuestRepository extends JpaRepository<Guest, Long> {
     @Query(value = "select * from guest where delete_flag = 0 and email = :email ", nativeQuery = true)
     Guest getGuestByEmail(String email);
 
-<<<<<<< HEAD:sprint-2-BE/src/main/java/api/repositories/IGuestRepository.java
+    @Query(value = " select g.id,g.name,g.image,w.value,count(l.like_post_flag) as totalLike\n" +
+            "from guest as g, post as p, like_post as l, wallet as w\n" +
+            "where (g.id = p.guest_id) and (p.id = l.post_id) and (g.id = w.guest_id)\n" +
+            "group by g.id "
+            , nativeQuery = true)
+    Page<Top100Dto> viewTop100 (Pageable pageable);
+
+
+    /*
+        Created by hoangDH
+        Role: Admin, member
+        Time: 16:11 23/06/2022
+        Function: update img by guest;
+        Class:
+    */
+    @Transactional
+    @Modifying
+    @Query(value="update `guest` set `image`=:#{#guest.image} where `id`=:id", nativeQuery = true)
+    void updateGuestByImage(Guest guest,@Param("id")Long id);
+
+    /*
+        Created by HauPV
+        Role: Admin, member
+        Time: 14:00 29/06/2022
+    */
+//    @Query(value = "SELECT guest.id , address , career , date_of_birth , delete_flag , email , gender , image , marital_status , name , account_id , create_date FROM guest " +
+//            "join account on guest.account_id = account.id " +
+//            "where account.user_name = :'#{#username} ;",
+//            nativeQuery = true)
+    Guest findGuestByAccount_UserName(String username);
+
     /*
      Created by TuanPD
      ROLE: ADMIN
@@ -231,7 +253,7 @@ public interface IGuestRepository extends JpaRepository<Guest, Long> {
             "        JOIN\n" +
             "    post_report ON post_report.post_id = post.id\n" +
             "WHERE\n" +
-            "    wallet.value >= 300\n" +
+            "    wallet.value >= 5000\n" +
             "GROUP BY guest.id\n" +
             "ORDER BY guest.id DESC",
             countQuery = "SELECT \n" +
@@ -256,7 +278,7 @@ public interface IGuestRepository extends JpaRepository<Guest, Long> {
                     "        JOIN\n" +
                     "    post_report ON post_report.post_id = post.id\n" +
                     "WHERE\n" +
-                    "    wallet.value >= 300\n" +
+                    "    wallet.value >= 5000\n" +
                     "GROUP BY guest.id\n" +
                     "ORDER BY guest.id DESC", nativeQuery = true)
     Page<IGuestDto> getVipMember(Pageable pageable);
@@ -290,7 +312,7 @@ public interface IGuestRepository extends JpaRepository<Guest, Long> {
             "        JOIN\n" +
             "    post_report ON post_report.post_id = post.id\n" +
             "WHERE\n" +
-            "    wallet.value < 300\n" +
+            "    wallet.value < 5000\n" +
             "GROUP BY guest.id\n" +
             "ORDER BY guest.id DESC",
             countQuery = "SELECT \n" +
@@ -315,7 +337,7 @@ public interface IGuestRepository extends JpaRepository<Guest, Long> {
                     "        JOIN\n" +
                     "    post_report ON post_report.post_id = post.id\n" +
                     "WHERE\n" +
-                    "    wallet.value < 300\n" +
+                    "    wallet.value < 5000\n" +
                     "GROUP BY guest.id\n" +
                     "ORDER BY guest.id DESC", nativeQuery = true)
     Page<IGuestDto> getNormalMember(Pageable pageable);
@@ -365,44 +387,4 @@ public interface IGuestRepository extends JpaRepository<Guest, Long> {
     @Query(value = "SELECT * FROM `sprint-2-db`.guest where guest.`name` like concat('%',:keyName,'%') and `guest`.delete_flag = 0", nativeQuery = true)
     Page<GuestInterfaceDTO> getPageGuestName(Pageable pageable, String keyName);
 
-
-=======
-    @Query(value = " select g.id,g.name,g.image,w.value,count(l.like_post_flag) as totalLike\n" +
-            "from guest as g, post as p, like_post as l, wallet as w\n" +
-            "where (g.id = p.guest_id) and (p.id = l.post_id) and (g.id = w.guest_id)\n" +
-            "group by g.id "
-            , nativeQuery = true)
-    Page<Top100Dto> viewTop100 (Pageable pageable);
-
-    /*
-        Created by hoangDH
-        Role: Admin, member
-        Time: 16:11 23/06/2022
-        Function: update isLogin by guest;
-        Class:
-    */
-    @Query(value="update `account` set `is_login`=:is_login where (`id`=:#{#guest.account.id})", nativeQuery = true)
-    void updateAccountByIsLogin(Guest guest,@Param("is_login")Boolean is_login);
-
-    /*
-        Created by hoangDH
-        Role: Admin, member
-        Time: 16:11 23/06/2022
-        Function: update img by guest;
-        Class:
-    */
-    @Query(value="update `guest` set `image`=:#{#guest.image} where (`id`=:id)", nativeQuery = true)
-    void updateGuestByImage(Guest guest,@Param("id")Long id);
-
-    /*
-        Created by HauPV
-        Role: Admin, member
-        Time: 14:00 29/06/2022
-    */
-//    @Query(value = "SELECT guest.id , address , career , date_of_birth , delete_flag , email , gender , image , marital_status , name , account_id , create_date FROM guest " +
-//            "join account on guest.account_id = account.id " +
-//            "where account.user_name = :'#{#username} ;",
-//            nativeQuery = true)
-    Guest findGuestByAccount_UserName(String username);
->>>>>>> f8bff5e374d80f77abd3db31e9c05bbac00422e4:sprint_2_webservice/src/main/java/api/repositories/IGuestRepository.java
 }

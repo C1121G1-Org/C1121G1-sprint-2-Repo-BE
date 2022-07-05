@@ -27,7 +27,7 @@ public class Comment {
     @Column(name = "time", nullable = false, columnDefinition = "DATE")
     private String time;
 
-
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "post_id", referencedColumnName = "id")
     private Post post;
@@ -35,6 +35,7 @@ public class Comment {
     @JsonBackReference
     private Set<LikeComment> likeCommentSet;
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "guest_id", referencedColumnName = "id")
     private Guest guest;
 }

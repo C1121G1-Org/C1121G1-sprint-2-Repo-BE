@@ -2,38 +2,34 @@ package api.controllers;
 
 import api.dto.IGuestDto;
 import api.models.Report;
-import api.services.IPostService;
+import api.models.ResponseObject;
 import api.services.IReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
-@CrossOrigin("http://localhost:4200/")
+@CrossOrigin("*")
 @RequestMapping("/api/report")
 public class ReportRestController {
     @Autowired
     IReportService iReportService;
 
-    @Autowired
-    private IPostService iPostService;
-
-
     @GetMapping(value = "/list-report")
     public ResponseEntity<Page<IGuestDto>> listPostReport(@PageableDefault(value = 5) Pageable pageable,
-                                                           @RequestParam(name = "guestName", required = false, defaultValue = "") String guestName,
-                                                           @RequestParam(name = "reportName", required = false, defaultValue = "") String reportName,
-                                                           @RequestParam(name = "dateReport", required = false, defaultValue = "1900-01-01") String dateReport,
-                                                           @RequestParam(name = "reportPeopleName", required = false, defaultValue = "") String reportPeopleName){
+                                                          @RequestParam(name = "guestName", required = false, defaultValue = "") String guestName,
+                                                          @RequestParam(name = "reportName", required = false, defaultValue = "") String reportName,
+                                                          @RequestParam(name = "dateReport", required = false, defaultValue = "1900-01-01") String dateReport,
+                                                          @RequestParam(name = "reportPeopleName", required = false, defaultValue = "") String reportPeopleName) {
         Page<IGuestDto> postReportPage =
                 iReportService.getPostReport(guestName, reportName, dateReport, reportPeopleName, pageable);
-        if (postReportPage.isEmpty()){
+        if (postReportPage.isEmpty()) {
             return new ResponseEntity<>(postReportPage, HttpStatus.NOT_FOUND);
         }
 
@@ -41,9 +37,9 @@ public class ReportRestController {
     }
 
     @GetMapping(value = "/list")
-    public ResponseEntity<List<Report>> listReport(){
+    public ResponseEntity<List<Report>> listReport() {
         List<Report> reportPage = iReportService.findAll();
-        if (reportPage.isEmpty()){
+        if (reportPage.isEmpty()) {
             return new ResponseEntity<>(reportPage, HttpStatus.NOT_FOUND);
         }
 
@@ -85,5 +81,4 @@ public class ReportRestController {
 //        }
 //        return new ResponseEntity<Void>(HttpStatus.OK);
 //    }
-
 }

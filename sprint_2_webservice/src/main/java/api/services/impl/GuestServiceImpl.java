@@ -1,24 +1,20 @@
 package api.services.impl;
 
 import api.dto.ExtraInforDto;
-<<<<<<< HEAD:sprint-2-BE/src/main/java/api/services/impl/GuestServiceImpl.java
+
 import api.dto.GuestInterfaceDTO;
 import api.dto.IGuestDto;
-=======
-
 import api.dto.Top100Dto;
 
->>>>>>> f8bff5e374d80f77abd3db31e9c05bbac00422e4:sprint_2_webservice/src/main/java/api/services/impl/GuestServiceImpl.java
 import api.models.Guest;
 import api.repositories.IGuestRepository;
 import api.services.IGuestService;
 import org.springframework.beans.factory.annotation.Autowired;
-<<<<<<< HEAD:sprint-2-BE/src/main/java/api/services/impl/GuestServiceImpl.java
-=======
 
->>>>>>> f8bff5e374d80f77abd3db31e9c05bbac00422e4:sprint_2_webservice/src/main/java/api/services/impl/GuestServiceImpl.java
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -89,14 +85,18 @@ public class GuestServiceImpl implements IGuestService {
         return iGuestRepository.getGuestByEmail(email);
     }
 
-<<<<<<< HEAD:sprint-2-BE/src/main/java/api/services/impl/GuestServiceImpl.java
-    /**
+
+    @Override
+    public Page<Top100Dto> viewTop100(Pageable pageable) {
+        return iGuestRepository.viewTop100(pageable);
+    }
+    /*
      * Created by TuanPD
      * ROLE: ADMIN
      * Time: 13:00 27/07/2022
      * Function: getAllMember = Select All by Member
      * Class:
-     **/
+     */
     @Override
     public Page<IGuestDto> getAllMember(Pageable pageable) {
         return iGuestRepository.getAllMember(pageable);
@@ -126,12 +126,17 @@ public class GuestServiceImpl implements IGuestService {
     public Page<GuestInterfaceDTO> findGuestByName(Pageable pageable, String keyName) {
         return iGuestRepository.getPageGuestName(pageable, keyName);
     }
-=======
 
+    /*
+        Created by hoangDH
+        Role: Admin, member
+        Time: 16:11 23/06/2022
+        Function: update img by guest;
+        Class:
+    */
     @Override
-    public Page<Top100Dto> viewTop100(Pageable pageable) {
-        return iGuestRepository.viewTop100(pageable);
-    }
+    public void updateGuestByImage(Guest guest,Long id){
+        iGuestRepository.updateGuestByImage(guest,id);
+    };
 
->>>>>>> f8bff5e374d80f77abd3db31e9c05bbac00422e4:sprint_2_webservice/src/main/java/api/services/impl/GuestServiceImpl.java
 }

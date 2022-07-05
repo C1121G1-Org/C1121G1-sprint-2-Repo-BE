@@ -41,7 +41,6 @@ public interface IReportRepository extends JpaRepository<Report, Long> {
                                   String dateReport, String reportPeopleName, Pageable pageable);
 
 
-
     @Query(value = "select temp.postReportId as postReportId, temp.postId as postId, temp.guestName as guestName, temp.dateReport as dateReport,\n" +
             "    temp.reportName as reportName, temp.reportedPeople as reportPeople, guest.name as reportedPeopleName from\n" +
             "            (select post_report.id as postReportId, post.id as postId, guest.`name` as guestName, post_report.date_report as dateReport,\n" +
@@ -70,6 +69,6 @@ public interface IReportRepository extends JpaRepository<Report, Long> {
 
 
     @Query(value = "insert into post_report(date_report, post_id, report_id, people_report_id ) value " +
-            "(:#{#iGuestDto.dateReport}, :#{#iGuestDto.postId}, :#{#iGuestDto.reportId}, :#{#iGuestDto.reportedPeopleId})",nativeQuery = true)
+            "(:#{#iGuestDto.dateReport}, :#{#iGuestDto.postId}, :#{#iGuestDto.reportId}, :#{#iGuestDto.reportedPeopleId})", nativeQuery = true)
     void creatPostReBot(IGuestDto iGuestDto);
 }

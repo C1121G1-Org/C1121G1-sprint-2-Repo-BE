@@ -15,7 +15,6 @@ import java.util.List;
 public class ReportServiceImpl implements IReportService {
     @Autowired
     IReportRepository iReportRepository;
-
     @Override
     public Page<IGuestDto> getPostReport(String guestName, String reportName, String dateReport, String reportPeopleName, Pageable pageable) {
         return iReportRepository.getPostReport(guestName, reportName, dateReport, reportPeopleName, pageable);

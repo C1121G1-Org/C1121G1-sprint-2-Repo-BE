@@ -23,9 +23,6 @@ public class Guest {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "create_date", nullable = false, columnDefinition = "DATE")
-    private String createDate;
-
     @Column(name = "date_of_birth", nullable = false, columnDefinition = "DATE")
     private String dateOfBirth;
 
@@ -71,14 +68,8 @@ public class Guest {
     private Set<Gift> giftSet;
 
     @OneToMany(mappedBy = "guest")
-    @JsonBackReference
-    private Set<GuestReport> guestReportSet;
-
-    @JsonBackReference
-    @OneToMany(mappedBy = "guest")
     private Set<LikePost> likePostSet;
 
-    @JsonBackReference
     @OneToMany(mappedBy = "guest")
     private Set<Post> postSet;
 

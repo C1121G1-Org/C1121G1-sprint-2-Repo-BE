@@ -33,7 +33,6 @@ public interface IAccountRepository extends JpaRepository<Account, Long> {
     @Query(value = "select * from account where user_name = :userName ", nativeQuery = true)
     Account getAccountByUserName(@Param("userName") String userName);
 
-
     @Query(value ="UPDATE `account`\n" +
             "    JOIN\n" +
             "    guest ON guest.account_id = account.id\n" +
@@ -60,5 +59,4 @@ public interface IAccountRepository extends JpaRepository<Account, Long> {
             "            WHERE\n" +
             "    postId = ?2) ", nativeQuery = true)
     void actionBanAccount(String dateBan, Long idPost);
-
 }

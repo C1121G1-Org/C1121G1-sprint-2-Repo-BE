@@ -4,12 +4,10 @@ import api.dto.CommentDto;
 import api.dto.LikeCmtAndGuest;
 import api.dto.LikeCommentDto;
 import api.models.*;
-import api.repositories.ICommentRepository;
 import api.services.ICommentService;
 import api.services.IGuestService;
 import api.services.ILikeCommentService;
 import api.services.IPostService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -83,6 +81,7 @@ public class CommentRestController {
         return new ResponseEntity<>(new ResponseObject<>(false, "FAILED", errorMap, new ArrayList<>()), HttpStatus.BAD_REQUEST);
     }
 
+
     @GetMapping(value = "/list")
     public ResponseEntity<List<Comment>> listCommentByPostId(@RequestParam(name = "id") Long id) {
         Post post = iPostService.findPostById1(id);
@@ -147,6 +146,11 @@ public class CommentRestController {
         return new ResponseEntity<>(new ResponseObject<>(false, "FAILED", errorMap, new ArrayList<>()), HttpStatus.BAD_REQUEST);
     }
 
+
+    @PatchMapping(value = "/delete/{id}")
+    public ResponseEntity<ResponseObject> deleteComment(@PathVariable String id){
+        return null;
+    } //Xóa bằng cách update lại các delete_flag = 1
     @DeleteMapping(value = "/delete/{id}")
     public ResponseEntity<Void> deleteComment(@PathVariable Long id) {
         Comment comment = iCommentService.findCommentById(id);

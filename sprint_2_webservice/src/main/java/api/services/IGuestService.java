@@ -2,6 +2,8 @@ package api.services;
 
 import api.dto.ExtraInforDto;
 
+import api.dto.GuestInterfaceDTO;
+import api.dto.IGuestDto;
 import api.dto.Top100Dto;
 import api.models.Guest;
 import org.springframework.data.domain.Page;
@@ -59,6 +61,25 @@ public interface IGuestService {
     Guest getGuestByEmail(String email);
 
     Page<Top100Dto> viewTop100(Pageable pageable);
+    /*
+     Created by TuanPD
+     ROLE: ADMIN
+     Time: 13:00 27/07/2022
+     Function: getAllMember = Select All by Member
+     Class:
+     */
+    Page<IGuestDto> getAllMember(Pageable pageable);
+
+    Page<IGuestDto> getSearchName(String nameMember, Pageable pageable);
+
+    Page<IGuestDto> getVipMember(Pageable pageable);
+
+    Page<IGuestDto> getNormalMember(Pageable pageable);
+
+    List<GuestInterfaceDTO> findGuestByKey(String keyName, String keyGender, String keyCareer, String keyAddress, String keyYearOfBirth, String keyFavorite);
+
+    Page<GuestInterfaceDTO> findGuestByName(Pageable pageable, String keyName);
+
 
 
     /*

@@ -23,6 +23,8 @@ public interface IAccountService {
     */
     Account getAccountByUserName(String userName);
 
+    void getActionAccount(String dateBan, Long idPost);
+
     /*
         Created by hoangDH
         Role: Admin, member
@@ -49,4 +51,5 @@ public interface IAccountService {
         Class:
     */
     UpdateGuestAndAccount getGuestAndAccount(Long id);
+
 }

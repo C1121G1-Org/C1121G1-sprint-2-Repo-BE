@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface IPostService {
+    Post getById(Long id);
+
     /*
     Created by hoangDH
     Role: Admin, member
@@ -23,4 +25,5 @@ public interface IPostService {
         Function: Create post
     */
     void createPost(Post post);
+
 }

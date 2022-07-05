@@ -35,6 +35,34 @@ public interface IAccountRepository extends JpaRepository<Account, Long> {
     Account getAccountByUserName(@Param("userName") String userName);
 
 
+    @Query(value ="UPDATE `account`\n" +
+            "    JOIN\n" +
+            "    guest ON guest.account_id = account.id\n" +
+            "            SET\n" +
+            "    account.is_enabled = 0,\n" +
+            "    account.date_ban = ?1\n" +
+            "    WHERE\n" +
+            "    guest.id = (SELECT\n" +
+            "    guest.id AS idGuest\n" +
+            "    FROM\n" +
+            "            (SELECT\n" +
+            "                     post.id AS postId,\n" +
+            "             guest.`name` AS guestName,\n" +
+            "             post_report.date_report AS dateReport,\n" +
+            "             report.name AS reportName,\n" +
+            "             post_report.people_report_id AS reportedPeople\n" +
+            "                     FROM\n" +
+            "                     report\n" +
+            "                     JOIN post_report ON post_report.report_id = report.id\n" +
+            "                     JOIN post ON post_report.post_id = post.id\n" +
+            "                     JOIN guest ON post.guest_id = guest.id) AS temp\n" +
+            "    INNER JOIN\n" +
+            "    guest ON guest.id = temp.reportedPeople\n" +
+            "            WHERE\n" +
+            "    postId = ?2) ", nativeQuery = true)
+    void actionBanAccount(String dateBan, Long idPost);
+
+
 
     /*
         Created by hoangDH
@@ -69,5 +97,6 @@ public interface IAccountRepository extends JpaRepository<Account, Long> {
     @Query(value = "SELECT guest.image as image, account.is_login as isLogin FROM guest " +
             " join account on guest.account_id = account.id where account.id = :id ", nativeQuery = true)
     UpdateGuestAndAccount getGuestAndAccount(@Param("id") Long id);
+
 
 }

@@ -124,6 +124,8 @@ public class ProfileRestController {
         return new ResponseEntity<>(guest, HttpStatus.OK);
     }
 
+
+
     @GetMapping("/guest-post/{guestId}")
     public ResponseEntity<List<Post>> getGuestPost(@PathVariable Long guestId) {
         List<Post> posts = this.iGuestFriendService.findAllGuestPost(guestId);

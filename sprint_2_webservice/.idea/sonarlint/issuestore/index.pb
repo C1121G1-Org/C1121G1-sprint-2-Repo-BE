@@ -1,6 +1,4 @@
 
-<
-build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
 j
 :src/main/java/api/repositories/IGuestFriendRepository.java,d\5\d51911168f8af52100f9cc7daa5f9483dd3209ea
 R
@@ -15,17 +13,5 @@ R
 "src/main/java/api/models/Post.java,3\1\31f8d0f8895f780fcf394b3c41499694d2a112d0
 g
 7src/main/java/api/repositories/ILikePostRepository.java,9\2\9220717a7ab0b8614ce0bb484b4827c9d2d08c94
-f
-6src/main/java/api/controllers/GuestRestController.java,1\c\1ca519458be765b12edf32c715d731ad7e96578d
-e
-5src/main/java/api/controllers/GiftRestController.java,6\8\68916f132602ef88e28bab73f211140f529029ca
-g
-7src/main/java/api/controllers/FriendRestController.java,7\c\7c9cd23e7cc82a8f4e7bb1e85346cabcd6f095cd
-e
-5src/main/java/api/controllers/PostRestController.java,4\6\46ca1a427f66ca6d3489ed732ff2af99ae99e4ab
-h
-8src/main/java/api/controllers/ProfileRestController.java,0\3\0396baf0c98a49c3170dedb5fc90b31784cc2fe4
-g
-7src/main/java/api/controllers/ReportRestController.java,7\5\75f4c6770626f0539c5b6d7ae3ee4c4ee857716f
 c
 3src/main/java/api/repositories/IPostRepository.java,a\5\a5586aa7b8ae96f14efe6a11abc026129cc9e104

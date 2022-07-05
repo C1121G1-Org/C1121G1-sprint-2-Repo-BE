@@ -75,6 +75,7 @@ public class GuestFriendServiceImpl implements IGuestFriendService {
         return this.iGuestRepository.findGuestByAccount_UserName(username);
     }
 
+
     @Override
     public List<Post> findAllGuestPost(Long guestId) {
         return this.iPostRepository.findAllGuestPost(guestId);

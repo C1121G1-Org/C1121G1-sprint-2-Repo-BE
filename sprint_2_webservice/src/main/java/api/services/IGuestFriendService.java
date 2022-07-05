@@ -29,6 +29,7 @@ public interface IGuestFriendService {
 
     Guest findGuestByUsername(String username);
 
+
     List<Post> findAllGuestPost(Long guestId);
 
 /*

@@ -30,6 +30,7 @@ import java.util.stream.Collectors;
 @RequestMapping("api/public")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class SecurityRestController {
+
     @Autowired
     private AuthenticationManager authenticationManager;
 

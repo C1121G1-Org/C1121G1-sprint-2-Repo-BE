@@ -12,8 +12,13 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 /*
+<<<<<<< HEAD
+    Created by TuanPA
+    Date: 10:17 25/6/2022
+=======
     Created by KhaiTT
     Date: 10:17 31/05/2022
+>>>>>>> 5c8cc972a80699e5382019a4673ce0591f06352a
     Function: class AccountDetailsImpl implements interface UserDetails to override all method
               of interface UserDetails to store account information which is later encapsulated
               into Authentication objects.
@@ -49,7 +54,7 @@ public class AccountDetailsImpl implements UserDetails {
                 .collect(Collectors.toList());
         return new AccountDetailsImpl(
                 account.getId(),
-                account.getGuest().getName(),
+                account.getUserName(),
                 account.getIsEnabled(),
                 account.getGuest().getImage(),
                 account.getEncryptPassword(),

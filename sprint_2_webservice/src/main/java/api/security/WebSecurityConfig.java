@@ -53,9 +53,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/public/**", "/api/guest/**", "api/friend/**", "/api/report/**")
+                .antMatchers("/api/public/**","/profile/**","/api/gift/**","/api/guest/**")
                 .permitAll()
-                .antMatchers("/api/comment/**", "/api/gift/**", "/api/post/**", "profile/list", "api/wallet/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/api/comment/**","/api/post/**","/api/report/**","/api/wallet/**","/api/friend/**" ).hasAnyRole("USER", "ADMIN")
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -63,4 +63,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
     }
+
 }

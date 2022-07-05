@@ -29,6 +29,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+//Role : permit all
+
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/api/guest")

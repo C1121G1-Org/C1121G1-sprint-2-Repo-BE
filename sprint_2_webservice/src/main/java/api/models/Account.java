@@ -35,9 +35,14 @@ public class Account {
     private String verificationCode;
 
 
+
 //    @OneToOne(mappedBy = "account")
 //    @JsonBackReference
 //    private Employee employee;
+
+    @Column(name="is_login")
+    private Boolean isLogin;
+
 
     //    Ngày hết hạn ban
     @Column(name = "date_ban", columnDefinition = "DATE")

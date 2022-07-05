@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -124,4 +126,17 @@ public class GuestServiceImpl implements IGuestService {
     public Page<GuestInterfaceDTO> findGuestByName(Pageable pageable, String keyName) {
         return iGuestRepository.getPageGuestName(pageable, keyName);
     }
+
+    /*
+        Created by hoangDH
+        Role: Admin, member
+        Time: 16:11 23/06/2022
+        Function: update img by guest;
+        Class:
+    */
+    @Override
+    public void updateGuestByImage(Guest guest,Long id){
+        iGuestRepository.updateGuestByImage(guest,id);
+    };
+
 }

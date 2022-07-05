@@ -30,7 +30,7 @@ public class Guest {
     private String createDate;
 
     @Column(name = "gender", nullable = false)
-    private boolean gender;
+    private Boolean gender;
 
     @Column(name = "career", nullable = false, length = 50)
     private String career;
@@ -74,6 +74,7 @@ public class Guest {
     private Set<Post> postSet;
 
     @OneToMany(mappedBy = "guest")
+    @JsonBackReference
     private Set<LikeComment> likeCommentSet;
 
     @OneToMany(mappedBy = "guest")

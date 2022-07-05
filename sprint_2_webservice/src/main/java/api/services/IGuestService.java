@@ -8,6 +8,8 @@ import api.dto.Top100Dto;
 import api.models.Guest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -77,6 +79,17 @@ public interface IGuestService {
     List<GuestInterfaceDTO> findGuestByKey(String keyName, String keyGender, String keyCareer, String keyAddress, String keyYearOfBirth, String keyFavorite);
 
     Page<GuestInterfaceDTO> findGuestByName(Pageable pageable, String keyName);
+
+
+
+    /*
+        Created by hoangDH
+        Role: Admin, member
+        Time: 16:11 23/06/2022
+        Function: update img by guest;
+        Class:
+    */
+    void updateGuestByImage(Guest guest,Long id);
 
 
 }

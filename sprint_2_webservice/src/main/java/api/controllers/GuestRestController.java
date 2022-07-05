@@ -242,6 +242,7 @@ public class GuestRestController {
                                                             ,BindingResult bindingResult, @RequestParam(name="id")Long id) {
         updateGuestAndAccountDto.validate(updateGuestAndAccountDto, bindingResult);
         // Mapping all errors into a map to send to Angular
+
         Map<String, String> errorMap = new HashMap<>();
         bindingResult
                 .getFieldErrors()

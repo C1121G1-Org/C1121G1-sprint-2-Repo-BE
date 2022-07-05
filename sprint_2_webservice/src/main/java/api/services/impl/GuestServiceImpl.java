@@ -1,14 +1,22 @@
 package api.services.impl;
 
 import api.dto.ExtraInforDto;
+<<<<<<< HEAD:sprint-2-BE/src/main/java/api/services/impl/GuestServiceImpl.java
+import api.dto.GuestInterfaceDTO;
+import api.dto.IGuestDto;
+=======
 
 import api.dto.Top100Dto;
 
+>>>>>>> f8bff5e374d80f77abd3db31e9c05bbac00422e4:sprint_2_webservice/src/main/java/api/services/impl/GuestServiceImpl.java
 import api.models.Guest;
 import api.repositories.IGuestRepository;
 import api.services.IGuestService;
 import org.springframework.beans.factory.annotation.Autowired;
+<<<<<<< HEAD:sprint-2-BE/src/main/java/api/services/impl/GuestServiceImpl.java
+=======
 
+>>>>>>> f8bff5e374d80f77abd3db31e9c05bbac00422e4:sprint_2_webservice/src/main/java/api/services/impl/GuestServiceImpl.java
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -81,10 +89,49 @@ public class GuestServiceImpl implements IGuestService {
         return iGuestRepository.getGuestByEmail(email);
     }
 
+<<<<<<< HEAD:sprint-2-BE/src/main/java/api/services/impl/GuestServiceImpl.java
+    /**
+     * Created by TuanPD
+     * ROLE: ADMIN
+     * Time: 13:00 27/07/2022
+     * Function: getAllMember = Select All by Member
+     * Class:
+     **/
+    @Override
+    public Page<IGuestDto> getAllMember(Pageable pageable) {
+        return iGuestRepository.getAllMember(pageable);
+    }
+
+    @Override
+    public Page<IGuestDto> getSearchName(String nameMember, Pageable pageable) {
+        return iGuestRepository.getSearchName(nameMember, pageable);
+    }
+
+    @Override
+    public Page<IGuestDto> getVipMember(Pageable pageable) {
+        return iGuestRepository.getVipMember(pageable);
+    }
+
+    @Override
+    public Page<IGuestDto> getNormalMember(Pageable pageable) {
+        return iGuestRepository.getNormalMember(pageable);
+    }
+
+    @Override
+    public List<GuestInterfaceDTO> findGuestByKey(String keyName, String keyGender, String keyCareer, String keyAddress, String keyYearOfBirth, String keyFavorite) {
+        return iGuestRepository.getPageGuest(keyName, keyGender, keyCareer, keyAddress, keyYearOfBirth, keyFavorite);
+    }
+
+    @Override
+    public Page<GuestInterfaceDTO> findGuestByName(Pageable pageable, String keyName) {
+        return iGuestRepository.getPageGuestName(pageable, keyName);
+    }
+=======
 
     @Override
     public Page<Top100Dto> viewTop100(Pageable pageable) {
         return iGuestRepository.viewTop100(pageable);
     }
 
+>>>>>>> f8bff5e374d80f77abd3db31e9c05bbac00422e4:sprint_2_webservice/src/main/java/api/services/impl/GuestServiceImpl.java
 }

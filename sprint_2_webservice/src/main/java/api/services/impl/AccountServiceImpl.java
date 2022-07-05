@@ -35,4 +35,12 @@ public class AccountServiceImpl implements IAccountService {
     public Account getAccountByUserName(String userName) {
         return iAccountRepository.getAccountByUserName(userName);
     }
+
+
+    @Override
+    public void getActionAccount(String dateBan, Long idPost) {
+        iAccountRepository.actionBanAccount(dateBan,idPost);
+    }
+
+
 }

@@ -1,10 +1,10 @@
 package api.services;
 
+import api.dto.IPostDto;
 import api.models.Post;
 import org.springframework.data.domain.Page;
+
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 public interface IPostService {
     /*
@@ -23,4 +23,8 @@ public interface IPostService {
         Function: Create post
     */
     void createPost(Post post);
+
+    Page<IPostDto> findAll(Pageable pageable, Long guest);
+
+    void savePost(Post post);
 }

@@ -1,11 +1,10 @@
 package api.services.impl;
 
+import api.dto.IPostDto;
 import api.models.Post;
 import api.repositories.IPostRepository;
 import api.services.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -35,6 +34,17 @@ public class PostServiceImpl implements IPostService {
     @Override
     public void createPost(Post post) {
         iPostRepository.createPost(post);
+    }
+
+
+    @Override
+    public Page<IPostDto> findAll(Pageable pageable, Long guestId) {
+        return iPostRepository.findAllPosts(pageable, guestId);
+    }
+
+    @Override
+    public void savePost(Post post) {
+        iPostRepository.save(post);
     }
 
 }
